@@ -5644,103 +5644,173 @@ button.primary {
 }
 
 
-/* V75 fix player panel overlap inside main table */
-.split-table {
-  box-sizing: border-box !important;
-  display: grid !important;
-  grid-template-rows: minmax(145px, 1fr) 42px minmax(145px, 1fr) !important;
-  gap: 10px !important;
-  min-height: 430px !important;
-  height: auto !important;
-  padding: 16px !important;
+/* V75 force Hit / Stay / Hint fully visible */
+.app {
+  min-height: 100svh !important;
+  max-height: 100svh !important;
   overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  padding-bottom: max(6px, env(safe-area-inset-bottom)) !important;
+}
+
+.top-bar {
+  flex: 0 0 auto !important;
+  margin-bottom: 2px !important;
+}
+
+.split-table {
+  flex: 0 1 auto !important;
+  min-height: 310px !important;
+  max-height: 410px !important;
+  grid-template-rows: 1fr auto 1fr !important;
+  gap: 7px !important;
+  padding: 10px !important;
+  margin-bottom: 6px !important;
 }
 
 .split-table .hand-panel {
-  box-sizing: border-box !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  min-height: 145px !important;
-  height: 100% !important;
-  margin: 0 !important;
-  padding: 14px !important;
-  border-radius: 22px !important;
-  display: grid !important;
-  grid-template-columns: 64px minmax(0, 1fr) !important;
-  align-items: start !important;
-  gap: 10px !important;
-  overflow: hidden !important;
+  min-height: 118px !important;
+  padding: 10px !important;
+  border-radius: 20px !important;
+  grid-template-columns: 56px 1fr !important;
 }
 
-.split-table .dealer-panel,
-.split-table .player-panel {
-  align-self: stretch !important;
+.split-table .score-block h2,
+#dealerScore,
+#playerScore {
+  font-size: 30px !important;
+  line-height: 1 !important;
+}
+
+.split-table .label {
+  font-size: 10px !important;
+  letter-spacing: .18em !important;
 }
 
 .split-table .cards {
-  box-sizing: border-box !important;
-  max-width: 100% !important;
-  min-width: 0 !important;
-  display: flex !important;
-  flex-wrap: wrap !important;
-  align-content: flex-start !important;
-  align-items: flex-start !important;
-  justify-content: flex-start !important;
+  min-height: 64px !important;
   gap: 6px !important;
   row-gap: 6px !important;
-  padding: 0 !important;
-  overflow: hidden !important;
 }
 
 .split-table .card {
   width: 42px !important;
   height: 64px !important;
   border-radius: 10px !important;
-  flex: 0 0 42px !important;
-  margin: 0 !important;
 }
 
 .table-message-panel {
-  box-sizing: border-box !important;
-  min-height: 42px !important;
-  height: 42px !important;
-  display: grid !important;
-  place-items: center !important;
-  padding: 0 !important;
-  overflow: visible !important;
+  min-height: 34px !important;
 }
 
 .table-message-panel .message {
-  box-sizing: border-box !important;
-  width: min(82%, 520px) !important;
-  margin: 0 auto !important;
-  padding: 8px 14px !important;
-  font-size: 0.9rem !important;
-  line-height: 1.2 !important;
+  padding: 7px 12px !important;
+  font-size: 0.82rem !important;
+  width: 78% !important;
+}
+
+.controls {
+  flex: 0 0 auto !important;
+  margin-top: 4px !important;
+  padding: 10px 14px 12px !important;
+  border-radius: 24px !important;
+}
+
+.bet-panel {
+  margin-bottom: 6px !important;
+}
+
+#minusBet,
+#plusBet,
+.bet-panel .round {
+  width: 42px !important;
+  height: 42px !important;
+  min-height: 42px !important;
+}
+
+#bet {
+  font-size: 30px !important;
+  line-height: 1 !important;
+}
+
+.chip-stack {
+  gap: 7px !important;
+  margin-bottom: 7px !important;
+}
+
+.chip {
+  min-height: 30px !important;
+  height: 30px !important;
+  padding: 0 8px !important;
+  font-size: 11px !important;
+}
+
+#deal.primary,
+button.primary {
+  min-height: 42px !important;
+  height: 42px !important;
+  margin: 7px 0 !important;
+  font-size: 16px !important;
+}
+
+.actions {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 8px !important;
+  margin-top: 7px !important;
+}
+
+.actions button {
+  min-height: 44px !important;
+  height: 44px !important;
+  font-size: 15px !important;
+  border-radius: 16px !important;
+}
+
+.share-section {
+  flex: 0 0 auto !important;
+  padding-top: 6px !important;
+  padding-bottom: 4px !important;
+}
+
+.share-section p {
+  font-size: 7px !important;
+  margin-bottom: 4px !important;
+}
+
+.share-buttons {
+  gap: 8px !important;
+}
+
+.share-btn {
+  width: 28px !important;
+  height: 28px !important;
+  min-height: 28px !important;
 }
 
 @media (max-height: 760px) {
   .split-table {
-    grid-template-rows: minmax(128px, 1fr) 38px minmax(128px, 1fr) !important;
-    min-height: 388px !important;
-    gap: 8px !important;
-    padding: 12px !important;
+    min-height: 290px !important;
+    max-height: 360px !important;
   }
 
   .split-table .hand-panel {
-    min-height: 128px !important;
-    padding: 11px !important;
-    grid-template-columns: 56px minmax(0, 1fr) !important;
+    min-height: 104px !important;
   }
 
   .split-table .card {
     width: 38px !important;
     height: 58px !important;
-    flex-basis: 38px !important;
   }
 
-  .table-message-panel {
-    height: 38px !important;
-    min-height: 38px !important;
+  .controls {
+    padding: 8px 12px 10px !important;
+  }
+
+  .actions button {
+    min-height: 40px !important;
+    height: 40px !important;
   }
 }
