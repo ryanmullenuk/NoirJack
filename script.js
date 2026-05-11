@@ -174,7 +174,21 @@ function startSplashParticles() {
     }));
   }
 
-  function drawParticles() {
+  
+function updateCompactCardRows() {
+  const dealerCardsEl = document.getElementById("dealerCards");
+  const playerCardsEl = document.getElementById("playerCards");
+
+  if (dealerCardsEl) {
+    dealerCardsEl.classList.toggle("is-compact", dealerCardsEl.children.length > 4);
+  }
+
+  if (playerCardsEl) {
+    playerCardsEl.classList.toggle("is-compact", playerCardsEl.children.length > 4);
+  }
+}
+
+function drawParticles() {
     ctx.clearRect(0, 0, width, height);
 
     for (let i = 0; i < particles.length; i++) {
@@ -246,6 +260,8 @@ function startSplashParticles() {
 
   resizeParticles();
   drawParticles();
+
+  updateCompactCardRows();
 }
 
 function stopSplashParticles() {

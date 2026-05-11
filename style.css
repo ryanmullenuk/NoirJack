@@ -5920,3 +5920,91 @@ button.primary {
     transform: translateY(6px) !important;
   }
 }
+
+
+/* V77 compact 2-row card handling */
+.split-table .hand-panel {
+  overflow: hidden !important;
+}
+
+.split-table .cards {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 44px)) !important;
+  grid-auto-rows: 64px !important;
+  gap: 6px !important;
+  align-items: start !important;
+  align-content: start !important;
+  justify-content: start !important;
+  max-height: 134px !important;
+  overflow: hidden !important;
+}
+
+.split-table .cards.is-compact {
+  grid-template-columns: repeat(5, minmax(0, 38px)) !important;
+  grid-auto-rows: 56px !important;
+  gap: 5px !important;
+  max-height: 118px !important;
+}
+
+.split-table .cards.is-compact .card {
+  width: 38px !important;
+  height: 56px !important;
+  border-radius: 9px !important;
+  font-size: 0.78rem !important;
+}
+
+.split-table .cards.is-compact .card .rank,
+.split-table .cards.is-compact .card-rank {
+  font-size: 0.78rem !important;
+}
+
+.split-table .cards.is-compact .card .suit,
+.split-table .cards.is-compact .card-suit {
+  font-size: 0.9rem !important;
+}
+
+.split-table .card {
+  width: 44px !important;
+  height: 64px !important;
+  border-radius: 10px !important;
+}
+
+@media (max-width: 430px) {
+  .split-table .cards {
+    grid-template-columns: repeat(4, 42px) !important;
+    grid-auto-rows: 62px !important;
+    max-height: 130px !important;
+  }
+
+  .split-table .cards.is-compact {
+    grid-template-columns: repeat(5, 36px) !important;
+    grid-auto-rows: 54px !important;
+    gap: 5px !important;
+    max-height: 114px !important;
+  }
+
+  .split-table .cards.is-compact .card {
+    width: 36px !important;
+    height: 54px !important;
+  }
+}
+
+@media (max-height: 760px) {
+  .split-table .cards {
+    grid-template-columns: repeat(4, 38px) !important;
+    grid-auto-rows: 58px !important;
+    max-height: 120px !important;
+  }
+
+  .split-table .cards.is-compact {
+    grid-template-columns: repeat(5, 33px) !important;
+    grid-auto-rows: 50px !important;
+    max-height: 105px !important;
+  }
+
+  .split-table .cards.is-compact .card {
+    width: 33px !important;
+    height: 50px !important;
+    border-radius: 8px !important;
+  }
+}
