@@ -4492,3 +4492,94 @@ body.theme-orange .splash-screen .play-btn {
     0 0 0 1px rgba(var(--active-rgb), .22),
     0 0 16px rgba(var(--active-rgb), .18) !important;
 }
+
+
+/* V52 hard fix: expanded settings panels must show full contents */
+.settings-panel {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+.setting-block.simple-setting,
+#currencySetting,
+#backgroundSetting {
+  height: auto !important;
+  min-height: 58px !important;
+  max-height: none !important;
+  overflow: visible !important;
+  display: block !important;
+  padding: 0 !important;
+}
+
+#currencyPanel:not([hidden]),
+#backgroundPanel:not([hidden]) {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 10px !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  padding: 0 16px 16px !important;
+  margin: 0 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+#currencyPanel[hidden],
+#backgroundPanel[hidden] {
+  display: none !important;
+}
+
+#currencyPanel .currency-option,
+#backgroundPanel .theme-option {
+  position: relative !important;
+  display: grid !important;
+  width: 100% !important;
+  min-height: 44px !important;
+  height: 44px !important;
+  max-height: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  overflow: visible !important;
+  pointer-events: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+}
+
+#currencyPanel .currency-option {
+  place-items: center !important;
+}
+
+#backgroundPanel .theme-option {
+  grid-template-columns: 24px 1fr !important;
+  align-items: center !important;
+  justify-items: start !important;
+}
+
+#backgroundPanel .theme-option > span,
+#backgroundPanel .theme-option > strong {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+#backgroundPanel .theme-option > span {
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 999px !important;
+  background: currentColor !important;
+}
+
+#backgroundPanel .theme-red > span { color: #ff5b5b !important; }
+#backgroundPanel .theme-blue > span { color: #68a9ff !important; }
+#backgroundPanel .theme-purple > span { color: #b58cff !important; }
+#backgroundPanel .theme-green > span { color: #d9ff6a !important; }
+#backgroundPanel .theme-orange > span { color: #ffad55 !important; }
+
+/* clear older clipping from collapsible-setting rules */
+.collapsible-setting,
+.background-setting {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
