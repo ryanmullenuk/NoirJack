@@ -2629,3 +2629,153 @@ body.settings-open {
 .theme-option > span {
   pointer-events: none !important;
 }
+
+
+/* V38 logo, win/lose pulse and social share footer */
+.logo {
+  width: 230px !important;
+  max-width: 62vw !important;
+}
+
+@media (max-height: 760px) {
+  .logo {
+    width: 205px !important;
+  }
+}
+
+@media (max-height: 690px) {
+  .logo {
+    width: 185px !important;
+  }
+}
+
+.table.win-pulse,
+.controls.win-pulse {
+  animation: resultPulseWin 1.15s ease-in-out 2;
+  border-color: rgba(63, 230, 128, .86) !important;
+  box-shadow:
+    0 0 0 1px rgba(63, 230, 128, .26),
+    0 0 26px rgba(63, 230, 128, .26),
+    inset 0 0 24px rgba(63, 230, 128, .055) !important;
+}
+
+.table.lose-pulse,
+.controls.lose-pulse {
+  animation: resultPulseLose 1.15s ease-in-out 2;
+  border-color: rgba(255, 72, 72, .88) !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 72, 72, .26),
+    0 0 26px rgba(255, 72, 72, .24),
+    inset 0 0 24px rgba(255, 72, 72, .055) !important;
+}
+
+@keyframes resultPulseWin {
+  0%, 100% {
+    box-shadow:
+      0 0 0 1px rgba(63, 230, 128, .14),
+      0 0 14px rgba(63, 230, 128, .10),
+      inset 0 0 12px rgba(63, 230, 128, .03);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(63, 230, 128, .48),
+      0 0 34px rgba(63, 230, 128, .36),
+      inset 0 0 32px rgba(63, 230, 128, .08);
+  }
+}
+
+@keyframes resultPulseLose {
+  0%, 100% {
+    box-shadow:
+      0 0 0 1px rgba(255, 72, 72, .14),
+      0 0 14px rgba(255, 72, 72, .10),
+      inset 0 0 12px rgba(255, 72, 72, .03);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(255, 72, 72, .50),
+      0 0 34px rgba(255, 72, 72, .34),
+      inset 0 0 32px rgba(255, 72, 72, .08);
+  }
+}
+
+.share-section {
+  flex: 0 0 auto;
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  padding: 6px 0 2px;
+}
+
+.share-section p {
+  margin: 0;
+  color: rgba(245,245,242,.62);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.share-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.share-btn {
+  width: 38px !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  border-radius: 999px !important;
+  background: rgba(255,255,255,.035) !important;
+  border: 1px solid rgba(245,245,242,.24) !important;
+  color: rgba(245,245,242,.86) !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 0 !important;
+}
+
+.share-btn svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+
+.share-btn:first-child svg {
+  fill: currentColor;
+  stroke: none;
+}
+
+.share-btn:active {
+  transform: scale(.96);
+}
+
+@media (max-height: 760px) {
+  .share-section {
+    gap: 6px;
+    padding-top: 3px;
+  }
+
+  .share-section p {
+    font-size: 8px;
+  }
+
+  .share-btn {
+    width: 34px !important;
+    height: 34px !important;
+    min-height: 34px !important;
+  }
+
+  .share-btn svg {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+@media (max-height: 690px) {
+  .share-section {
+    display: none !important;
+  }
+}

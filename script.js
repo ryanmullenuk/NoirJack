@@ -31,6 +31,7 @@ const topUpOptions = document.querySelectorAll(".topup-option");
 const betEl = document.getElementById("bet");
 const messageEl = document.getElementById("message");
 const tableEl = document.getElementById("table");
+const controlsPanel = document.getElementById("controlsPanel");
 const dealerCardsEl = document.getElementById("dealerCards");
 const playerCardsEl = document.getElementById("playerCards");
 const dealerScoreEl = document.getElementById("dealerScore");
@@ -928,6 +929,38 @@ soundToggle.addEventListener("click", () => {
   soundsOn = !soundsOn;
   localStorage.setItem("noirjackSoundsOn", soundsOn);
   updateStatsUI();
+
+document.querySelectorAll(".share-btn").forEach(button => {
+  button.addEventListener("click", () => {
+    const shareType = button.dataset.share;
+    const shareUrl = "https://noirjack.com";
+    const shareText = "Play NoirJack - Simple. Refined. Play.";
+
+    haptic("tap");
+
+    if (navigator.share) {
+      navigator.share({
+        title: "NoirJack",
+        text: shareText,
+        url: shareUrl
+      }).catch(() => {});
+      return;
+    }
+
+    const encodedUrl = encodeURIComponent(shareUrl);
+    const encodedText = encodeURIComponent(shareText);
+
+    const urls = {
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+      instagram: `https://www.instagram.com/`,
+      x: `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`
+    };
+
+    window.open(urls[shareType], "_blank", "noopener,noreferrer");
+  });
+});
+
+
 syncSettingsUI();
 });
 
