@@ -16,6 +16,7 @@ if (!["£", "$", "€"].includes(currencySymbol)) {
   localStorage.setItem("noirjackCurrencyLabel", currencyLabel);
 }
 let soundsOn = localStorage.getItem("noirjackSoundsOn") !== "false";
+let backgroundTheme = localStorage.getItem("noirjackBackgroundTheme") || "green";
 let inRound = false;
 let dealingInProgress = false;
 let settlingRound = false;
@@ -47,6 +48,7 @@ const settingsOverlay = document.getElementById("settingsOverlay");
 const closeSettings = document.getElementById("closeSettings");
 const soundToggle = document.getElementById("soundToggle");
 const currencyOptions = document.querySelectorAll(".currency-option");
+const themeOptions = document.querySelectorAll(".theme-option");
 const chipButtons = document.querySelectorAll(".chip");
 
 const particleLayer = document.getElementById("particleLayer");
@@ -477,6 +479,11 @@ function setHintPrompt(active) {
   hintBtn.classList.toggle("hint-prompt", active && inRound && !hintBtn.disabled);
 }
 
+function applyBackgroundTheme() {
+  document.body.classList.remove("theme-red", "theme-blue", "theme-purple", "theme-green", "theme-orange");
+  document.body.classList.add(`theme-${backgroundTheme}`);
+}
+
 function syncSettingsUI() {
   soundToggle.textContent = soundsOn ? "On" : "Off";
   soundToggle.classList.toggle("is-on", soundsOn);
@@ -484,6 +491,12 @@ function syncSettingsUI() {
   currencyOptions.forEach(option => {
     option.classList.toggle("is-selected", option.dataset.symbol === currencySymbol);
   });
+
+  themeOptions.forEach(option => {
+    option.classList.toggle("is-selected", option.dataset.theme === backgroundTheme);
+  });
+
+  applyBackgroundTheme();
 }
 
 

@@ -1703,3 +1703,471 @@ button {
     height: 60px !important;
   }
 }
+
+
+/* V26 full background continuation and colour themes */
+html,
+body {
+  background: #07080b !important;
+}
+
+body {
+  min-height: 100dvh !important;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at top left, rgba(var(--theme-rgb), .24), transparent 38%),
+    radial-gradient(circle at 80% 20%, rgba(var(--theme-rgb), .10), transparent 32%),
+    linear-gradient(145deg, #07080b, #11141a 62%, #07080b) !important;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 28vh;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(7,8,11,0), rgba(7,8,11,.92) 70%, rgba(7,8,11,1));
+}
+
+body.theme-green {
+  --theme-rgb: 112, 150, 62;
+  --theme-accent: #d9ff6a;
+}
+
+body.theme-red {
+  --theme-rgb: 190, 42, 58;
+  --theme-accent: #ff5b5b;
+}
+
+body.theme-blue {
+  --theme-rgb: 45, 110, 220;
+  --theme-accent: #68a9ff;
+}
+
+body.theme-purple {
+  --theme-rgb: 132, 80, 210;
+  --theme-accent: #b58cff;
+}
+
+body.theme-orange {
+  --theme-rgb: 224, 118, 38;
+  --theme-accent: #ffad55;
+}
+
+body.theme-red,
+body.theme-blue,
+body.theme-purple,
+body.theme-green,
+body.theme-orange {
+  background:
+    radial-gradient(circle at top left, rgba(var(--theme-rgb), .24), transparent 38%),
+    radial-gradient(circle at 80% 20%, rgba(var(--theme-rgb), .10), transparent 32%),
+    linear-gradient(145deg, #07080b, #11141a 62%, #07080b) !important;
+}
+
+body.theme-red .primary,
+body.theme-red .play-btn {
+  background: var(--theme-accent) !important;
+}
+
+body.theme-blue .primary,
+body.theme-blue .play-btn {
+  background: var(--theme-accent) !important;
+}
+
+body.theme-purple .primary,
+body.theme-purple .play-btn {
+  background: var(--theme-accent) !important;
+}
+
+body.theme-orange .primary,
+body.theme-orange .play-btn {
+  background: var(--theme-accent) !important;
+}
+
+body.theme-green .primary,
+body.theme-green .play-btn {
+  background: var(--accent) !important;
+}
+
+body.theme-red .chip::before,
+body.theme-blue .chip::before,
+body.theme-purple .chip::before,
+body.theme-orange .chip::before {
+  background: var(--theme-accent) !important;
+}
+
+body.theme-red #hint.hint-prompt,
+body.theme-blue #hint.hint-prompt,
+body.theme-purple #hint.hint-prompt,
+body.theme-orange #hint.hint-prompt {
+  border-color: rgba(var(--theme-rgb), .95) !important;
+  color: var(--theme-accent) !important;
+  box-shadow:
+    0 0 0 1px rgba(var(--theme-rgb), .28),
+    0 0 18px rgba(var(--theme-rgb), .28),
+    inset 0 0 14px rgba(var(--theme-rgb), .10) !important;
+}
+
+.theme-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 9px;
+  margin-top: 12px;
+}
+
+.theme-option {
+  min-height: 42px;
+  border-radius: 14px;
+  background: #252a35;
+  color: var(--text);
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 10px;
+  align-items: center;
+  text-align: left;
+  padding: 0 12px;
+  font-size: 13px;
+}
+
+.theme-option span {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  display: block;
+  box-shadow: 0 0 14px currentColor;
+}
+
+.theme-option.is-selected {
+  background: var(--accent);
+  color: #111;
+}
+
+
+
+
+
+
+
+/* Keep the app visually filling the full device height */
+.app {
+  min-height: 100dvh !important;
+  height: 100dvh !important;
+}
+
+@supports (height: 100svh) {
+  .app {
+    min-height: 100svh !important;
+    height: 100svh !important;
+  }
+}
+
+
+/* V27 corrected theme selector colour icons */
+.theme-option {
+  grid-template-columns: 22px 1fr !important;
+}
+
+.theme-option span {
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(255,255,255,.35);
+  box-shadow: 0 0 14px currentColor !important;
+}
+
+.theme-option
+
+.theme-option
+
+.theme-option
+
+.theme-option
+
+.theme-option
+
+.theme-option.is-selected {
+  background: rgba(255,255,255,.08) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--theme-accent, #d9ff6a) !important;
+  box-shadow:
+    0 0 0 1px rgba(var(--theme-rgb), .18),
+    0 0 18px rgba(var(--theme-rgb), .20) !important;
+}
+
+
+
+body.theme-red .theme-option.is-selected {
+  --theme-rgb: 190, 42, 58;
+  --theme-accent: #ff5b5b;
+}
+
+body.theme-blue .theme-option.is-selected {
+  --theme-rgb: 45, 110, 220;
+  --theme-accent: #68a9ff;
+}
+
+body.theme-purple .theme-option.is-selected {
+  --theme-rgb: 132, 80, 210;
+  --theme-accent: #b58cff;
+}
+
+body.theme-green .theme-option.is-selected {
+  --theme-rgb: 112, 150, 62;
+  --theme-accent: #d9ff6a;
+}
+
+body.theme-orange .theme-option.is-selected {
+  --theme-rgb: 224, 118, 38;
+  --theme-accent: #ffad55;
+}
+
+/* Make the table and controls pick up the selected colour more clearly */
+body.theme-red .table,
+body.theme-red .controls,
+body.theme-red .settings-panel .setting-block {
+  border-color: rgba(255,91,91,.20) !important;
+}
+
+body.theme-blue .table,
+body.theme-blue .controls,
+body.theme-blue .settings-panel .setting-block {
+  border-color: rgba(104,169,255,.20) !important;
+}
+
+body.theme-purple .table,
+body.theme-purple .controls,
+body.theme-purple .settings-panel .setting-block {
+  border-color: rgba(181,140,255,.20) !important;
+}
+
+body.theme-green .table,
+body.theme-green .controls,
+body.theme-green .settings-panel .setting-block {
+  border-color: rgba(217,255,106,.18) !important;
+}
+
+body.theme-orange .table,
+body.theme-orange .controls,
+body.theme-orange .settings-panel .setting-block {
+  border-color: rgba(255,173,85,.20) !important;
+}
+
+
+/* V28 theme fix: scoped swatches only, preserve cards/bank/menu */
+:root {
+  --active-rgb: 112, 150, 62;
+  --active-accent: #d9ff6a;
+}
+
+body.theme-red {
+  --active-rgb: 190, 42, 58;
+  --active-accent: #ff5b5b;
+}
+
+body.theme-blue {
+  --active-rgb: 45, 110, 220;
+  --active-accent: #68a9ff;
+}
+
+body.theme-purple {
+  --active-rgb: 132, 80, 210;
+  --active-accent: #b58cff;
+}
+
+body.theme-green {
+  --active-rgb: 112, 150, 62;
+  --active-accent: #d9ff6a;
+}
+
+body.theme-orange {
+  --active-rgb: 224, 118, 38;
+  --active-accent: #ffad55;
+}
+
+/* Restore card text and suits */
+.card span {
+  width: auto !important;
+  height: auto !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  color: inherit !important;
+  display: inline !important;
+}
+
+.card .suit {
+  display: block !important;
+}
+
+/* Restore bank text */
+.bank span,
+.bank strong {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  color: inherit !important;
+}
+
+.bank {
+  border-color: rgba(var(--active-rgb), .28) !important;
+}
+
+.bank strong {
+  color: #f5f5f2 !important;
+}
+
+/* Hamburger remains white */
+.menu-btn span {
+  background: #f5f5f2 !important;
+  color: #f5f5f2 !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+
+/* Selected accent drives buttons and controls */
+body.theme-red .primary,
+body.theme-red .play-btn,
+body.theme-red .toggle.is-on,
+body.theme-red .currency-option.is-selected {
+  background: #ff5b5b !important;
+  color: #111 !important;
+}
+
+body.theme-blue .primary,
+body.theme-blue .play-btn,
+body.theme-blue .toggle.is-on,
+body.theme-blue .currency-option.is-selected {
+  background: #68a9ff !important;
+  color: #111 !important;
+}
+
+body.theme-purple .primary,
+body.theme-purple .play-btn,
+body.theme-purple .toggle.is-on,
+body.theme-purple .currency-option.is-selected {
+  background: #b58cff !important;
+  color: #111 !important;
+}
+
+body.theme-green .primary,
+body.theme-green .play-btn,
+body.theme-green .toggle.is-on,
+body.theme-green .currency-option.is-selected {
+  background: #d9ff6a !important;
+  color: #111 !important;
+}
+
+body.theme-orange .primary,
+body.theme-orange .play-btn,
+body.theme-orange .toggle.is-on,
+body.theme-orange .currency-option.is-selected {
+  background: #ffad55 !important;
+  color: #111 !important;
+}
+
+/* Chip dots use active colour */
+.chip::before {
+  background: var(--active-accent) !important;
+  color: var(--active-accent) !important;
+}
+
+/* Theme selector rows */
+.theme-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 9px;
+  margin-top: 12px;
+}
+
+.theme-option {
+  min-height: 42px !important;
+  border-radius: 14px !important;
+  background: #252a35 !important;
+  color: var(--text) !important;
+  display: grid !important;
+  grid-template-columns: 22px 1fr !important;
+  gap: 10px !important;
+  align-items: center !important;
+  text-align: left !important;
+  padding: 0 12px !important;
+  font-size: 13px !important;
+  border: 1px solid transparent !important;
+  box-shadow: none !important;
+}
+
+.theme-option > span {
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 999px !important;
+  display: block !important;
+  border: 1px solid rgba(255,255,255,.38) !important;
+  box-shadow: 0 0 14px currentColor !important;
+}
+
+.theme-option.theme-red > span {
+  background: #ff5b5b !important;
+  color: #ff5b5b !important;
+}
+
+.theme-option.theme-blue > span {
+  background: #68a9ff !important;
+  color: #68a9ff !important;
+}
+
+.theme-option.theme-purple > span {
+  background: #b58cff !important;
+  color: #b58cff !important;
+}
+
+.theme-option.theme-green > span {
+  background: #d9ff6a !important;
+  color: #d9ff6a !important;
+}
+
+.theme-option.theme-orange > span {
+  background: #ffad55 !important;
+  color: #ffad55 !important;
+}
+
+.theme-option.is-selected {
+  border-color: var(--active-accent) !important;
+  box-shadow:
+    0 0 0 1px rgba(var(--active-rgb), .18),
+    0 0 16px rgba(var(--active-rgb), .18) !important;
+  background: rgba(255,255,255,.055) !important;
+  color: var(--text) !important;
+}
+
+/* Active theme border and screen accents */
+.table,
+.controls,
+.settings-panel .setting-block {
+  border-color: rgba(var(--active-rgb), .20) !important;
+}
+
+#hint.hint-prompt {
+  border-color: rgba(var(--active-rgb), .95) !important;
+  color: var(--active-accent) !important;
+  box-shadow:
+    0 0 0 1px rgba(var(--active-rgb), .28),
+    0 0 18px rgba(var(--active-rgb), .28),
+    inset 0 0 14px rgba(var(--active-rgb), .10) !important;
+}
+
+/* Card back should stay monochrome */
+.card.back {
+  color: transparent !important;
+}
