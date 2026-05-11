@@ -6008,3 +6008,106 @@ button.primary {
     border-radius: 8px !important;
   }
 }
+
+
+/* V78 card display fix: no clipping, 2-row hands visible */
+.split-table .hand-panel {
+  overflow: visible !important;
+  min-height: 132px !important;
+}
+
+.split-table .cards {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-content: flex-start !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  gap: 6px !important;
+  row-gap: 6px !important;
+  max-height: none !important;
+  overflow: visible !important;
+  min-height: 0 !important;
+  padding-top: 0 !important;
+}
+
+.split-table .card {
+  width: 40px !important;
+  height: 60px !important;
+  min-width: 40px !important;
+  min-height: 60px !important;
+  border-radius: 9px !important;
+  flex: 0 0 40px !important;
+  margin: 0 !important;
+}
+
+.split-table .cards.is-compact {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 5px !important;
+  row-gap: 5px !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+.split-table .cards.is-compact .card {
+  width: 34px !important;
+  height: 52px !important;
+  min-width: 34px !important;
+  min-height: 52px !important;
+  flex-basis: 34px !important;
+  border-radius: 8px !important;
+}
+
+.split-table .cards.is-compact .card .rank,
+.split-table .cards.is-compact .card-rank {
+  font-size: 0.72rem !important;
+}
+
+.split-table .cards.is-compact .card .suit,
+.split-table .cards.is-compact .card-suit {
+  font-size: 0.82rem !important;
+}
+
+/* For very long hands, keep two rows without leaving the panel */
+.split-table .cards.is-ultra-compact .card {
+  width: 30px !important;
+  height: 46px !important;
+  min-width: 30px !important;
+  min-height: 46px !important;
+  flex-basis: 30px !important;
+  border-radius: 7px !important;
+}
+
+@media (max-width: 430px) {
+  .split-table .card {
+    width: 38px !important;
+    height: 58px !important;
+    min-width: 38px !important;
+    min-height: 58px !important;
+    flex-basis: 38px !important;
+  }
+
+  .split-table .cards.is-compact .card {
+    width: 32px !important;
+    height: 50px !important;
+    min-width: 32px !important;
+    min-height: 50px !important;
+    flex-basis: 32px !important;
+  }
+
+  .split-table .cards.is-ultra-compact .card {
+    width: 28px !important;
+    height: 44px !important;
+    min-width: 28px !important;
+    min-height: 44px !important;
+    flex-basis: 28px !important;
+  }
+}
+
+/* V78 make Stay reliably tappable */
+#stay {
+  pointer-events: auto !important;
+  touch-action: manipulation !important;
+  position: relative !important;
+  z-index: 20 !important;
+}

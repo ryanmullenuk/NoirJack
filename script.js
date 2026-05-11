@@ -179,13 +179,12 @@ function updateCompactCardRows() {
   const dealerCardsEl = document.getElementById("dealerCards");
   const playerCardsEl = document.getElementById("playerCards");
 
-  if (dealerCardsEl) {
-    dealerCardsEl.classList.toggle("is-compact", dealerCardsEl.children.length > 4);
-  }
-
-  if (playerCardsEl) {
-    playerCardsEl.classList.toggle("is-compact", playerCardsEl.children.length > 4);
-  }
+  [dealerCardsEl, playerCardsEl].forEach(cardsEl => {
+    if (!cardsEl) return;
+    const count = cardsEl.children.length;
+    cardsEl.classList.toggle("is-compact", count > 4);
+    cardsEl.classList.toggle("is-ultra-compact", count > 6);
+  });
 }
 
 function drawParticles() {
@@ -1113,3 +1112,29 @@ syncSettingsUI();
 updateStatsUI();
 draw();
 startSplashParticles();
+
+
+/* V78 robust Stay button listener */
+(function bindStayFix() {
+  const stayButton = document.getElementById("stay");
+
+  if (!stayButton || stayButton.dataset.v78StayBound === "true") return;
+
+  stayButton.dataset.v78StayBound = "true";
+
+  const runStay = event => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (stayButton.disabled || !inRound || dealingInProgress) return;
+
+    haptic("tap");
+
+    if (typeof dealerTurn === "function") {
+      dealerTurn();
+    }
+  };
+
+  stayButton.addEventListener("click", runStay, true);
+  stayButton.addEventListener("touchend", runStay, true);
+})();
