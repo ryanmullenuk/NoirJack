@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <title>NoirJack</title>
+  <meta name="theme-color" content="#07080b" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="NoirJack" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="assets/icon-192.png" />
+</head>
+<body>
+<div id="particleLayer"></div>
+  <section id="splashScreen" class="splash-screen">
+    <div class="splash-inner">
+      <img src="assets/noirjack-logo-wide.png" alt="NoirJack" class="splash-logo" />
+      <p class="splash-tagline">Simple. Refined. Play.</p>
+      <button id="playBtn" class="play-btn">Play</button>
+    </div>
+  </section>
+
+  <main id="gameApp" class="app app-hidden">
+    <section class="top-bar">
+      <button id="menuBtn" class="menu-btn" aria-label="Open settings">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="brand">
+        <img src="assets/noirjack-logo-wide.png" alt="NoirJack" class="logo" />
+        <p class="eyebrow brand-tagline">Simple. Refined. Play.</p>
+      </div>
+
+      <button id="bankButton" class="bank" type="button" aria-label="Bank balance">
+        <span>Bank</span>
+        <strong id="bank">£100</strong>
+      </button>
+    </section>
+
+    <section id="table" class="table">
+      <div class="row">
+        <div>
+          <p class="label">Dealer</p>
+          <h2 id="dealerScore">0</h2>
+        </div>
+        <div id="dealerCards" class="cards"></div>
+      </div>
+
+      <div id="message" class="message">Place your bet to start.</div>
+
+      <div class="row player-row">
+        <div>
+          <p class="label">You</p>
+          <h2 id="playerScore">0</h2>
+        </div>
+        <div id="playerCards" class="cards"></div>
+      </div>
+    </section>
+
+    <section class="controls">
+      <div class="bet-panel">
+        <button id="minusBet" class="round">−</button>
+        <div>
+          <p class="label">Bet</p>
+          <strong id="bet">£1</strong>
+        </div>
+        <button id="plusBet" class="round">+</button>
+      </div>
+
+      <div class="chip-stack" aria-label="Bet chips">
+        <button class="chip" data-chip="1">+1</button>
+        <button class="chip" data-chip="5">+5</button>
+        <button class="chip" data-chip="10">+10</button>
+        <button class="chip chip-clear" data-chip="clear">Reset</button>
+      </div>
+
+      <button id="deal" class="primary">Deal</button>
+
+      <div class="actions">
+        <button id="hit" disabled>Hit</button>
+        <button id="stay" disabled>Stay</button>
+        <button id="hint" disabled>Hint</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="settingsOverlay" class="settings-overlay" hidden></div>
+
+  <aside id="settingsPanel" class="settings-panel" aria-hidden="true">
+    <div class="settings-header">
+      <div>
+        <p class="eyebrow">Settings</p>
+        <h3>Game Options</h3>
+      </div>
+      <button id="closeSettings" class="close-btn" aria-label="Close settings">×</button>
+    </div>
+
+    <div class="setting-row">
+      <div>
+        <strong>Sounds</strong>
+        <p>Win and lose tones</p>
+      </div>
+      <button id="soundToggle" class="toggle is-on">On</button>
+    </div>
+
+    <div class="setting-block">
+      <strong>Currency</strong>
+      <div class="currency-grid">
+        <button class="currency-option is-selected" data-symbol="£" data-label="Pound">£ Pound</button>
+        <button class="currency-option" data-symbol="$" data-label="Dollar">$ Dollar</button>
+        <button class="currency-option" data-symbol="€" data-label="Euro">€ Euro</button>
+      </div>
+    </div>
+
+    <div class="setting-block profile-panel">
+      <strong>Player Profile</strong>
+      <div class="profile-row"><span>Wins</span><strong id="statWins">0</strong></div>
+      <div class="profile-row"><span>Losses</span><strong id="statLosses">0</strong></div>
+      <div class="profile-row"><span>Current Streak</span><strong id="statCurrentStreak">0</strong></div>
+      <div class="profile-row"><span>Best Streak</span><strong id="statStreak">0</strong></div>
+      <div class="profile-row"><span>Blackjacks</span><strong id="statBlackjacks">0</strong></div>
+      <div class="profile-row"><span>Hands Played</span><strong id="statHands">0</strong></div>
+      <div class="profile-row"><span>Session Profit</span><strong id="statProfit">£0</strong></div>
+      <button id="resetStats" class="reset-stats">Reset Stats</button>
+    </div>
+
+  </aside>
+
+
+  <section id="topUpScreen" class="topup-screen" hidden>
+    <div class="topup-card">
+      <button id="closeTopUp" class="topup-close" type="button" aria-label="Close top up">×</button>
+      <p class="eyebrow">NoirJack</p>
+      <h2>Top Up Funds</h2>
+      <p class="topup-tagline">Watch ads for more tokens.</p>
+
+      <div class="topup-options">
+        <button class="topup-option" type="button" data-tokens="25" data-seconds="15">
+          <strong>25 tokens</strong>
+          <span>Watch 15 second ad</span>
+        </button>
+        <button class="topup-option" type="button" data-tokens="50" data-seconds="30">
+          <strong>50 tokens</strong>
+          <span>Watch 30 second ad</span>
+        </button>
+        <button class="topup-option" type="button" data-tokens="100" data-seconds="60">
+          <strong>100 tokens</strong>
+          <span>Watch 60 second ad</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
