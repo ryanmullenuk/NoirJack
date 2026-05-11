@@ -44,23 +44,21 @@
 
   <main id="gameApp" class="app app-hidden">
     <section class="top-bar">
+      <button id="menuBtn" class="menu-btn" aria-label="Open settings">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
       <div class="brand">
         <img src="assets/noirjack-logo-wide.png" alt="NoirJack" class="logo" />
         <p class="eyebrow brand-tagline">Simple. Refined. Play.</p>
       </div>
 
-      <div class="top-actions">
-        <button id="menuBtn" class="menu-btn" aria-label="Open settings">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
-        <button id="bankButton" class="bank" type="button" aria-label="Bank balance">
-          <span>Bank</span>
-          <strong id="bank">£100</strong>
-        </button>
-      </div>
+      <button id="bankButton" class="bank" type="button" aria-label="Bank balance">
+        <span>Bank</span>
+        <strong id="bank">£100</strong>
+      </button>
     </section>
 
     <section id="table" class="table">
@@ -144,36 +142,31 @@
       <button id="soundToggle" class="toggle is-on">On</button>
     </div>
 
-    <div class="setting-block collapsible-setting">
-      <button class="setting-collapse" type="button" data-collapse="currencyPanel" aria-expanded="false">
+    <div class="setting-block simple-setting" id="currencySetting">
+      <button class="setting-collapse" type="button" data-panel="currencyPanel" aria-expanded="false">
         <strong>Currency</strong>
         <span class="collapse-icon">+</span>
       </button>
-      <div id="currencyPanel" class="collapse-panel" hidden>
-        <div class="currency-grid">
-          <button class="currency-option is-selected" data-symbol="£" data-label="Pound" type="button">£ Pound</button>
-          <button class="currency-option" data-symbol="$" data-label="Dollar" type="button">$ Dollar</button>
-          <button class="currency-option" data-symbol="€" data-label="Euro" type="button">€ Euro</button>
-        </div>
+      <div id="currencyPanel" class="simple-panel" hidden>
+        <button class="currency-option is-selected" data-symbol="£" data-label="Pound" type="button">£ Pound</button>
+        <button class="currency-option" data-symbol="$" data-label="Dollar" type="button">$ Dollar</button>
+        <button class="currency-option" data-symbol="€" data-label="Euro" type="button">€ Euro</button>
       </div>
     </div>
 
-    <div class="setting-block collapsible-setting">
-      <button class="setting-collapse" type="button" data-collapse="backgroundPanel" aria-expanded="false">
+    <div class="setting-block simple-setting" id="backgroundSetting">
+      <button class="setting-collapse" type="button" data-panel="backgroundPanel" aria-expanded="false">
         <strong>Background Colour</strong>
         <span class="collapse-icon">+</span>
       </button>
-      <div id="backgroundPanel" class="collapse-panel" hidden>
-        <div class="theme-grid">
-          <button class="theme-option theme-red" data-theme="red" type="button" aria-label="Set red background"><span></span><strong>Red</strong></button>
-          <button class="theme-option theme-blue" data-theme="blue" type="button" aria-label="Set blue background"><span></span><strong>Blue</strong></button>
-          <button class="theme-option theme-purple" data-theme="purple" type="button" aria-label="Set purple background"><span></span><strong>Purple</strong></button>
-          <button class="theme-option theme-green is-selected" data-theme="green" type="button" aria-label="Set green background"><span></span><strong>Green</strong></button>
-          <button class="theme-option theme-orange" data-theme="orange" type="button" aria-label="Set orange background"><span></span><strong>Orange</strong></button>
-        </div>
+      <div id="backgroundPanel" class="simple-panel theme-panel" hidden>
+        <button class="theme-option theme-red" data-theme="red" type="button"><span></span><strong>Red</strong></button>
+        <button class="theme-option theme-blue" data-theme="blue" type="button"><span></span><strong>Blue</strong></button>
+        <button class="theme-option theme-purple" data-theme="purple" type="button"><span></span><strong>Purple</strong></button>
+        <button class="theme-option theme-green is-selected" data-theme="green" type="button"><span></span><strong>Green</strong></button>
+        <button class="theme-option theme-orange" data-theme="orange" type="button"><span></span><strong>Orange</strong></button>
       </div>
     </div>
-
 
     <div class="setting-block profile-panel">
       <strong>Player Profile</strong>
