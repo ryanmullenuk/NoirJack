@@ -6111,3 +6111,110 @@ button.primary {
   position: relative !important;
   z-index: 20 !important;
 }
+
+
+/* V79 AppLixir rewarded ad top-up UI */
+.top-up-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  background: rgba(0,0,0,.72);
+  backdrop-filter: blur(10px);
+}
+
+.top-up-screen[hidden] {
+  display: none !important;
+}
+
+.top-up-card {
+  position: relative;
+  width: min(92vw, 390px);
+  border-radius: 30px;
+  padding: 28px 22px 24px;
+  background: rgba(17,20,26,.98);
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 28px 90px rgba(0,0,0,.62);
+  text-align: center;
+}
+
+.top-up-card h2 {
+  margin: 6px 0 8px;
+  font-size: 32px;
+  line-height: 1;
+}
+
+.top-up-copy {
+  margin: 0 auto 18px;
+  max-width: 280px;
+  color: rgba(245,245,242,.72);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.top-up-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 42px;
+  height: 42px;
+  min-height: 42px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.06);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.10);
+}
+
+.reward-options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.reward-option {
+  min-height: 64px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: #252a35;
+  color: #f5f5f2;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  text-align: left;
+}
+
+.reward-option strong {
+  font-size: 15px;
+}
+
+.reward-option span {
+  color: var(--active-accent, #d9ff6a);
+  font-size: 14px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.reward-option:disabled {
+  opacity: .48;
+  cursor: wait;
+}
+
+.reward-status {
+  min-height: 18px;
+  margin: 16px 0 0;
+  color: rgba(245,245,242,.64);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.reward-status.is-success {
+  color: #3fe680;
+}
+
+.reward-status.is-error {
+  color: #ff5b5b;
+}

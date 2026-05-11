@@ -18,6 +18,25 @@ if (!["£", "$", "€"].includes(currencySymbol)) {
 let soundsOn = localStorage.getItem("noirjackSoundsOn") !== "false";
 let username = localStorage.getItem("noirjackUsername") || "";
 let backgroundTheme = localStorage.getItem("noirjackBackgroundTheme") || "green";
+
+/* V79 AppLixir rewarded ads config
+   Replace these two placeholder values with the real values from AppLixir. */
+const APPLIXIR_ZONE_ID = "YOUR_ZONE_ID";
+const APPLIXIR_GAME_ID = "YOUR_GAME_ID";
+
+let pendingReward = 0;
+let rewardInProgress = false;
+
+function applixirReady() {
+  return typeof window.invokeApplixirVideoUnit === "function";
+}
+
+window.options = {
+  zoneId: APPLIXIR_ZONE_ID,
+  gameId: APPLIXIR_GAME_ID,
+  dMode: 0,
+  adStatusCb: adStatusCallback
+};
 let inRound = false;
 let dealingInProgress = false;
 let settlingRound = false;
@@ -426,17 +445,9 @@ function updateBankState() {
   }
 }
 
-function openTopUpScreen() {
-  if (!topUpScreen) return;
-  topUpScreen.hidden = false;
-  haptic("tap");
-}
 
-function closeTopUpScreen() {
-  if (!topUpScreen) return;
-  topUpScreen.hidden = true;
-  haptic("tap");
-}
+
+
 
 function addTopUpTokens(amount) {
   bank += amount;
@@ -929,7 +940,104 @@ stayBtn.addEventListener("click", finishRound);
 hintBtn.addEventListener("click", showHint);
 
 if (bankButton) {
-  bankButton.addEventListener("click", () => {
+  
+function setRewardStatus(message, state = "") {
+  const rewardStatus = document.getElementById("rewardStatus");
+  if (!rewardStatus) return;
+
+  rewardStatus.textContent = message;
+  rewardStatus.classList.remove("is-success", "is-error");
+
+  if (state) rewardStatus.classList.add(state);
+}
+
+function openTopUpScreen() {
+  const topUpScreen = document.getElementById("topUpScreen");
+  if (!topUpScreen) return;
+
+  topUpScreen.hidden = false;
+  setRewardStatus("Choose a reward and complete the ad to receive tokens.");
+  haptic("tap");
+}
+
+function closeTopUpScreen() {
+  const topUpScreen = document.getElementById("topUpScreen");
+  if (!topUpScreen) return;
+
+  if (rewardInProgress) return;
+
+  topUpScreen.hidden = true;
+  haptic("tap");
+}
+
+function addRewardTokens(amount) {
+  bank += amount;
+  localStorage.setItem("noirjackBank", bank);
+  updateBankState();
+  draw();
+}
+
+function showRewardAd(rewardAmount) {
+  if (rewardInProgress) return;
+
+  pendingReward = Number(rewardAmount || 0);
+
+  if (![25, 50, 100].includes(pendingReward)) {
+    setRewardStatus("Reward option unavailable.", "is-error");
+    return;
+  }
+
+  rewardInProgress = true;
+  document.querySelectorAll(".reward-option").forEach(button => button.disabled = true);
+  setRewardStatus("Loading rewarded ad...");
+
+  if (!applixirReady() || APPLIXIR_ZONE_ID === "YOUR_ZONE_ID" || APPLIXIR_GAME_ID === "YOUR_GAME_ID") {
+    rewardInProgress = false;
+    document.querySelectorAll(".reward-option").forEach(button => button.disabled = false);
+    setRewardStatus("AppLixir is not configured yet. Add your Zone ID and Game ID in script.js.", "is-error");
+    return;
+  }
+
+  try {
+    window.invokeApplixirVideoUnit();
+  } catch (error) {
+    rewardInProgress = false;
+    document.querySelectorAll(".reward-option").forEach(button => button.disabled = false);
+    setRewardStatus("Ad could not be loaded. Try again shortly.", "is-error");
+  }
+}
+
+function adStatusCallback(status) {
+  console.log("AppLixir Ad Status:", status);
+
+  const successStatuses = ["ad-watched", "completed", "rewarded", "video-completed"];
+
+  if (successStatuses.includes(status)) {
+    addRewardTokens(pendingReward);
+    setRewardStatus(`Reward added: +${pendingReward} tokens.`, "is-success");
+    haptic("win");
+
+    setTimeout(() => {
+      const topUpScreen = document.getElementById("topUpScreen");
+      if (topUpScreen) topUpScreen.hidden = true;
+    }, 900);
+  } else if (status === "ad-blocker" || status === "ad-error" || status === "no-ad" || status === "dismissed") {
+    setRewardStatus("Ad was not completed. No tokens added.", "is-error");
+  }
+
+  rewardInProgress = false;
+  pendingReward = 0;
+  document.querySelectorAll(".reward-option").forEach(button => button.disabled = false);
+}
+
+document.querySelectorAll(".reward-option").forEach(button => {
+  button.addEventListener("click", () => {
+    showRewardAd(Number(button.dataset.reward));
+  });
+});
+
+
+bankButton.addEventListener("click", () => {
     if (bank <= 0) openTopUpScreen();
   });
 }
@@ -1138,3 +1246,16 @@ startSplashParticles();
   stayButton.addEventListener("click", runStay, true);
   stayButton.addEventListener("touchend", runStay, true);
 })();
+
+/* V79 bank top up listener */
+if (bankButton) {
+  bankButton.addEventListener("click", () => {
+    if (bank <= 0 || bankEl.textContent.trim().toUpperCase() === "TOP UP") openTopUpScreen();
+  });
+}
+
+/* V79 close top up listener */
+const closeTopUpButton = document.getElementById("closeTopUp");
+if (closeTopUpButton) {
+  closeTopUpButton.addEventListener("click", closeTopUpScreen);
+}
