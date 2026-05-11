@@ -24,6 +24,7 @@
       </div>
       <p class="splash-tagline"><span class="splash-word word-1">SIMPLE.</span><span class="splash-word word-2">REFINED.</span><span class="splash-word word-3">PLAY.</span></p>
       <button id="playBtn" class="play-btn">Play</button>
+      <div class="splash-instructions"><strong>Instructions</strong><span>For a better gaming experience, click share and add to homescreen.</span></div>
       <div class="splash-share">
         <p>Share NoirJack with friends</p>
         <div class="share-buttons">
@@ -134,25 +135,21 @@
       <button id="closeSettings" class="close-settings" type="button" aria-label="Close settings">×</button>
     </div>
 
-    <div class="setting-block sound-setting">
-      <div>
-        <strong>Sounds</strong>
-        <p>Win and lose tones</p>
-      </div>
-      <button id="soundToggle" class="toggle is-on" type="button">On</button>
+    <div class="setting-block profile-panel">
+      <strong>Player Profile</strong>
+      <label class="username-field" for="usernameInput">
+        <span>Username</span>
+        <input id="usernameInput" type="text" maxlength="18" placeholder="Player" autocomplete="nickname" />
+      </label>
+      <div class="stat-row"><span>Wins</span><b id="statWins">0</b></div>
+      <div class="stat-row"><span>Losses</span><b id="statLosses">0</b></div>
+      <div class="stat-row"><span>Current Streak</span><b id="statCurrentStreak">0</b></div>
+      <div class="stat-row"><span>Best Streak</span><b id="statBestStreak">0</b></div>
+      <div class="stat-row"><span>Blackjacks</span><b id="statBlackjacks">0</b></div>
+      <div class="stat-row"><span>Hands Played</span><b id="statHands">0</b></div>
+      <div class="stat-row"><span>Session Profit</span><b id="statSessionProfit">£0</b></div>
+      <button id="resetStats" class="reset-stats" type="button">Reset Stats</button>
     </div>
-
-    <details class="setting-block native-setting" id="currencySetting">
-      <summary>
-        <strong>Currency</strong>
-        <span class="collapse-icon" aria-hidden="true">+</span>
-      </summary>
-      <div id="currencyPanel" class="native-panel">
-        <button class="currency-option is-selected" data-symbol="£" data-label="Pound" type="button">£ Pound</button>
-        <button class="currency-option" data-symbol="$" data-label="Dollar" type="button">$ Dollar</button>
-        <button class="currency-option" data-symbol="€" data-label="Euro" type="button">€ Euro</button>
-      </div>
-    </details>
 
     <details class="setting-block native-setting" id="backgroundSetting">
       <summary>
@@ -168,16 +165,24 @@
       </div>
     </details>
 
-    <div class="setting-block profile-panel">
-      <strong>Player Profile</strong>
-      <div class="stat-row"><span>Wins</span><b id="statWins">0</b></div>
-      <div class="stat-row"><span>Losses</span><b id="statLosses">0</b></div>
-      <div class="stat-row"><span>Current Streak</span><b id="statCurrentStreak">0</b></div>
-      <div class="stat-row"><span>Best Streak</span><b id="statBestStreak">0</b></div>
-      <div class="stat-row"><span>Blackjacks</span><b id="statBlackjacks">0</b></div>
-      <div class="stat-row"><span>Hands Played</span><b id="statHands">0</b></div>
-      <div class="stat-row"><span>Session Profit</span><b id="statSessionProfit">£0</b></div>
-      <button id="resetStats" class="reset-stats" type="button">Reset Stats</button>
+    <details class="setting-block native-setting" id="currencySetting">
+      <summary>
+        <strong>Currency</strong>
+        <span class="collapse-icon" aria-hidden="true">+</span>
+      </summary>
+      <div id="currencyPanel" class="native-panel">
+        <button class="currency-option is-selected" data-symbol="£" data-label="Pound" type="button">£ Pound</button>
+        <button class="currency-option" data-symbol="$" data-label="Dollar" type="button">$ Dollar</button>
+        <button class="currency-option" data-symbol="€" data-label="Euro" type="button">€ Euro</button>
+      </div>
+    </details>
+
+    <div class="setting-block sound-setting">
+      <div>
+        <strong>Sounds</strong>
+        <p>Win and lose tones</p>
+      </div>
+      <button id="soundToggle" class="toggle is-on" type="button">On</button>
     </div>
 </aside>
 

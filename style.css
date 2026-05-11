@@ -4923,3 +4923,95 @@ body.theme-orange .splash-screen .play-btn {
   border-color: var(--active-accent) !important;
   box-shadow: 0 0 0 1px rgba(var(--active-rgb), .22), 0 0 16px rgba(var(--active-rgb), .18) !important;
 }
+
+
+/* V55 splash bottom share and instructions */
+.splash-inner {
+  min-height: 100svh !important;
+  width: min(92vw, 620px) !important;
+  display: grid !important;
+  grid-template-rows: 1fr auto auto auto !important;
+  align-content: stretch !important;
+  justify-items: center !important;
+  gap: 18px !important;
+  padding: max(36px, env(safe-area-inset-top)) 18px max(22px, env(safe-area-inset-bottom)) !important;
+}
+
+.splash-logo-clean-wrap,
+.splash-logo-anim,
+.splash-logo {
+  align-self: end !important;
+}
+
+.splash-instructions {
+  display: grid;
+  justify-items: center;
+  gap: 5px;
+  max-width: 320px;
+  text-align: center;
+  color: rgba(245,245,242,.72);
+}
+
+.splash-instructions strong {
+  color: #f5f5f2;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.splash-instructions span {
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.splash-share {
+  align-self: end !important;
+  margin-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* V55 profile username */
+.username-field {
+  display: grid;
+  gap: 8px;
+  margin: 16px 0 18px;
+}
+
+.username-field span {
+  color: rgba(245,245,242,.68);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.username-field input {
+  width: 100%;
+  height: 46px;
+  border-radius: 15px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: #252a35;
+  color: #f5f5f2;
+  padding: 0 14px;
+  font-size: 15px;
+  font-weight: 800;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.username-field input:focus {
+  border-color: var(--active-accent, #d9ff6a);
+  box-shadow: 0 0 0 1px rgba(var(--active-rgb), .22), 0 0 16px rgba(var(--active-rgb), .16);
+}
+
+/* V55 menu order spacing */
+.profile-panel {
+  margin-bottom: 14px !important;
+}
+
+.native-setting {
+  margin-bottom: 14px !important;
+}
+
+.sound-setting {
+  margin-bottom: 14px !important;
+}

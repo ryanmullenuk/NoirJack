@@ -16,6 +16,7 @@ if (!["£", "$", "€"].includes(currencySymbol)) {
   localStorage.setItem("noirjackCurrencyLabel", currencyLabel);
 }
 let soundsOn = localStorage.getItem("noirjackSoundsOn") !== "false";
+let username = localStorage.getItem("noirjackUsername") || "";
 let backgroundTheme = localStorage.getItem("noirjackBackgroundTheme") || "green";
 let inRound = false;
 let dealingInProgress = false;
@@ -130,6 +131,7 @@ const splashScreen = document.getElementById("splashScreen");
 const gameApp = document.getElementById("gameApp");
 const playBtn = document.getElementById("playBtn");
 const resetStatsBtn = document.getElementById("resetStats");
+const usernameInput = document.getElementById("usernameInput");
 
 let audioCtx;
 
@@ -917,6 +919,15 @@ if (settingsOverlay) {
   });
 }
 
+
+
+if (usernameInput) {
+  usernameInput.value = username;
+  usernameInput.addEventListener("input", () => {
+    username = usernameInput.value.trim().slice(0, 18);
+    localStorage.setItem("noirjackUsername", username);
+  });
+}
 
 soundToggle.addEventListener("click", () => {
   soundsOn = !soundsOn;
