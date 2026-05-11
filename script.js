@@ -128,6 +128,125 @@ const resetStatsBtn = document.getElementById("resetStats");
 
 let audioCtx;
 
+
+/* V23 custom particle network splash animation */
+const splashParticles = document.getElementById("splashParticles");
+let splashParticleAnimationId = null;
+
+function startSplashParticles() {
+  if (!splashParticles) return;
+
+  const ctx = splashParticles.getContext("2d");
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!ctx || prefersReducedMotion) return;
+
+  let particles = [];
+  let width = 0;
+  let height = 0;
+  let pointer = { x: null, y: null, active: false };
+
+  function resizeParticles() {
+    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    width = splashParticles.offsetWidth;
+    height = splashParticles.offsetHeight;
+
+    splashParticles.width = Math.floor(width * ratio);
+    splashParticles.height = Math.floor(height * ratio);
+    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+    const count = Math.max(34, Math.min(86, Math.floor((width * height) / 13500)));
+
+    particles = Array.from({ length: count }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - .5) * .22,
+      vy: (Math.random() - .5) * .22,
+      r: Math.random() * 1.4 + .6
+    }));
+  }
+
+  function drawParticles() {
+    ctx.clearRect(0, 0, width, height);
+
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.x < -12 || p.x > width + 12) p.vx *= -1;
+      if (p.y < -12 || p.y > height + 12) p.vy *= -1;
+
+      ctx.beginPath();
+      ctx.globalAlpha = .68;
+      ctx.fillStyle = "#f5f5f2";
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+
+      for (let j = i + 1; j < particles.length; j++) {
+        const q = particles[j];
+        const dx = p.x - q.x;
+        const dy = p.y - q.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        const maxDistance = 118;
+
+        if (distance < maxDistance) {
+          ctx.beginPath();
+          ctx.globalAlpha = (1 - distance / maxDistance) * .28;
+          ctx.strokeStyle = "#f5f5f2";
+          ctx.lineWidth = .7;
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(q.x, q.y);
+          ctx.stroke();
+        }
+      }
+
+      if (pointer.active && pointer.x !== null) {
+        const dx = p.x - pointer.x;
+        const dy = p.y - pointer.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        const maxDistance = 135;
+
+        if (distance < maxDistance) {
+          ctx.beginPath();
+          ctx.globalAlpha = (1 - distance / maxDistance) * .38;
+          ctx.strokeStyle = "#d9ff6a";
+          ctx.lineWidth = .8;
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(pointer.x, pointer.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    splashParticleAnimationId = requestAnimationFrame(drawParticles);
+  }
+
+  splashParticles.addEventListener("pointermove", event => {
+    const rect = splashParticles.getBoundingClientRect();
+    pointer.x = event.clientX - rect.left;
+    pointer.y = event.clientY - rect.top;
+    pointer.active = true;
+  }, { passive: true });
+
+  splashParticles.addEventListener("pointerleave", () => {
+    pointer.active = false;
+  });
+
+  window.addEventListener("resize", resizeParticles, { passive: true });
+
+  resizeParticles();
+  drawParticles();
+}
+
+function stopSplashParticles() {
+  if (splashParticleAnimationId) {
+    cancelAnimationFrame(splashParticleAnimationId);
+    splashParticleAnimationId = null;
+  }
+}
+
 function haptic(type = "light") {
   try {
     if (!navigator.vibrate) return;
@@ -652,6 +771,7 @@ syncSettingsUI();
 
 playBtn.addEventListener("click", () => {
   haptic("tap");
+  stopSplashParticles();
   splashScreen.classList.add("hide");
   gameApp.classList.remove("app-hidden");
   gameApp.classList.add("app-ready");
@@ -697,3 +817,4 @@ if (resetStatsBtn) {
 syncSettingsUI();
 updateStatsUI();
 draw();
+startSplashParticles();
