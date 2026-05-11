@@ -22,6 +22,7 @@ let dealingInProgress = false;
 let settlingRound = false;
 let hideDealer = true;
 let animatedCards = [];
+let handGreenConfettiShown = false;
 
 const bankEl = document.getElementById("bank");
 const bankButton = document.getElementById("bankButton");
@@ -625,24 +626,6 @@ function syncSettingsUI() {
   }
 
   
-collapsibleButtons.forEach(button => {
-  button.addEventListener("click", event => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    const panel = document.getElementById(button.dataset.collapse);
-    const icon = button.querySelector(".collapse-icon");
-    const expanded = button.getAttribute("aria-expanded") === "true";
-
-    button.setAttribute("aria-expanded", expanded ? "false" : "true");
-
-    if (panel) panel.hidden = !expanded ? false : true;
-    if (icon) icon.textContent = expanded ? "+" : "−";
-
-    haptic("tap");
-  });
-});
-
 currencyOptions.forEach(option => {
     option.classList.toggle("is-selected", option.dataset.symbol === currencySymbol);
   });
@@ -729,6 +712,7 @@ async function startRound() {
   player = [];
   dealer = [];
   hideDealer = true;
+  handGreenConfettiShown = false;
 
   messageEl.textContent = "Dealing...";
   draw();
@@ -759,8 +743,9 @@ async function startRound() {
 
   if (typeof setHintPrompt === "function") setHintPrompt(true);
 
-  if (value(player) === 21) {
+  if (value(player) === 21 && player.length === 2) {
     if (typeof setHintPrompt === "function") setHintPrompt(false);
+    messageEl.textContent = "Blackjack.";
     await finishRound();
   }
 }
@@ -771,6 +756,11 @@ function playerHit() {
   setHintPrompt(false);
   player.push(deck.pop());
   draw([`player${player.length - 1}`]);
+
+  if (value(player) === 21 && player.length > 2 && !handGreenConfettiShown) {
+    handGreenConfettiShown = true;
+    confettiRain("green");
+  }
 
   if (value(player) > 21) {
     hideDealer = false;
@@ -830,7 +820,10 @@ async function finishRound() {
     playTone("win");
     haptic("win");
 
-    if (naturalBlackjack) blackjackParticles();
+    if (naturalBlackjack && win > 0) {
+      blackjackParticles();
+      confettiRain("multi");
+    }
   } else if (playerTotal < dealerTotal) {
     bank -= bet;
     recordLoss(bet);
@@ -951,12 +944,12 @@ document.querySelectorAll(".share-btn").forEach(button => {
     const encodedText = encodeURIComponent(shareText);
 
     const urls = {
-      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
-      instagram: `https://www.instagram.com/`,
-      x: `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`
-    };
+    facebook: "https://www.facebook.com/login/",
+    instagram: "https://www.instagram.com/accounts/login/accounts/login/",
+    x: "https://x.com"
+  };
 
-    window.open(urls[shareType], "_blank", "noopener,noreferrer");
+  window.open(urls[shareType], "_blank", "noopener,noreferrer");
   });
 });
 
@@ -964,17 +957,45 @@ document.querySelectorAll(".share-btn").forEach(button => {
 syncSettingsUI();
 });
 
+
+function toggleSettingPanel(button) {
+  const panel = document.getElementById(button.dataset.collapse);
+  const icon = button.querySelector(".collapse-icon");
+  const isOpen = button.getAttribute("aria-expanded") === "true";
+
+  button.setAttribute("aria-expanded", isOpen ? "false" : "true");
+
+  if (panel) panel.hidden = isOpen;
+  if (icon) icon.textContent = isOpen ? "+" : "−";
+
+  haptic("tap");
+}
+
+collapsibleButtons.forEach(button => {
+  button.onclick = event => {
+    event.preventDefault();
+    event.stopPropagation();
+    toggleSettingPanel(button);
+    return false;
+  };
+});
+
+
 currencyOptions.forEach(option => {
   option.addEventListener("click", event => {
     event.preventDefault();
     event.stopPropagation();
+
     currencySymbol = option.dataset.symbol;
     currencyLabel = option.dataset.label;
+
     localStorage.setItem("noirjackCurrencySymbol", currencySymbol);
     localStorage.setItem("noirjackCurrencyLabel", currencyLabel);
+
     updateStatsUI();
-syncSettingsUI();
+    syncSettingsUI();
     draw();
+    haptic("tap");
   });
 });
 
@@ -982,10 +1003,13 @@ syncSettingsUI();
 themeOptions.forEach(option => {
   option.addEventListener("click", event => {
     event.preventDefault();
+    event.stopPropagation();
+
     backgroundTheme = option.dataset.theme;
     localStorage.setItem("noirjackBackgroundTheme", backgroundTheme);
+
     syncSettingsUI();
-    refreshAppParticles();
+    if (typeof refreshAppParticles === "function") refreshAppParticles();
     haptic("tap");
   });
 });
@@ -993,10 +1017,16 @@ themeOptions.forEach(option => {
 playBtn.addEventListener("click", () => {
   haptic("tap");
   stopSplashParticles();
+
   splashScreen.classList.add("hide");
   gameApp.classList.remove("app-hidden");
-  gameApp.classList.add("app-ready");
+  gameApp.classList.add("app-ready", "app-opening");
+
   startAppParticles();
+
+  setTimeout(() => {
+    gameApp.classList.remove("app-opening");
+  }, 700);
 });
 
 chipButtons.forEach(button => {

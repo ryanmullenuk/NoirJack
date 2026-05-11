@@ -3077,3 +3077,920 @@ body.settings-open {
     min-height: 30px !important;
   }
 }
+
+
+/* V41 cleaner header, dot menu and slower splash word animation */
+.top-bar {
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  gap: 10px !important;
+  align-items: start !important;
+}
+
+.brand {
+  justify-items: start !important;
+  align-items: start !important;
+  overflow: hidden !important;
+}
+
+.logo {
+  width: 215px !important;
+  max-width: 46vw !important;
+  height: auto !important;
+}
+
+.brand-tagline {
+  margin: 4px 0 0 1px !important;
+  font-size: 9px !important;
+  letter-spacing: .15em !important;
+  line-height: 1.1 !important;
+  white-space: nowrap !important;
+}
+
+.top-actions {
+  gap: 8px !important;
+  align-items: stretch !important;
+}
+
+.menu-btn {
+  width: 58px !important;
+  height: 58px !important;
+  min-height: 58px !important;
+  border-radius: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 5px !important;
+  padding: 0 !important;
+}
+
+.menu-btn span {
+  width: 6px !important;
+  height: 6px !important;
+  margin: 0 !important;
+  border-radius: 999px !important;
+  background: #ffffff !important;
+  display: block !important;
+}
+
+.bank {
+  min-width: 84px !important;
+  min-height: 58px !important;
+  height: 58px !important;
+  border-radius: 20px !important;
+}
+
+.bank span {
+  font-size: 12px !important;
+}
+
+.bank strong {
+  font-size: 22px !important;
+}
+
+@media (max-width: 430px) {
+  .logo {
+    width: 200px !important;
+    max-width: 45vw !important;
+  }
+
+  .brand-tagline {
+    font-size: 8px !important;
+    letter-spacing: .13em !important;
+  }
+
+  .menu-btn {
+    width: 52px !important;
+    height: 52px !important;
+    min-height: 52px !important;
+  }
+
+  .bank {
+    min-width: 78px !important;
+    min-height: 52px !important;
+    height: 52px !important;
+  }
+
+  .bank strong {
+    font-size: 20px !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .logo {
+    width: 180px !important;
+    max-width: 42vw !important;
+  }
+
+  .brand-tagline {
+    font-size: 7px !important;
+    letter-spacing: .11em !important;
+  }
+
+  .top-actions {
+    gap: 6px !important;
+  }
+
+  .menu-btn {
+    width: 48px !important;
+    height: 48px !important;
+    min-height: 48px !important;
+  }
+
+  .bank {
+    min-width: 72px !important;
+    height: 48px !important;
+    min-height: 48px !important;
+  }
+}
+
+/* slow splash tagline to approx 2 seconds */
+.splash-word {
+  animation-duration: .8s !important;
+}
+
+.splash-word.word-1 {
+  animation-delay: .18s !important;
+}
+
+.splash-word.word-2 {
+  animation-delay: .75s !important;
+}
+
+.splash-word.word-3 {
+  animation-delay: 1.32s !important;
+}
+
+/* V41 confetti */
+.confetti-piece {
+  position: fixed;
+  top: -16px;
+  width: 7px;
+  height: 12px;
+  pointer-events: none;
+  z-index: 120;
+  opacity: .95;
+  animation: confettiFall 1.9s linear forwards;
+}
+
+.confetti-green {
+  background: #3fe680;
+  box-shadow: 0 0 12px rgba(63,230,128,.65);
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translate3d(0, -20px, 0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(var(--drift), 110vh, 0) rotate(680deg);
+    opacity: 0;
+  }
+}
+
+
+/* V42 header placement refinement */
+.top-bar {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto auto !important;
+  align-items: start !important;
+  column-gap: 10px !important;
+  width: 100% !important;
+}
+
+.brand {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  justify-self: start !important;
+  justify-items: start !important;
+  align-items: start !important;
+  text-align: left !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  overflow: visible !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.logo {
+  width: clamp(245px, 48vw, 320px) !important;
+  max-width: 100% !important;
+  display: block !important;
+  margin: 0 !important;
+}
+
+.brand-tagline {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 5px 0 0 2px !important;
+  text-align: left !important;
+  justify-self: start !important;
+  font-size: clamp(8px, 1.8vw, 11px) !important;
+  letter-spacing: .18em !important;
+  line-height: 1.1 !important;
+  white-space: nowrap !important;
+  background: transparent !important;
+}
+
+.top-actions {
+  grid-column: 2 / 4 !important;
+  grid-row: 1 !important;
+  justify-self: end !important;
+  display: flex !important;
+  align-items: start !important;
+  gap: 10px !important;
+  margin: 0 !important;
+}
+
+.menu-btn {
+  width: 56px !important;
+  height: 56px !important;
+  min-height: 56px !important;
+  flex: 0 0 56px !important;
+  border-radius: 20px !important;
+}
+
+.bank {
+  min-width: 92px !important;
+  min-height: 56px !important;
+  height: 56px !important;
+  flex: 0 0 auto !important;
+  border-radius: 20px !important;
+}
+
+.bank strong {
+  font-size: 23px !important;
+}
+
+@media (max-width: 430px) {
+  .top-bar {
+    column-gap: 8px !important;
+  }
+
+  .logo {
+    width: clamp(220px, 46vw, 280px) !important;
+  }
+
+  .brand-tagline {
+    font-size: clamp(7px, 1.65vw, 9px) !important;
+    letter-spacing: .15em !important;
+  }
+
+  .top-actions {
+    gap: 7px !important;
+  }
+
+  .menu-btn {
+    width: 50px !important;
+    height: 50px !important;
+    min-height: 50px !important;
+    flex-basis: 50px !important;
+  }
+
+  .bank {
+    min-width: 82px !important;
+    min-height: 50px !important;
+    height: 50px !important;
+  }
+
+  .bank strong {
+    font-size: 20px !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .logo {
+    width: 205px !important;
+  }
+
+  .brand-tagline {
+    font-size: 7px !important;
+    letter-spacing: .12em !important;
+  }
+
+  .menu-btn {
+    width: 46px !important;
+    height: 46px !important;
+    min-height: 46px !important;
+    flex-basis: 46px !important;
+  }
+
+  .bank {
+    min-width: 74px !important;
+    min-height: 46px !important;
+    height: 46px !important;
+  }
+}
+
+
+/* V43 header logo position and collapse usability */
+.top-bar {
+  align-items: start !important;
+  padding-top: 10px !important;
+}
+
+.brand {
+  transform: translateY(12px) !important;
+  display: grid !important;
+  gap: 4px !important;
+  justify-items: start !important;
+  text-align: left !important;
+}
+
+.logo {
+  width: clamp(235px, 46vw, 300px) !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  display: block !important;
+}
+
+.brand-tagline {
+  margin: 0 0 0 2px !important;
+  text-align: left !important;
+  justify-self: start !important;
+  width: auto !important;
+  font-size: clamp(8px, 1.7vw, 10px) !important;
+  letter-spacing: .17em !important;
+  line-height: 1.1 !important;
+}
+
+.top-actions {
+  align-items: start !important;
+  margin-top: 0 !important;
+}
+
+@media (max-width: 430px) {
+  .brand {
+    transform: translateY(10px) !important;
+  }
+
+  .logo {
+    width: clamp(215px, 45vw, 260px) !important;
+  }
+
+  .brand-tagline {
+    font-size: clamp(7px, 1.55vw, 8.5px) !important;
+    letter-spacing: .14em !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .brand {
+    transform: translateY(8px) !important;
+  }
+
+  .logo {
+    width: 200px !important;
+  }
+}
+
+/* Make collapse headers always clickable after choosing options */
+.collapsible-setting {
+  overflow: visible !important;
+}
+
+.setting-collapse {
+  position: relative !important;
+  z-index: 3 !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  touch-action: manipulation !important;
+}
+
+.setting-collapse * {
+  pointer-events: none !important;
+}
+
+.collapse-panel {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.currency-option,
+.theme-option {
+  touch-action: manipulation !important;
+}
+
+
+/* V44 collapse reliability and tagline alignment */
+.setting-collapse {
+  position: relative !important;
+  z-index: 20 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  touch-action: manipulation !important;
+}
+
+.setting-collapse * {
+  pointer-events: none !important;
+}
+
+.collapse-panel {
+  position: relative !important;
+  z-index: 1 !important;
+  padding: 0 16px 16px !important;
+}
+
+.collapse-panel[hidden] {
+  display: none !important;
+}
+
+.collapse-panel.is-open {
+  display: block !important;
+}
+
+.currency-option,
+.theme-option {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* Align SIMPLE with the N and move it closer under the logo */
+.brand {
+  transform: translateY(14px) !important;
+  gap: 1px !important;
+}
+
+.logo {
+  margin-left: 0 !important;
+}
+
+.brand-tagline {
+  margin: -2px 0 0 0 !important;
+  padding-left: 0 !important;
+  text-align: left !important;
+  justify-self: start !important;
+  align-self: start !important;
+  letter-spacing: .16em !important;
+}
+
+@media (max-width: 430px) {
+  .brand {
+    transform: translateY(12px) !important;
+  }
+
+  .brand-tagline {
+    margin-top: -1px !important;
+    letter-spacing: .13em !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .brand {
+    transform: translateY(10px) !important;
+  }
+}
+
+
+/* V45 robust collapsible settings */
+.collapsible-setting {
+  overflow: hidden !important;
+}
+
+.setting-collapse {
+  width: 100% !important;
+  position: relative !important;
+  z-index: 10 !important;
+  pointer-events: auto !important;
+  touch-action: manipulation !important;
+  cursor: pointer !important;
+}
+
+.setting-collapse * {
+  pointer-events: none !important;
+}
+
+.collapse-panel {
+  position: relative !important;
+  z-index: 1 !important;
+  padding: 0 16px 16px !important;
+}
+
+.collapse-panel[hidden] {
+  display: none !important;
+}
+
+.collapse-panel.is-open {
+  display: block !important;
+}
+
+.currency-grid,
+.theme-grid {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 10px !important;
+}
+
+.currency-option,
+.theme-option {
+  pointer-events: auto !important;
+  touch-action: manipulation !important;
+}
+
+/* V45 splash split logo: JACK comes out from NOIR */
+.splash-logo.split-logo {
+  width: auto !important;
+  height: auto !important;
+  display: inline-flex !important;
+  align-items: baseline !important;
+  justify-content: center !important;
+  gap: 0 !important;
+  margin: 0 auto !important;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  font-weight: 950 !important;
+  letter-spacing: -.08em !important;
+  line-height: .86 !important;
+  font-size: clamp(54px, 15vw, 92px) !important;
+  color: #fff !important;
+  text-transform: uppercase;
+}
+
+.split-noir {
+  display: inline-block;
+  color: #fff;
+  transform: translateX(24px);
+  opacity: 0;
+  animation: noirIn .7s cubic-bezier(.16,.84,.24,1) forwards .08s;
+}
+
+.split-jack {
+  display: inline-block;
+  color: transparent;
+  -webkit-text-stroke: 2px #fff;
+  text-stroke: 2px #fff;
+  transform: translateX(-44px);
+  opacity: 0;
+  animation: jackOut .9s cubic-bezier(.16,.84,.24,1) forwards .48s;
+}
+
+@keyframes noirIn {
+  from {
+    opacity: 0;
+    transform: translateX(24px) scale(.96);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes jackOut {
+  from {
+    opacity: 0;
+    transform: translateX(-44px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+}
+
+/* Make SIMPLE REFINED PLAY fade in smoothly after logo */
+.splash-word {
+  animation-duration: .68s !important;
+}
+
+.splash-word.word-1 {
+  animation-delay: 1.05s !important;
+}
+
+.splash-word.word-2 {
+  animation-delay: 1.32s !important;
+}
+
+.splash-word.word-3 {
+  animation-delay: 1.59s !important;
+}
+
+/* White/transparent play button with white pulse */
+.splash-screen .play-btn,
+body.theme-red .splash-screen .play-btn,
+body.theme-blue .splash-screen .play-btn,
+body.theme-purple .splash-screen .play-btn,
+body.theme-green .splash-screen .play-btn,
+body.theme-orange .splash-screen .play-btn {
+  background: rgba(255,255,255,.04) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255,255,255,.88) !important;
+  box-shadow:
+    0 0 0 0 rgba(255,255,255,.32),
+    0 16px 44px rgba(255,255,255,.10) !important;
+  animation: playWhitePulse 2.4s ease-in-out infinite !important;
+}
+
+@keyframes playWhitePulse {
+  0% {
+    box-shadow:
+      0 0 0 0 rgba(255,255,255,.34),
+      0 16px 44px rgba(255,255,255,.10);
+  }
+  65% {
+    box-shadow:
+      0 0 0 15px rgba(255,255,255,0),
+      0 16px 44px rgba(255,255,255,.16);
+  }
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(255,255,255,0),
+      0 16px 44px rgba(255,255,255,.10);
+  }
+}
+
+/* Splash share options */
+.splash-inner {
+  min-height: min(680px, 86svh);
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 20px;
+}
+
+.splash-share {
+  align-self: end;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.splash-share p {
+  margin: 0;
+  color: rgba(245,245,242,.62);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.splash-share .share-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.splash-share .share-btn {
+  width: 38px !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  border-radius: 999px !important;
+  background: rgba(255,255,255,.035) !important;
+  border: 1px solid rgba(245,245,242,.24) !important;
+  color: rgba(245,245,242,.86) !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 0 !important;
+}
+
+.splash-share .share-btn svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+
+.splash-share .share-btn:first-child svg {
+  fill: currentColor;
+  stroke: none;
+}
+
+/* Play to game screen opening animation */
+.app.app-opening {
+  animation: gameOpen .58s cubic-bezier(.16,.84,.24,1) both;
+}
+
+@keyframes gameOpen {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(.965);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+
+/* V46 splash logo uses same artwork/font as game header */
+.splash-logo.split-logo,
+.split-noir,
+.split-jack {
+  all: unset;
+}
+
+.splash-logo-anim {
+  position: relative;
+  width: min(84vw, 560px);
+  height: auto;
+  display: grid;
+  place-items: center;
+  overflow: visible;
+  margin: 0 auto;
+}
+
+.splash-logo-base,
+.splash-logo-jack {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.splash-logo-base {
+  opacity: 0;
+  clip-path: inset(0 43% 0 0);
+  animation: splashNoirImageIn .72s cubic-bezier(.16,.84,.24,1) forwards .05s;
+}
+
+.splash-logo-jack {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  clip-path: inset(0 0 0 43%);
+  transform: translateX(-18%);
+  animation: splashJackImageOut .92s cubic-bezier(.16,.84,.24,1) forwards .5s;
+}
+
+@keyframes splashNoirImageIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px) scale(.985);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes splashJackImageOut {
+  from {
+    opacity: 0;
+    transform: translateX(-18%);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+}
+
+/* V46 settings: use native details/summary style behaviour driven by explicit hidden state */
+.setting-collapse {
+  pointer-events: auto !important;
+  z-index: 50 !important;
+}
+
+.setting-collapse * {
+  pointer-events: none !important;
+}
+
+.collapse-panel {
+  display: block !important;
+}
+
+.collapse-panel[hidden] {
+  display: none !important;
+}
+
+.currency-option,
+.theme-option {
+  pointer-events: auto !important;
+  z-index: 2 !important;
+}
+
+/* Keep splash share consistent */
+.splash-share .share-btn,
+.share-section .share-btn {
+  cursor: pointer !important;
+}
+
+
+/* V48 splash logo cleaned: single artwork, same as main logo */
+.splash-logo-anim,
+.splash-logo.split-logo,
+.split-noir,
+.split-jack,
+.splash-logo-base,
+.splash-logo-jack {
+  display: none !important;
+}
+
+.splash-logo-clean-wrap {
+  width: min(84vw, 560px);
+  display: grid;
+  place-items: center;
+  overflow: visible;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(10px) scale(.965);
+  filter: blur(8px);
+  animation: splashLogoCleanIn 1.05s cubic-bezier(.16,.84,.24,1) forwards .12s;
+}
+
+.splash-logo-clean {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@keyframes splashLogoCleanIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(.965);
+    filter: blur(8px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* V48 background colour menu: make all colour options visible */
+#backgroundPanel:not([hidden]),
+#backgroundPanel.is-open {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+#backgroundPanel .theme-grid {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 10px !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+#backgroundPanel .theme-option {
+  display: grid !important;
+  grid-template-columns: 24px 1fr !important;
+  min-height: 44px !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 0 12px !important;
+  border-radius: 14px !important;
+  background: #252a35 !important;
+  color: #f5f5f2 !important;
+  border: 1px solid rgba(255,255,255,.10) !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+#backgroundPanel .theme-option > span {
+  display: block !important;
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 50% !important;
+  border: 1px solid rgba(255,255,255,.42) !important;
+  box-shadow: 0 0 14px currentColor !important;
+}
+
+#backgroundPanel .theme-option > strong {
+  display: block !important;
+  color: #f5f5f2 !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+}
+
+#backgroundPanel .theme-red > span {
+  background: #ff5b5b !important;
+  color: #ff5b5b !important;
+}
+
+#backgroundPanel .theme-blue > span {
+  background: #68a9ff !important;
+  color: #68a9ff !important;
+}
+
+#backgroundPanel .theme-purple > span {
+  background: #b58cff !important;
+  color: #b58cff !important;
+}
+
+#backgroundPanel .theme-green > span {
+  background: #d9ff6a !important;
+  color: #d9ff6a !important;
+}
+
+#backgroundPanel .theme-orange > span {
+  background: #ffad55 !important;
+  color: #ffad55 !important;
+}
+
+#backgroundPanel .theme-option.is-selected {
+  border-color: var(--active-accent) !important;
+  box-shadow:
+    0 0 0 1px rgba(var(--active-rgb), .20),
+    0 0 16px rgba(var(--active-rgb), .18) !important;
+  background: rgba(255,255,255,.075) !important;
+}
