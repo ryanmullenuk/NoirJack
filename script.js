@@ -580,17 +580,31 @@ function showHint() {
 
 
 function openSettings() {
+  if (!settingsOverlay || !settingsPanel) return;
+
   settingsOverlay.hidden = false;
-  settingsPanel.classList.add("open");
-  settingsPanel.setAttribute("aria-hidden", "false");
+  document.body.classList.add("settings-open");
+
+  requestAnimationFrame(() => {
+    settingsPanel.classList.add("open");
+    settingsPanel.setAttribute("aria-hidden", "false");
+  });
+
+  haptic("tap");
 }
 
 function closeSettingsPanel() {
+  if (!settingsOverlay || !settingsPanel) return;
+
   settingsPanel.classList.remove("open");
   settingsPanel.setAttribute("aria-hidden", "true");
-  setTimeout(() => {
-    if (!settingsPanel.classList.contains("open")) settingsOverlay.hidden = true;
-  }, 220);
+  document.body.classList.remove("settings-open");
+
+  window.setTimeout(() => {
+    if (!settingsPanel.classList.contains("open")) {
+      settingsOverlay.hidden = true;
+    }
+  }, 240);
 }
 
 function setHintPrompt(active) {
@@ -604,37 +618,40 @@ function applyBackgroundTheme() {
 }
 
 function syncSettingsUI() {
-  soundToggle.textContent = soundsOn ? "On" : "Off";
-  soundToggle.classList.toggle("is-on", soundsOn);
-
-  currencyOptions.forEach(option => {
-    option.classList.toggle("is-selected", option.dataset.symbol === currencySymbol);
-  });
+  if (soundToggle) {
+    soundToggle.textContent = soundsOn ? "On" : "Off";
+    soundToggle.classList.toggle("is-on", soundsOn);
+  }
 
   
 collapsibleButtons.forEach(button => {
-  button.addEventListener("click", () => {
+  button.addEventListener("click", event => {
+    event.preventDefault();
+    event.stopPropagation();
+
     const panel = document.getElementById(button.dataset.collapse);
     const icon = button.querySelector(".collapse-icon");
     const expanded = button.getAttribute("aria-expanded") === "true";
 
-    button.setAttribute("aria-expanded", String(!expanded));
+    button.setAttribute("aria-expanded", expanded ? "false" : "true");
 
-    if (panel) panel.hidden = expanded;
+    if (panel) panel.hidden = !expanded ? false : true;
     if (icon) icon.textContent = expanded ? "+" : "−";
 
     haptic("tap");
   });
 });
 
+currencyOptions.forEach(option => {
+    option.classList.toggle("is-selected", option.dataset.symbol === currencySymbol);
+  });
 
-themeOptions.forEach(option => {
+  themeOptions.forEach(option => {
     option.classList.toggle("is-selected", option.dataset.theme === backgroundTheme);
   });
 
   applyBackgroundTheme();
 }
-
 
 function recordWin(amount, naturalBlackjack = false) {
   stats.wins++;
@@ -879,7 +896,9 @@ if (topUpScreen) {
 }
 
 topUpOptions.forEach(option => {
-  option.addEventListener("click", () => {
+  option.addEventListener("click", event => {
+    event.preventDefault();
+    event.stopPropagation();
     const seconds = Number(option.dataset.seconds);
     const tokens = Number(option.dataset.tokens);
 
@@ -895,9 +914,15 @@ topUpOptions.forEach(option => {
   });
 });
 
-menuBtn.addEventListener("click", openSettings);
-closeSettings.addEventListener("click", closeSettingsPanel);
-settingsOverlay.addEventListener("click", closeSettingsPanel);
+
+
+if (menuBtn) menuBtn.addEventListener("click", openSettings);
+if (closeSettings) closeSettings.addEventListener("click", closeSettingsPanel);
+if (settingsOverlay) {
+  settingsOverlay.addEventListener("click", event => {
+    if (event.target === settingsOverlay) closeSettingsPanel();
+  });
+}
 
 soundToggle.addEventListener("click", () => {
   soundsOn = !soundsOn;
@@ -907,7 +932,9 @@ syncSettingsUI();
 });
 
 currencyOptions.forEach(option => {
-  option.addEventListener("click", () => {
+  option.addEventListener("click", event => {
+    event.preventDefault();
+    event.stopPropagation();
     currencySymbol = option.dataset.symbol;
     currencyLabel = option.dataset.label;
     localStorage.setItem("noirjackCurrencySymbol", currencySymbol);
@@ -915,22 +942,6 @@ currencyOptions.forEach(option => {
     updateStatsUI();
 syncSettingsUI();
     draw();
-  });
-});
-
-
-collapsibleButtons.forEach(button => {
-  button.addEventListener("click", () => {
-    const panel = document.getElementById(button.dataset.collapse);
-    const icon = button.querySelector(".collapse-icon");
-    const expanded = button.getAttribute("aria-expanded") === "true";
-
-    button.setAttribute("aria-expanded", String(!expanded));
-
-    if (panel) panel.hidden = expanded;
-    if (icon) icon.textContent = expanded ? "+" : "−";
-
-    haptic("tap");
   });
 });
 

@@ -2385,3 +2385,247 @@ body::after {
   font-size: 11px !important;
   letter-spacing: .03em;
 }
+
+
+/* V33 fixed settings panel + splash word animation */
+.settings-overlay {
+  z-index: 98 !important;
+}
+
+.settings-panel {
+  z-index: 99 !important;
+  pointer-events: auto !important;
+}
+
+.settings-panel.open {
+  transform: translateX(0) !important;
+}
+
+.splash-tagline {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  text-transform: uppercase;
+}
+
+.splash-word {
+  opacity: 0;
+  transform: translateY(8px);
+  filter: blur(5px);
+  animation: splashWordFadeIn .42s ease forwards;
+}
+
+.splash-word.word-1 {
+  animation-delay: .05s;
+}
+
+.splash-word.word-2 {
+  animation-delay: .32s;
+}
+
+.splash-word.word-3 {
+  animation-delay: .59s;
+}
+
+@keyframes splashWordFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+    filter: blur(5px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.play-btn {
+  background: #ffffff !important;
+  color: #050608 !important;
+  border: 1px solid rgba(255,255,255,.9) !important;
+  box-shadow:
+    0 0 0 0 rgba(255,255,255,.38),
+    0 16px 44px rgba(255,255,255,.10) !important;
+  animation: playWhitePulse 2.4s ease-in-out infinite !important;
+}
+
+@keyframes playWhitePulse {
+  0% {
+    box-shadow:
+      0 0 0 0 rgba(255,255,255,.35),
+      0 16px 44px rgba(255,255,255,.10);
+  }
+
+  65% {
+    box-shadow:
+      0 0 0 16px rgba(255,255,255,0),
+      0 16px 44px rgba(255,255,255,.18);
+  }
+
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(255,255,255,0),
+      0 16px 44px rgba(255,255,255,.10);
+  }
+}
+
+
+/* V34 hard fix: settings panel visibility + white splash play button */
+.splash-screen .play-btn,
+body.theme-red .splash-screen .play-btn,
+body.theme-blue .splash-screen .play-btn,
+body.theme-purple .splash-screen .play-btn,
+body.theme-green .splash-screen .play-btn,
+body.theme-orange .splash-screen .play-btn {
+  background: #ffffff !important;
+  color: #050608 !important;
+  border: 1px solid rgba(255,255,255,.92) !important;
+  box-shadow:
+    0 0 0 0 rgba(255,255,255,.36),
+    0 16px 44px rgba(255,255,255,.12) !important;
+  animation: playWhitePulse 2.4s ease-in-out infinite !important;
+}
+
+@keyframes playWhitePulse {
+  0% {
+    box-shadow:
+      0 0 0 0 rgba(255,255,255,.36),
+      0 16px 44px rgba(255,255,255,.12);
+  }
+
+  65% {
+    box-shadow:
+      0 0 0 16px rgba(255,255,255,0),
+      0 16px 44px rgba(255,255,255,.18);
+  }
+
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(255,255,255,0),
+      0 16px 44px rgba(255,255,255,.12);
+  }
+}
+
+.settings-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 900 !important;
+  background: rgba(0,0,0,.55) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+.settings-overlay[hidden] {
+  display: none !important;
+}
+
+.settings-panel {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  left: auto !important;
+  bottom: auto !important;
+  width: min(360px, 88vw) !important;
+  height: 100dvh !important;
+  z-index: 901 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateX(110%) !important;
+  transition: transform .24s ease !important;
+  background: rgba(17,20,26,.98) !important;
+  border-left: 1px solid rgba(255,255,255,.13) !important;
+  box-shadow: -24px 0 90px rgba(0,0,0,.62) !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+.settings-panel.open {
+  transform: translateX(0) !important;
+}
+
+.settings-panel * {
+  visibility: visible !important;
+}
+
+body.settings-open {
+  overflow: hidden !important;
+}
+
+
+/* V35 fix collapsed settings click behaviour */
+.setting-collapse {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  touch-action: manipulation !important;
+}
+
+.setting-collapse * {
+  pointer-events: none !important;
+}
+
+.collapse-panel[hidden] {
+  display: none !important;
+}
+
+.collapse-panel:not([hidden]) {
+  display: block !important;
+}
+
+
+/* V36 settings expanded options fix */
+.collapsible-setting {
+  overflow: visible !important;
+}
+
+.setting-collapse {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+.setting-collapse * {
+  pointer-events: none !important;
+}
+
+.collapse-panel {
+  padding: 0 16px 16px !important;
+  margin-top: -2px !important;
+  display: block !important;
+}
+
+.collapse-panel[hidden] {
+  display: none !important;
+}
+
+.currency-grid,
+.theme-grid {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 10px !important;
+  margin-top: 8px !important;
+}
+
+.currency-option,
+.theme-option {
+  width: 100% !important;
+  min-height: 42px !important;
+  display: grid !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+.currency-option {
+  justify-content: center !important;
+}
+
+.theme-option {
+  grid-template-columns: 22px 1fr !important;
+  justify-content: start !important;
+}
+
+.theme-option > span {
+  pointer-events: none !important;
+}
