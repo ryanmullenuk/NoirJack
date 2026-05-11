@@ -129,58 +129,57 @@
     <div class="settings-header">
       <div>
         <p class="eyebrow">Settings</p>
-        <h3>Game Options</h3>
+        <h2>Game Options</h2>
       </div>
-      <button id="closeSettings" class="close-btn" aria-label="Close settings">×</button>
+      <button id="closeSettings" class="close-settings" type="button" aria-label="Close settings">×</button>
     </div>
 
-    <div class="setting-row">
+    <div class="setting-block sound-setting">
       <div>
         <strong>Sounds</strong>
         <p>Win and lose tones</p>
       </div>
-      <button id="soundToggle" class="toggle is-on">On</button>
+      <button id="soundToggle" class="toggle is-on" type="button">On</button>
     </div>
 
-    <div class="setting-block simple-setting" id="currencySetting">
-      <button class="setting-collapse" type="button" data-panel="currencyPanel" aria-expanded="false">
+    <details class="setting-block native-setting" id="currencySetting">
+      <summary>
         <strong>Currency</strong>
-        <span class="collapse-icon">+</span>
-      </button>
-      <div id="currencyPanel" class="simple-panel" hidden>
+        <span class="collapse-icon" aria-hidden="true">+</span>
+      </summary>
+      <div id="currencyPanel" class="native-panel">
         <button class="currency-option is-selected" data-symbol="£" data-label="Pound" type="button">£ Pound</button>
         <button class="currency-option" data-symbol="$" data-label="Dollar" type="button">$ Dollar</button>
         <button class="currency-option" data-symbol="€" data-label="Euro" type="button">€ Euro</button>
       </div>
-    </div>
+    </details>
 
-    <div class="setting-block simple-setting" id="backgroundSetting">
-      <button class="setting-collapse" type="button" data-panel="backgroundPanel" aria-expanded="false">
+    <details class="setting-block native-setting" id="backgroundSetting">
+      <summary>
         <strong>Background Colour</strong>
-        <span class="collapse-icon">+</span>
-      </button>
-      <div id="backgroundPanel" class="simple-panel theme-panel" hidden>
+        <span class="collapse-icon" aria-hidden="true">+</span>
+      </summary>
+      <div id="backgroundPanel" class="native-panel theme-panel">
         <button class="theme-option theme-red" data-theme="red" type="button"><span></span><strong>Red</strong></button>
         <button class="theme-option theme-blue" data-theme="blue" type="button"><span></span><strong>Blue</strong></button>
         <button class="theme-option theme-purple" data-theme="purple" type="button"><span></span><strong>Purple</strong></button>
         <button class="theme-option theme-green is-selected" data-theme="green" type="button"><span></span><strong>Green</strong></button>
         <button class="theme-option theme-orange" data-theme="orange" type="button"><span></span><strong>Orange</strong></button>
       </div>
-    </div>
+    </details>
 
     <div class="setting-block profile-panel">
       <strong>Player Profile</strong>
-      <div class="profile-row"><span>Wins</span><strong id="statWins">0</strong></div>
-      <div class="profile-row"><span>Losses</span><strong id="statLosses">0</strong></div>
-      <div class="profile-row"><span>Current Streak</span><strong id="statCurrentStreak">0</strong></div>
-      <div class="profile-row"><span>Best Streak</span><strong id="statStreak">0</strong></div>
-      <div class="profile-row"><span>Blackjacks</span><strong id="statBlackjacks">0</strong></div>
-      <div class="profile-row"><span>Hands Played</span><strong id="statHands">0</strong></div>
-      <div class="profile-row"><span>Session Profit</span><strong id="statProfit">£0</strong></div>
-      <button id="resetStats" class="reset-stats">Reset Stats</button>
+      <div class="stat-row"><span>Wins</span><b id="statWins">0</b></div>
+      <div class="stat-row"><span>Losses</span><b id="statLosses">0</b></div>
+      <div class="stat-row"><span>Current Streak</span><b id="statCurrentStreak">0</b></div>
+      <div class="stat-row"><span>Best Streak</span><b id="statBestStreak">0</b></div>
+      <div class="stat-row"><span>Blackjacks</span><b id="statBlackjacks">0</b></div>
+      <div class="stat-row"><span>Hands Played</span><b id="statHands">0</b></div>
+      <div class="stat-row"><span>Session Profit</span><b id="statSessionProfit">£0</b></div>
+      <button id="resetStats" class="reset-stats" type="button">Reset Stats</button>
     </div>
-
-  </aside>
+</aside>
 
 
   <section id="topUpScreen" class="topup-screen" hidden>

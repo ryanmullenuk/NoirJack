@@ -918,30 +918,6 @@ if (settingsOverlay) {
 }
 
 
-document.addEventListener("click", event => {
-  const button = event.target.closest(".setting-collapse");
-  if (!button) return;
-
-  event.preventDefault();
-  event.stopPropagation();
-
-  const panelId = button.dataset.panel || button.dataset.collapse;
-  const panel = document.getElementById(panelId);
-  const icon = button.querySelector(".collapse-icon");
-  const isOpen = button.getAttribute("aria-expanded") === "true";
-
-  button.setAttribute("aria-expanded", isOpen ? "false" : "true");
-
-  if (panel) {
-    panel.hidden = isOpen;
-    panel.classList.toggle("is-open", !isOpen);
-  }
-
-  if (icon) icon.textContent = isOpen ? "+" : "−";
-  haptic("tap");
-}, true);
-
-
 soundToggle.addEventListener("click", () => {
   soundsOn = !soundsOn;
   localStorage.setItem("noirjackSoundsOn", soundsOn);
