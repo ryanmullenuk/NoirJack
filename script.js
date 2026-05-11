@@ -851,23 +851,62 @@ async function finishRound() {
   draw();
 }
 
-plusBetBtn.addEventListener("click", () => {
+
+/* V65 hold + / - to change bet continuously */
+function bindHoldToRepeat(button, action) {
+  if (!button || button.dataset.holdRepeatBound === "true") return;
+
+  button.dataset.holdRepeatBound = "true";
+
+  let holdDelay = null;
+  let holdInterval = null;
+
+  const clearHold = () => {
+    if (holdDelay) clearTimeout(holdDelay);
+    if (holdInterval) clearInterval(holdInterval);
+    holdDelay = null;
+    holdInterval = null;
+  };
+
+  const run = () => {
+    action();
+    draw();
+  };
+
+  button.addEventListener("pointerdown", event => {
+    if (button.disabled || inRound || dealingInProgress) return;
+
+    event.preventDefault();
+    button.setPointerCapture?.(event.pointerId);
+
+    run();
+
+    holdDelay = setTimeout(() => {
+      holdInterval = setInterval(run, 85);
+    }, 360);
+  });
+
+  ["pointerup", "pointercancel", "pointerleave", "lostpointercapture"].forEach(type => {
+    button.addEventListener(type, clearHold);
+  });
+}
+
+bindHoldToRepeat(plusBetBtn, () => {
   if (bet < bank) {
     bet += 1;
     haptic("tap");
     chipSound();
   }
-  draw();
 });
 
-minusBetBtn.addEventListener("click", () => {
+bindHoldToRepeat(minusBetBtn, () => {
   if (bet > 1) {
     bet -= 1;
     haptic("tap");
     chipSound();
   }
-  draw();
 });
+
 
 dealBtn.addEventListener("click", startRound);
 hitBtn.addEventListener("click", playerHit);
@@ -955,8 +994,8 @@ document.querySelectorAll(".share-btn").forEach(button => {
     const encodedText = encodeURIComponent(shareText);
 
     const urls = {
-    facebook: "https://www.facebook.com/login/",
-    instagram: "https://www.instagram.com/accounts/login/accounts/login/",
+    facebook: "https://www.facebook.com/login/?locale=en_GB",
+    instagram: "https://www.instagram.com/accounts/login/?hl=en",
     x: "https://x.com"
   };
 
