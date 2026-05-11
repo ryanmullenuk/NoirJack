@@ -1478,3 +1478,228 @@ button.round {
     display: none !important;
   }
 }
+
+
+/* V25 tighter single-screen fit */
+.app {
+  height: 100svh !important;
+  padding: max(8px, env(safe-area-inset-top)) 16px max(8px, env(safe-area-inset-bottom)) !important;
+  gap: 7px !important;
+}
+
+.logo {
+  width: 190px !important;
+  max-width: 52vw !important;
+}
+
+.brand-tagline {
+  font-size: 8px !important;
+  letter-spacing: .16em !important;
+  margin-top: 1px !important;
+}
+
+.menu-btn {
+  width: 38px !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  border-radius: 13px !important;
+  padding: 0 !important;
+}
+
+.menu-btn span {
+  width: 18px !important;
+  height: 3px !important;
+  margin: 1.5px 0 !important;
+  border-radius: 999px !important;
+}
+
+.bank {
+  min-width: 74px !important;
+  min-height: 50px !important;
+  padding: 6px 8px !important;
+  border-radius: 16px !important;
+}
+
+.bank span {
+  font-size: 11px !important;
+}
+
+.bank strong {
+  font-size: 20px !important;
+}
+
+.table {
+  padding: 12px !important;
+  border-radius: 24px !important;
+  gap: 6px !important;
+  grid-template-rows: minmax(82px, .7fr) auto minmax(82px, .7fr) !important;
+}
+
+.label {
+  font-size: 10px !important;
+  letter-spacing: .12em !important;
+}
+
+h2 {
+  font-size: 28px !important;
+}
+
+.cards {
+  margin-top: 7px !important;
+  gap: 7px !important;
+}
+
+.card {
+  width: 50px !important;
+  height: 72px !important;
+  border-radius: 12px !important;
+  padding: 7px !important;
+  font-size: 18px !important;
+}
+
+.card .suit {
+  font-size: 20px !important;
+}
+
+.message {
+  width: min(72%, 235px) !important;
+  min-height: 30px !important;
+  padding: 6px 10px !important;
+  font-size: 12px !important;
+}
+
+.controls {
+  padding: 9px !important;
+  border-radius: 22px !important;
+  gap: 7px !important;
+}
+
+.bet-panel {
+  grid-template-columns: 40px 1fr 40px !important;
+}
+
+button.round {
+  width: 40px !important;
+  height: 40px !important;
+  min-height: 40px !important;
+}
+
+button {
+  min-height: 40px !important;
+  border-radius: 14px !important;
+  font-size: 14px !important;
+}
+
+#bet {
+  font-size: 24px !important;
+}
+
+.chip-stack {
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 6px !important;
+}
+
+.chip {
+  min-height: 30px !important;
+  font-size: 10px !important;
+  padding: 0 6px !important;
+}
+
+.chip::before {
+  width: 5px !important;
+  height: 5px !important;
+  margin-right: 3px !important;
+}
+
+.actions {
+  gap: 6px !important;
+}
+
+.actions button {
+  min-height: 42px !important;
+}
+
+/* iPhone browser-height compression */
+@media (max-height: 760px) {
+  .app {
+    gap: 6px !important;
+    padding-top: max(6px, env(safe-area-inset-top)) !important;
+    padding-bottom: max(6px, env(safe-area-inset-bottom)) !important;
+  }
+
+  .logo {
+    width: 172px !important;
+  }
+
+  .menu-btn {
+    width: 36px !important;
+    height: 36px !important;
+    min-height: 36px !important;
+  }
+
+  .bank {
+    min-height: 46px !important;
+    min-width: 68px !important;
+  }
+
+  .bank strong {
+    font-size: 18px !important;
+  }
+
+  .table {
+    padding: 10px !important;
+    grid-template-rows: minmax(74px, .66fr) auto minmax(74px, .66fr) !important;
+  }
+
+  h2 {
+    font-size: 25px !important;
+  }
+
+  .card {
+    width: 46px !important;
+    height: 66px !important;
+    font-size: 17px !important;
+  }
+
+  .card .suit {
+    font-size: 18px !important;
+  }
+
+  .message {
+    min-height: 28px !important;
+    font-size: 11px !important;
+  }
+
+  .controls {
+    padding: 8px !important;
+    gap: 6px !important;
+  }
+
+  .chip {
+    min-height: 28px !important;
+    font-size: 10px !important;
+  }
+
+  .actions button {
+    min-height: 40px !important;
+  }
+}
+
+@media (max-height: 690px) {
+  .brand-tagline {
+    display: none !important;
+  }
+
+  .chip-stack {
+    display: none !important;
+  }
+
+  .table {
+    grid-template-rows: minmax(66px, .62fr) auto minmax(66px, .62fr) !important;
+  }
+
+  .card {
+    width: 42px !important;
+    height: 60px !important;
+  }
+}
