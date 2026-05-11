@@ -2171,3 +2171,217 @@ body.theme-orange .currency-option.is-selected {
 .card.back {
   color: transparent !important;
 }
+
+
+/* V29 theme selection and main particle background */
+.app-particles {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .28;
+}
+
+.app {
+  position: relative;
+  z-index: 1;
+}
+
+.theme-option {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  touch-action: manipulation !important;
+}
+
+.theme-option * {
+  pointer-events: none !important;
+}
+
+body.theme-red {
+  --active-rgb: 190, 42, 58;
+  --active-accent: #ff5b5b;
+}
+
+body.theme-blue {
+  --active-rgb: 45, 110, 220;
+  --active-accent: #68a9ff;
+}
+
+body.theme-purple {
+  --active-rgb: 132, 80, 210;
+  --active-accent: #b58cff;
+}
+
+body.theme-green {
+  --active-rgb: 112, 150, 62;
+  --active-accent: #d9ff6a;
+}
+
+body.theme-orange {
+  --active-rgb: 224, 118, 38;
+  --active-accent: #ffad55;
+}
+
+/* Main selected accent colour across gameplay UI */
+.primary,
+.play-btn,
+.toggle.is-on,
+.currency-option.is-selected {
+  background: var(--active-accent) !important;
+  color: #111 !important;
+}
+
+.menu-btn {
+  border-color: rgba(var(--active-rgb), .22) !important;
+}
+
+.bank,
+.table,
+.controls {
+  border-color: rgba(var(--active-rgb), .26) !important;
+  box-shadow:
+    0 20px 55px rgba(0,0,0,.30),
+    0 0 0 1px rgba(var(--active-rgb), .06) !important;
+}
+
+.settings-panel .setting-block {
+  border-color: rgba(var(--active-rgb), .22) !important;
+}
+
+.chip::before,
+.chip-clear::before {
+  background: var(--active-accent) !important;
+}
+
+.theme-option.is-selected {
+  border-color: var(--active-accent) !important;
+  box-shadow:
+    0 0 0 1px rgba(var(--active-rgb), .20),
+    0 0 18px rgba(var(--active-rgb), .20) !important;
+}
+
+.theme-option.is-selected > span {
+  box-shadow: 0 0 18px var(--active-accent) !important;
+}
+
+body.theme-red .splash-particles,
+body.theme-blue .splash-particles,
+body.theme-purple .splash-particles,
+body.theme-green .splash-particles,
+body.theme-orange .splash-particles {
+  opacity: .52;
+}
+
+
+/* V30 collapsible settings */
+.settings-panel {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: max(28px, env(safe-area-inset-bottom)) !important;
+}
+
+.collapsible-setting {
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+.setting-collapse {
+  width: 100%;
+  min-height: 58px !important;
+  padding: 0 16px !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-radius: 22px !important;
+  background: transparent !important;
+  color: var(--text) !important;
+  text-align: left;
+}
+
+.setting-collapse strong {
+  font-size: 15px;
+}
+
+.collapse-icon {
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 999px !important;
+  display: grid !important;
+  place-items: center;
+  background: rgba(255,255,255,.07) !important;
+  color: var(--active-accent, #d9ff6a) !important;
+  font-size: 20px !important;
+  font-weight: 900;
+  line-height: 1;
+  border: 1px solid rgba(var(--active-rgb), .22) !important;
+  box-shadow: none !important;
+}
+
+.collapse-panel {
+  padding: 0 16px 16px;
+}
+
+.collapse-panel[hidden] {
+  display: none !important;
+}
+
+.collapse-panel .currency-grid,
+.collapse-panel .theme-grid {
+  margin-top: 0 !important;
+}
+
+.profile-panel {
+  margin-bottom: 18px !important;
+}
+
+
+/* V31 hint readability and visible play-screen particles */
+.app-particles {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  opacity: .36 !important;
+  mix-blend-mode: screen;
+}
+
+body::before,
+body::after {
+  z-index: -1 !important;
+}
+
+.app {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.table,
+.controls,
+.top-bar,
+.settings-panel {
+  position: relative;
+  z-index: 2;
+}
+
+.table {
+  background:
+    radial-gradient(circle at 15% 8%, rgba(var(--active-rgb), .035), transparent 26%),
+    rgba(17,20,26,.76) !important;
+  backdrop-filter: blur(2px);
+}
+
+.controls {
+  background: rgba(17,20,26,.78) !important;
+  backdrop-filter: blur(2px);
+}
+
+.message {
+  white-space: nowrap;
+  font-size: 11px !important;
+  letter-spacing: .03em;
+}

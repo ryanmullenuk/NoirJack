@@ -49,6 +49,7 @@ const closeSettings = document.getElementById("closeSettings");
 const soundToggle = document.getElementById("soundToggle");
 const currencyOptions = document.querySelectorAll(".currency-option");
 const themeOptions = document.querySelectorAll(".theme-option");
+const collapsibleButtons = document.querySelectorAll(".setting-collapse");
 const chipButtons = document.querySelectorAll(".chip");
 
 const particleLayer = document.getElementById("particleLayer");
@@ -133,6 +134,7 @@ let audioCtx;
 
 /* V23 custom particle network splash animation */
 const splashParticles = document.getElementById("splashParticles");
+const appParticles = document.getElementById("appParticles");
 let splashParticleAnimationId = null;
 
 function startSplashParticles() {
@@ -248,6 +250,123 @@ function stopSplashParticles() {
     splashParticleAnimationId = null;
   }
 }
+
+
+/* V29 main table particle background */
+let appParticleAnimationId = null;
+let appParticleResizeBound = false;
+
+function themeColour() {
+  const styles = getComputedStyle(document.body);
+  const rgb = styles.getPropertyValue("--active-rgb").trim() || "112, 150, 62";
+  return `rgb(${rgb})`;
+}
+
+function startAppParticles() {
+  if (!appParticles) return;
+
+  const ctx = appParticles.getContext("2d");
+  if (!ctx || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  let particles = [];
+  let width = 0;
+  let height = 0;
+
+  function resize() {
+    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    width = window.innerWidth;
+    height = window.innerHeight;
+
+    appParticles.width = Math.floor(width * ratio);
+    appParticles.height = Math.floor(height * ratio);
+    appParticles.style.width = `${width}px`;
+    appParticles.style.height = `${height}px`;
+    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+    const count = Math.max(28, Math.min(70, Math.floor((width * height) / 16500)));
+    particles = Array.from({ length: count }, () => {
+      const edge = Math.random();
+      let x = Math.random() * width;
+      let y = Math.random() * height;
+
+      if (edge < .25) x = Math.random() * 42;
+      else if (edge < .5) x = width - Math.random() * 42;
+      else if (edge < .75) y = Math.random() * 90;
+      else y = height - Math.random() * 90;
+
+      return {
+        x,
+        y,
+        vx: (Math.random() - .5) * .16,
+        vy: (Math.random() - .5) * .16,
+        r: Math.random() * 1.3 + .55
+      };
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, width, height);
+    const accent = themeColour();
+
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.x < -20) p.x = width + 20;
+      if (p.x > width + 20) p.x = -20;
+      if (p.y < -20) p.y = height + 20;
+      if (p.y > height + 20) p.y = -20;
+
+      ctx.beginPath();
+      ctx.globalAlpha = .42;
+      ctx.fillStyle = accent;
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+
+      for (let j = i + 1; j < particles.length; j++) {
+        const q = particles[j];
+        const dx = p.x - q.x;
+        const dy = p.y - q.y;
+        const d = Math.sqrt(dx * dx + dy * dy);
+        const max = 95;
+
+        if (d < max) {
+          ctx.beginPath();
+          ctx.globalAlpha = (1 - d / max) * .16;
+          ctx.strokeStyle = accent;
+          ctx.lineWidth = .7;
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(q.x, q.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    appParticleAnimationId = requestAnimationFrame(draw);
+  }
+
+  if (appParticleAnimationId) cancelAnimationFrame(appParticleAnimationId);
+
+  resize();
+
+  if (!appParticleResizeBound) {
+    window.addEventListener("resize", resize, { passive: true });
+    appParticleResizeBound = true;
+  }
+
+  draw();
+}
+
+function refreshAppParticles() {
+  if (appParticleAnimationId) {
+    cancelAnimationFrame(appParticleAnimationId);
+    appParticleAnimationId = null;
+  }
+  startAppParticles();
+}
+
 
 function haptic(type = "light") {
   try {
@@ -456,7 +575,7 @@ function showHint() {
   setHintPrompt(false);
 
   const chance = simulateStayChance();
-  messageEl.textContent = `${chance.winRate}% win • ${chance.pushRate}% push • ${chance.lossRate}% lose if you stay`;
+  messageEl.textContent = `WIN ${chance.winRate}%  PUSH ${chance.pushRate}%  LOSE ${chance.lossRate}%`;
 }
 
 
@@ -492,7 +611,24 @@ function syncSettingsUI() {
     option.classList.toggle("is-selected", option.dataset.symbol === currencySymbol);
   });
 
-  themeOptions.forEach(option => {
+  
+collapsibleButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    const panel = document.getElementById(button.dataset.collapse);
+    const icon = button.querySelector(".collapse-icon");
+    const expanded = button.getAttribute("aria-expanded") === "true";
+
+    button.setAttribute("aria-expanded", String(!expanded));
+
+    if (panel) panel.hidden = expanded;
+    if (icon) icon.textContent = expanded ? "+" : "−";
+
+    haptic("tap");
+  });
+});
+
+
+themeOptions.forEach(option => {
     option.classList.toggle("is-selected", option.dataset.theme === backgroundTheme);
   });
 
@@ -782,12 +918,41 @@ syncSettingsUI();
   });
 });
 
+
+collapsibleButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    const panel = document.getElementById(button.dataset.collapse);
+    const icon = button.querySelector(".collapse-icon");
+    const expanded = button.getAttribute("aria-expanded") === "true";
+
+    button.setAttribute("aria-expanded", String(!expanded));
+
+    if (panel) panel.hidden = expanded;
+    if (icon) icon.textContent = expanded ? "+" : "−";
+
+    haptic("tap");
+  });
+});
+
+
+themeOptions.forEach(option => {
+  option.addEventListener("click", event => {
+    event.preventDefault();
+    backgroundTheme = option.dataset.theme;
+    localStorage.setItem("noirjackBackgroundTheme", backgroundTheme);
+    syncSettingsUI();
+    refreshAppParticles();
+    haptic("tap");
+  });
+});
+
 playBtn.addEventListener("click", () => {
   haptic("tap");
   stopSplashParticles();
   splashScreen.classList.add("hide");
   gameApp.classList.remove("app-hidden");
   gameApp.classList.add("app-ready");
+  startAppParticles();
 });
 
 chipButtons.forEach(button => {

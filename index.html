@@ -14,6 +14,7 @@
   <link rel="icon" type="image/png" href="assets/icon-192.png" />
 </head>
 <body>
+  <canvas id="appParticles" class="app-particles" aria-hidden="true"></canvas>
 <div id="particleLayer"></div>
   <section id="splashScreen" class="splash-screen">
     <canvas id="splashParticles" class="splash-particles" aria-hidden="true"></canvas>
@@ -109,23 +110,33 @@
       <button id="soundToggle" class="toggle is-on">On</button>
     </div>
 
-    <div class="setting-block">
-      <strong>Currency</strong>
-      <div class="currency-grid">
-        <button class="currency-option is-selected" data-symbol="£" data-label="Pound">£ Pound</button>
-        <button class="currency-option" data-symbol="$" data-label="Dollar">$ Dollar</button>
-        <button class="currency-option" data-symbol="€" data-label="Euro">€ Euro</button>
+    <div class="setting-block collapsible-setting">
+      <button class="setting-collapse" type="button" data-collapse="currencyPanel" aria-expanded="false">
+        <strong>Currency</strong>
+        <span class="collapse-icon">+</span>
+      </button>
+      <div id="currencyPanel" class="collapse-panel" hidden>
+        <div class="currency-grid">
+          <button class="currency-option is-selected" data-symbol="£" data-label="Pound">£ Pound</button>
+          <button class="currency-option" data-symbol="$" data-label="Dollar">$ Dollar</button>
+          <button class="currency-option" data-symbol="€" data-label="Euro">€ Euro</button>
+        </div>
       </div>
     </div>
 
-    <div class="setting-block">
-      <strong>Background Colour</strong>
-      <div class="theme-grid">
-        <button class="theme-option theme-red" data-theme="red" type="button"><span></span>Red</button>
-        <button class="theme-option theme-blue" data-theme="blue" type="button"><span></span>Blue</button>
-        <button class="theme-option theme-purple" data-theme="purple" type="button"><span></span>Purple</button>
-        <button class="theme-option theme-green is-selected" data-theme="green" type="button"><span></span>Green</button>
-        <button class="theme-option theme-orange" data-theme="orange" type="button"><span></span>Orange</button>
+    <div class="setting-block collapsible-setting">
+      <button class="setting-collapse" type="button" data-collapse="backgroundPanel" aria-expanded="false">
+        <strong>Background Colour</strong>
+        <span class="collapse-icon">+</span>
+      </button>
+      <div id="backgroundPanel" class="collapse-panel" hidden>
+        <div class="theme-grid">
+          <button class="theme-option theme-red" data-theme="red" type="button" aria-label="Set red background"><span></span>Red</button>
+          <button class="theme-option theme-blue" data-theme="blue" type="button" aria-label="Set blue background"><span></span>Blue</button>
+          <button class="theme-option theme-purple" data-theme="purple" type="button" aria-label="Set purple background"><span></span>Purple</button>
+          <button class="theme-option theme-green is-selected" data-theme="green" type="button" aria-label="Set green background"><span></span>Green</button>
+          <button class="theme-option theme-orange" data-theme="orange" type="button" aria-label="Set orange background"><span></span>Orange</button>
+        </div>
       </div>
     </div>
 
