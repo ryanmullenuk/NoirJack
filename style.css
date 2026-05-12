@@ -6218,3 +6218,177 @@ button.primary {
 .reward-status.is-error {
   color: #ff5b5b;
 }
+
+
+/* V80 fix player panel overlap and keep full table inside outer area */
+.split-table {
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  padding: 12px !important;
+  gap: 8px !important;
+  grid-template-rows: minmax(116px, 1fr) 38px minmax(116px, 1fr) !important;
+  min-height: 365px !important;
+  max-height: 430px !important;
+}
+
+.split-table .hand-panel {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-height: 116px !important;
+  height: 100% !important;
+  max-height: 160px !important;
+  overflow: hidden !important;
+  padding: 12px !important;
+  border-radius: 22px !important;
+  display: grid !important;
+  grid-template-columns: 62px minmax(0, 1fr) !important;
+  align-items: start !important;
+}
+
+.split-table .player-panel {
+  margin: 0 !important;
+  align-self: stretch !important;
+}
+
+.split-table .dealer-panel {
+  margin: 0 !important;
+  align-self: stretch !important;
+}
+
+.split-table .cards {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-content: flex-start !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  gap: 6px !important;
+  row-gap: 5px !important;
+  max-height: 118px !important;
+  overflow: hidden !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+}
+
+.split-table .card {
+  width: 38px !important;
+  height: 58px !important;
+  min-width: 38px !important;
+  min-height: 58px !important;
+  flex: 0 0 38px !important;
+  border-radius: 9px !important;
+  margin: 0 !important;
+}
+
+.split-table .cards.is-compact .card {
+  width: 32px !important;
+  height: 50px !important;
+  min-width: 32px !important;
+  min-height: 50px !important;
+  flex-basis: 32px !important;
+}
+
+.split-table .cards.is-ultra-compact .card {
+  width: 28px !important;
+  height: 44px !important;
+  min-width: 28px !important;
+  min-height: 44px !important;
+  flex-basis: 28px !important;
+}
+
+.table-message-panel {
+  min-height: 38px !important;
+  height: 38px !important;
+  padding: 0 !important;
+}
+
+.table-message-panel .message {
+  padding: 8px 14px !important;
+  font-size: 0.82rem !important;
+  width: min(82%, 520px) !important;
+}
+
+/* V80 make Stay reliably clickable */
+#stay {
+  pointer-events: auto !important;
+  touch-action: manipulation !important;
+  position: relative !important;
+  z-index: 100 !important;
+}
+
+/* V80 social buttons as wide rounded rectangles */
+.share-section {
+  width: 100% !important;
+  padding-left: 28px !important;
+  padding-right: 28px !important;
+  box-sizing: border-box !important;
+}
+
+.share-section .share-buttons {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 10px !important;
+  width: 100% !important;
+  max-width: 520px !important;
+  margin: 0 auto !important;
+}
+
+.share-section .share-btn {
+  width: 100% !important;
+  height: 44px !important;
+  min-height: 44px !important;
+  border-radius: 16px !important;
+  display: grid !important;
+  place-items: center !important;
+}
+
+.share-section .share-btn svg {
+  width: 19px !important;
+  height: 19px !important;
+}
+
+@media (max-height: 760px) {
+  .split-table {
+    grid-template-rows: minmax(104px, 1fr) 34px minmax(104px, 1fr) !important;
+    min-height: 330px !important;
+    max-height: 370px !important;
+    gap: 6px !important;
+    padding: 10px !important;
+  }
+
+  .split-table .hand-panel {
+    min-height: 104px !important;
+    max-height: 136px !important;
+    padding: 10px !important;
+    grid-template-columns: 54px minmax(0, 1fr) !important;
+  }
+
+  .split-table .card {
+    width: 34px !important;
+    height: 52px !important;
+    min-width: 34px !important;
+    min-height: 52px !important;
+    flex-basis: 34px !important;
+  }
+
+  .split-table .cards.is-compact .card {
+    width: 29px !important;
+    height: 46px !important;
+    min-width: 29px !important;
+    min-height: 46px !important;
+    flex-basis: 29px !important;
+  }
+
+  .share-section .share-btn {
+    height: 38px !important;
+    min-height: 38px !important;
+  }
+}
+
+
+/* V81 make Stay tappable above overlays */
+#stay {
+  pointer-events: auto !important;
+  touch-action: manipulation !important;
+  position: relative !important;
+  z-index: 200 !important;
+}

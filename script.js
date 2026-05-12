@@ -1222,31 +1222,6 @@ draw();
 startSplashParticles();
 
 
-/* V78 robust Stay button listener */
-(function bindStayFix() {
-  const stayButton = document.getElementById("stay");
-
-  if (!stayButton || stayButton.dataset.v78StayBound === "true") return;
-
-  stayButton.dataset.v78StayBound = "true";
-
-  const runStay = event => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    if (stayButton.disabled || !inRound || dealingInProgress) return;
-
-    haptic("tap");
-
-    if (typeof dealerTurn === "function") {
-      dealerTurn();
-    }
-  };
-
-  stayButton.addEventListener("click", runStay, true);
-  stayButton.addEventListener("touchend", runStay, true);
-})();
-
 /* V79 bank top up listener */
 if (bankButton) {
   bankButton.addEventListener("click", () => {
@@ -1259,3 +1234,34 @@ const closeTopUpButton = document.getElementById("closeTopUp");
 if (closeTopUpButton) {
   closeTopUpButton.addEventListener("click", closeTopUpScreen);
 }
+
+
+
+
+/* V81 robust Stay button fix */
+(function bindStayButtonV81() {
+  const stayButton = document.getElementById("stay");
+  if (!stayButton || stayButton.dataset.v81StayBound === "true") return;
+
+  stayButton.dataset.v81StayBound = "true";
+
+  let lastStayAt = 0;
+
+  function runStay(event) {
+    if (stayButton.disabled || !inRound || dealingInProgress || settlingRound) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    const now = Date.now();
+    if (now - lastStayAt < 350) return;
+    lastStayAt = now;
+
+    if (typeof finishRound === "function") {
+      finishRound();
+    }
+  }
+
+  stayButton.addEventListener("pointerup", runStay, true);
+  stayButton.addEventListener("touchend", runStay, true);
+})();
