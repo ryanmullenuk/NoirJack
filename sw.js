@@ -1,5 +1,5 @@
-const CACHE_NAME='noir-market-v5.3';
-const CORE_ASSETS=['./','./index.html','./styles.css','./game.js','./manifest.json','./assets/logo-splash.png','./assets/logo.png','./assets/redhead-games-logo.png'];
+const CACHE_NAME='noir-market-v5.4';
+const CORE_ASSETS=['./','./index.html','./styles.css','./game.js','./manifest.json','./assets/logo-splash.png','./assets/logo.png','./assets/redhead-games-logo.png','./assets/music/noir_market_music.mp3'];
 const OPTIONAL_ASSETS=['./icon-192.png','./icon-512.png','./apple-touch-icon.png','./apple-touch-icon-dark.png','./apple-touch-icon-light.png','./icon-192-light.png','./icon-512-light.png'];
 self.addEventListener('install',event=>{
   event.waitUntil(

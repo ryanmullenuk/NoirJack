@@ -4270,533 +4270,192 @@ setTimeout(()=>{try{console.log('NOIR MARKET V2.7 splash patch: particles='+docu
 })();
 
 
-/* Noir Market V5.1: splash tagline order, reduced fade-in music and main canvas particle background. */
-(()=>{
-  const VERSION='5.1';
-  const SAVE_KEY='noir_market_v5_1';
-  const FALLBACK_KEYS=['noir_market_v5_0','noir_market_v4_9','noir_market_v4_8','noir_market_v4_7','noir_market_v4_6','noir_market_v4_5','noir_market_v4_4','noir_market_v4_3','noir_market_v4_2','noir_market_v4_1','noir_market_v4_0','noir_market_v3_9','noir_market_v3_8','noir_market_v3_7','noir_market_v3_6','noir_market_v3_5','noir_market_v3_4','noir_market_v3_3','noir_market_v3_2','noir_market_v3_1','noir_market_v3_0','noir_market_v2_9','noir_market_v2_8','noir_market_v2_7','noir_market_v2_6','noir_market_v2_5','noir_market_v2_4','noir_market_v2_3','noir_market_v2_2','noir_market_v2_1','noir_market_v2_0','noir_market_v1_9','noir_market_v1_8','noir_market_v1_7','noir_market_v1_6','noir_market_v1_5','noir_market_v1_4','noir_market_v1_3','noir_market_v1_2','noir_market_v13','noir_market_v12','noir_market_v9','noir_market_v6','noir_market_v5','noir_market_v4'];
-  const previousBaseState=baseState;
-  const previousDraw=draw;
+/* Noir Market V5.4: mobile-safe optimisation layer, MP3 fade-in and stable particle background. */
+(function(){
+  var VERSION='5.4';
+  var SAVE_KEY='noir_market_v5_4';
+  var FALLBACK_KEYS=['noir_market_v5_3','noir_market_v5_2','noir_market_v5_1','noir_market_v5_0','noir_market_v4_9','noir_market_v4_8','noir_market_v4_7','noir_market_v4_6','noir_market_v4_5','noir_market_v4_4','noir_market_v4_3','noir_market_v4_2','noir_market_v4_1','noir_market_v4_0','noir_market_v3_9','noir_market_v3_8','noir_market_v3_7','noir_market_v3_6','noir_market_v3_5','noir_market_v3_4','noir_market_v3_3','noir_market_v3_2','noir_market_v3_1','noir_market_v3_0','noir_market_v2_9','noir_market_v2_8','noir_market_v2_7','noir_market_v2_6','noir_market_v2_5','noir_market_v2_4','noir_market_v2_3','noir_market_v2_2','noir_market_v2_1','noir_market_v2_0','noir_market_v1_9','noir_market_v1_8','noir_market_v1_7','noir_market_v1_6','noir_market_v1_5','noir_market_v1_4','noir_market_v1_3','noir_market_v1_2','noir_market_v13','noir_market_v12','noir_market_v9','noir_market_v6','noir_market_v5','noir_market_v4'];
+  var previousBaseState=baseState;
+  var previousDraw=draw;
+  var previousLoad=load;
+  var musicFadeTimerV54=null;
+  var bgMusicV54=null;
+  var particleRafV54=0;
 
-  function ensureV51(){
-    if(typeof ensureV49==='function')ensureV49();
-    else if(typeof ensureV47==='function')ensureV47();
-    else if(typeof ensureV46==='function')ensureV46();
-    if(typeof ensureStats==='function')ensureStats();
-    if(!s)return;
+  function isMobileV54(){return (window.matchMedia&&window.matchMedia('(max-width: 760px)').matches)||('ontouchstart' in window&&Math.min(window.innerWidth||999,window.innerHeight||999)<760);}
+  function safeReadSaveV54(key){
+    var raw=null;
+    try{raw=localStorage.getItem(key);}catch(e){return null;}
+    if(!raw || raw==='undefined' || raw==='null' || raw==='[object Object]')return null;
+    try{var parsed=JSON.parse(raw); if(parsed&&typeof parsed==='object'&&parsed.inv&&parsed.prices)return parsed;}catch(e){}
+    return null;
+  }
+  function ensureV54(){
+    try{if(typeof ensureStats==='function')ensureStats();}catch(e){}
+    if(!s||typeof s!=='object')return;
     s.version=VERSION;
-    s.v51=s.v51||{taglineOrder:'RISK_SURVIVE_TRADE',reducedMusicFade:true,canvasParticleBackground:true};
+    s.v54=s.v54||{mobileOptimised:true,mp3Music:true,stableParticleBackground:true,splashWords:'RISK_SURVIVE_TRADE'};
   }
 
-  function startSplashTaglineV51(){
-    const current=document.getElementById('splashTagline');
-    if(!current)return;
-    let el=current;
-    if(el.dataset.v51Active!=='1'){
-      const replacement=el.cloneNode(true);
-      replacement.dataset.active='0';
-      replacement.dataset.v51Active='1';
-      el.replaceWith(replacement);
-      el=replacement;
+  save=function(){
+    try{ensureV54();localStorage.setItem(SAVE_KEY,JSON.stringify(s));}catch(e){}
+  };
+  load=function(){
+    var parsed=safeReadSaveV54(SAVE_KEY);
+    if(!parsed){for(var i=0;i<FALLBACK_KEYS.length;i++){parsed=safeReadSaveV54(FALLBACK_KEYS[i]); if(parsed)break;}}
+    if(parsed){
+      s=parsed;
+      ensureV54();
+      try{if(typeof setActiveCityMarket==='function')setActiveCityMarket();}catch(e){}
+      try{if(typeof updateRankProgress==='function')updateRankProgress();}catch(e){}
+      try{if(typeof updateBestRankV18==='function')updateBestRankV18();}catch(e){}
+      save();
+      try{draw();}catch(e){try{previousDraw();}catch(_){} }
+      return false;
     }
-    if(el.dataset.v51Started==='1')return;
-    el.dataset.v51Started='1';
-    const words=['RISK.','SURVIVE.','TRADE.'];
-    let i=0;
+    var started=false;
+    try{started=previousLoad?previousLoad():false;}catch(e){try{newGame(false);started=true;}catch(_){} }
+    ensureV54();save();try{draw();}catch(e){}
+    return started;
+  };
+  baseState=function(){
+    var state=previousBaseState();
+    state.version=VERSION;
+    state.v54={mobileOptimised:true,mp3Music:true,stableParticleBackground:true,splashWords:'RISK_SURVIVE_TRADE'};
+    return state;
+  };
+
+  function startSplashWordsV54(){
+    var old=document.getElementById('splashTagline');
+    if(!old)return;
+    var el=old.cloneNode(true);
+    old.parentNode.replaceChild(el,old);
+    var words=['RISK.','SURVIVE.','TRADE.'];
+    var idx=0;
     el.textContent=words[0];
-    const next=()=>{
-      if(!document.body.contains(el))return;
+    el.classList.remove('fade-out');
+    if(window.__NOIR_V54_WORD_TIMER)clearInterval(window.__NOIR_V54_WORD_TIMER);
+    window.__NOIR_V54_WORD_TIMER=setInterval(function(){
+      if(!document.body.contains(el)){clearInterval(window.__NOIR_V54_WORD_TIMER);return;}
       el.classList.add('fade-out');
-      setTimeout(()=>{
-        if(!document.body.contains(el))return;
-        i=(i+1)%words.length;
-        el.textContent=words[i];
-        el.classList.remove('fade-out');
-      },360);
-    };
-    setInterval(next,1450);
+      setTimeout(function(){idx=(idx+1)%words.length;el.textContent=words[idx];el.classList.remove('fade-out');},430);
+    },1550);
   }
 
-  function setupMainParticleBackgroundV51(){
-    const container=document.getElementById('mainParallaxBg');
-    if(!container || container.dataset.v51Particles==='1')return;
-    container.dataset.v51Particles='1';
-    container.className='main-particle-bg';
-    container.innerHTML='';
-    const canvas=document.createElement('canvas');
+  function setupStableBackgroundV54(){
+    var holder=document.getElementById('mainParallaxBg');
+    if(!holder)return;
+    holder.className='main-particle-bg';
+    holder.removeAttribute('style');
+    holder.style.pointerEvents='none';
+    if(isMobileV54()){
+      holder.innerHTML='';
+      return;
+    }
+    if(holder.dataset.v54Canvas==='1')return;
+    holder.dataset.v54Canvas='1';
+    holder.innerHTML='';
+    var canvas=document.createElement('canvas');
     canvas.id='mainParticleCanvas';
     canvas.setAttribute('aria-hidden','true');
-    container.appendChild(canvas);
-    const ctx=canvas.getContext('2d',{alpha:true});
+    holder.appendChild(canvas);
+    var ctx=canvas.getContext&&canvas.getContext('2d');
     if(!ctx)return;
-
-    const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let width=0,height=0,dpr=1,particles=[],mouse=null,raf=0;
-    const isSmall=()=>Math.min(window.innerWidth||0,window.innerHeight||0)<620;
-    const targetCount=()=>reduced?(isSmall()?28:42):(isSmall()?48:82);
-
+    var particles=[];
+    var width=0,height=0,dpr=1;
     function resize(){
+      width=window.innerWidth||holder.clientWidth||800;
+      height=window.innerHeight||holder.clientHeight||600;
       dpr=Math.min(2,window.devicePixelRatio||1);
-      width=container.clientWidth||window.innerWidth||320;
-      height=container.clientHeight||window.innerHeight||640;
       canvas.width=Math.max(1,Math.floor(width*dpr));
       canvas.height=Math.max(1,Math.floor(height*dpr));
       canvas.style.width=width+'px';
       canvas.style.height=height+'px';
       ctx.setTransform(dpr,0,0,dpr,0,0);
-      const count=targetCount();
-      if(particles.length<count){
-        for(let i=particles.length;i<count;i++)particles.push(makeParticle());
-      }else if(particles.length>count){
-        particles.length=count;
-      }
-    }
-    function makeParticle(){
-      const speed=reduced?0:(Math.random()*0.18+0.06);
-      const angle=Math.random()*Math.PI*2;
-      return {
-        x:Math.random()*Math.max(width,1),
-        y:Math.random()*Math.max(height,1),
-        vx:Math.cos(angle)*speed,
-        vy:Math.sin(angle)*speed,
-        r:Math.random()*1.25+0.55,
-        a:Math.random()*0.28+0.18
-      };
-    }
-    function drawParticle(p){
-      ctx.beginPath();
-      ctx.fillStyle='rgba(170,170,170,'+p.a.toFixed(3)+')';
-      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fill();
-    }
-    function updateParticle(p){
-      if(reduced)return;
-      p.x+=p.vx;
-      p.y+=p.vy;
-      if(p.x<-20)p.x=width+20;
-      if(p.x>width+20)p.x=-20;
-      if(p.y<-20)p.y=height+20;
-      if(p.y>height+20)p.y=-20;
-    }
-    function drawLines(){
-      const maxDist=isSmall()?92:118;
-      for(let i=0;i<particles.length;i++){
-        const a=particles[i];
-        for(let j=i+1;j<particles.length;j++){
-          const b=particles[j];
-          const dx=a.x-b.x,dy=a.y-b.y;
-          const dist=Math.sqrt(dx*dx+dy*dy);
-          if(dist<maxDist){
-            const alpha=(1-dist/maxDist)*(isSmall()?0.11:0.16);
-            ctx.beginPath();
-            ctx.strokeStyle='rgba(150,150,150,'+alpha.toFixed(3)+')';
-            ctx.lineWidth=0.7;
-            ctx.moveTo(a.x,a.y);
-            ctx.lineTo(b.x,b.y);
-            ctx.stroke();
-          }
-        }
-        if(mouse){
-          const dx=a.x-mouse.x,dy=a.y-mouse.y;
-          const dist=Math.sqrt(dx*dx+dy*dy);
-          if(dist<maxDist*1.05){
-            const alpha=(1-dist/(maxDist*1.05))*0.18;
-            ctx.beginPath();
-            ctx.strokeStyle='rgba(190,190,190,'+alpha.toFixed(3)+')';
-            ctx.lineWidth=0.75;
-            ctx.moveTo(a.x,a.y);
-            ctx.lineTo(mouse.x,mouse.y);
-            ctx.stroke();
-          }
-        }
-      }
+      var count=Math.max(34,Math.min(90,Math.round(width*height/8500)));
+      while(particles.length<count){particles.push({x:Math.random()*width,y:Math.random()*height,vx:(Math.random()-.5)*.38,vy:(Math.random()-.5)*.38,r:1+Math.random()*.55});}
+      if(particles.length>count)particles.length=count;
     }
     function render(){
       ctx.clearRect(0,0,width,height);
-      ctx.fillStyle='#030303';
-      ctx.fillRect(0,0,width,height);
-      for(const p of particles){updateParticle(p); drawParticle(p);}
-      drawLines();
-      raf=requestAnimationFrame(render);
+      for(var i=0;i<particles.length;i++){
+        var a=particles[i];
+        a.x+=a.vx;a.y+=a.vy;
+        if(a.x<-20||a.x>width+20)a.vx=-a.vx;
+        if(a.y<-20||a.y>height+20)a.vy=-a.vy;
+        ctx.beginPath();ctx.fillStyle='rgba(155,155,155,.58)';ctx.arc(a.x,a.y,a.r,0,Math.PI*2);ctx.fill();
+        for(var j=i+1;j<particles.length;j++){
+          var b=particles[j],dx=a.x-b.x,dy=a.y-b.y,dist=Math.sqrt(dx*dx+dy*dy);
+          if(dist<116){ctx.beginPath();ctx.strokeStyle='rgba(150,150,150,'+((116-dist)/116*.34).toFixed(3)+')';ctx.lineWidth=.6;ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}
+        }
+      }
+      particleRafV54=requestAnimationFrame(render);
     }
     window.addEventListener('resize',resize,{passive:true});
-    window.addEventListener('mousemove',e=>{mouse={x:e.clientX,y:e.clientY};},{passive:true});
-    window.addEventListener('mouseleave',()=>{mouse=null;},{passive:true});
     resize();
-    if(raf)cancelAnimationFrame(raf);
+    if(particleRafV54)cancelAnimationFrame(particleRafV54);
     render();
   }
 
-  startSynthMusic=function(){
-    if(!musicEnabled||synthMusicOn)return;
-    synthMusicOn=true;
-    unlockAudio();
-    const started=Date.now();
-    const fadeMs=9000;
-    const bass=[55,55,55,49,49,52,52,46,46,49,55,55,41,41,49,49];
-    const tones=[110,0,98,0,82,0,73,0,98,0,92,0,82,0,73,0];
-    let i=0;
-    synthMusicTimer=setInterval(()=>{
-      if(!musicEnabled){stopSynthMusic();return;}
-      const level=Math.min(.5,(Date.now()-started)/fadeMs*.5);
-      const b=bass[i%bass.length];
-      tone(b,1.05,'sine',.016*level,0);
-      tone(b/2,1.20,'triangle',.012*level,.04);
-      if(i%4===0)tone(27.5,.85,'sine',.014*level,.02);
-      const t=tones[i%tones.length];
-      if(t)tone(t,.16,'square',.006*level,.12);
-      if(i%16===15)tone(98,.12,'square',.005*level,.18);
-      i++;
-    },1250);
-  };
-
-  startBackgroundMusic=function(){
-    if(!musicEnabled)return;
-    unlockAudio();
-    musicStarted=true;
-    startSynthMusic();
-  };
-
-  save=function(){ensureV51(); localStorage.setItem(SAVE_KEY,JSON.stringify(s));};
-  load=function(){
-    let x=localStorage.getItem(SAVE_KEY);
-    if(!x){for(const key of FALLBACK_KEYS){x=localStorage.getItem(key); if(x)break;}}
-    if(x){s=JSON.parse(x); ensureV51(); if(typeof setActiveCityMarket==='function')setActiveCityMarket(); if(typeof updateRankProgress==='function')updateRankProgress(); if(typeof updateBestRankV18==='function')updateBestRankV18(); save(); draw(); return false;}
-    newGame(false); ensureV51(); save(); return true;
-  };
-  baseState=function(){const state=previousBaseState(); state.version=VERSION; state.v51={taglineOrder:'RISK_SURVIVE_TRADE',reducedMusicFade:true,canvasParticleBackground:true}; return state;};
-  draw=function(){previousDraw(); try{ensureV51(); setupMainParticleBackgroundV51();}catch(e){}};
-
-  function initV51(){
-    try{
-      startSplashTaglineV51();
-      setupMainParticleBackgroundV51();
-      ensureV51();
-      document.title='Noir Market V5.1';
-      save();
-      console.log('NOIR MARKET V5.1: RISK/SURVIVE/TRADE splash, reduced fade-in music and canvas particle background active.');
-    }catch(e){console.warn('V5.1 startup skipped:',e);}
-  }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initV51,{once:true}); else initV51();
-  setTimeout(initV51,1850);
-})();
-
-
-/* Noir Market V5.2: attached MP3 music, confirmed splash word sequence and CodePen-style particle network background. */
-(()=>{
-  const VERSION='5.2';
-  const SAVE_KEY='noir_market_v5_2';
-  const FALLBACK_KEYS=['noir_market_v5_1','noir_market_v5_0','noir_market_v4_9','noir_market_v4_8','noir_market_v4_7','noir_market_v4_6','noir_market_v4_5','noir_market_v4_4','noir_market_v4_3','noir_market_v4_2','noir_market_v4_1','noir_market_v4_0','noir_market_v3_9','noir_market_v3_8','noir_market_v3_7','noir_market_v3_6','noir_market_v3_5','noir_market_v3_4','noir_market_v3_3','noir_market_v3_2','noir_market_v3_1','noir_market_v3_0','noir_market_v2_9','noir_market_v2_8','noir_market_v2_7','noir_market_v2_6','noir_market_v2_5','noir_market_v2_4','noir_market_v2_3','noir_market_v2_2','noir_market_v2_1','noir_market_v2_0','noir_market_v1_9','noir_market_v1_8','noir_market_v1_7','noir_market_v1_6','noir_market_v1_5','noir_market_v1_4','noir_market_v1_3','noir_market_v1_2','noir_market_v13','noir_market_v12','noir_market_v9','noir_market_v6','noir_market_v5','noir_market_v4'];
-  const MUSIC_FILE='assets/music/noir_market_music.mp3';
-  const MUSIC_TARGET_VOLUME=0.5;
-  const MUSIC_FADE_MS=7000;
-  const previousBaseState=baseState;
-  const previousDraw=draw;
-  const previousEnsure=typeof ensureV51==='function'?ensureV51:null;
-  let musicFadeTimer=null;
-  let particleNetworkState=null;
-
-  function ensureV52(){
-    if(previousEnsure)previousEnsure();
-    else if(typeof ensureV49==='function')ensureV49();
-    if(typeof ensureStats==='function')ensureStats();
-    if(!s)return;
-    s.version=VERSION;
-    s.v52=s.v52||{mp3Music:true,splashWords:'RISK_SURVIVE_TRADE',mainBackground:'codepen_particle_network'};
-  }
-
-  function startSplashWordsV52(){
-    const old=document.getElementById('splashTagline');
-    if(!old)return;
-    const fresh=old.cloneNode(true);
-    fresh.dataset.v52Words='1';
-    fresh.dataset.v51Started='1';
-    fresh.dataset.v51Active='1';
-    old.replaceWith(fresh);
-    const words=['RISK.','SURVIVE.','TRADE.'];
-    let idx=0;
-    fresh.textContent=words[idx];
-    fresh.classList.remove('fade-out');
-    if(window.__NOIR_SPLASH_WORD_TIMER)clearInterval(window.__NOIR_SPLASH_WORD_TIMER);
-    window.__NOIR_SPLASH_WORD_TIMER=setInterval(()=>{
-      if(!document.body.contains(fresh)){clearInterval(window.__NOIR_SPLASH_WORD_TIMER); return;}
-      fresh.classList.add('fade-out');
-      setTimeout(()=>{
-        idx=(idx+1)%words.length;
-        fresh.textContent=words[idx];
-        fresh.classList.remove('fade-out');
-      },430);
-    },1550);
-  }
-
-  function stopBackgroundMusicV52(){
-    if(musicFadeTimer){clearInterval(musicFadeTimer); musicFadeTimer=null;}
-    try{if(bgMusic){bgMusic.pause();}}catch(e){}
+  function stopMusicV54(){
+    if(musicFadeTimerV54){clearInterval(musicFadeTimerV54);musicFadeTimerV54=null;}
+    try{if(bgMusicV54)bgMusicV54.pause();}catch(e){}
     try{if(typeof stopSynthMusic==='function')stopSynthMusic();}catch(e){}
   }
-
   startBackgroundMusic=function(){
     if(!musicEnabled)return;
-    unlockAudio();
+    try{unlockAudio();}catch(e){}
     musicStarted=true;
     try{
       if(typeof Audio!=='undefined'){
-        if(!bgMusic || bgMusic.dataset?.noirV52Music!=='1'){
-          bgMusic=new Audio(MUSIC_FILE);
-          bgMusic.dataset.noirV52Music='1';
-          bgMusic.preload='none';
-          bgMusic.loop=true;
-          bgMusic.volume=0;
+        if(!bgMusicV54){
+          bgMusicV54=new Audio('assets/music/noir_market_music.mp3');
+          bgMusicV54.preload='none';
+          bgMusicV54.loop=true;
+          bgMusicV54.volume=0;
         }
-        bgMusic.loop=true;
-        const restartNeeded=bgMusic.paused || bgMusic.ended;
-        if(musicFadeTimer){clearInterval(musicFadeTimer); musicFadeTimer=null;}
-        if(restartNeeded){
-          bgMusic.volume=0;
-          const playResult=bgMusic.play();
-          if(playResult&&playResult.catch)playResult.catch(()=>{try{startSynthMusic();}catch(e){}});
-        }
-        const start=Date.now();
-        musicFadeTimer=setInterval(()=>{
-          if(!bgMusic){clearInterval(musicFadeTimer); musicFadeTimer=null; return;}
-          const progress=Math.min(1,(Date.now()-start)/MUSIC_FADE_MS);
-          bgMusic.volume=Math.min(MUSIC_TARGET_VOLUME,progress*MUSIC_TARGET_VOLUME);
-          if(progress>=1){clearInterval(musicFadeTimer); musicFadeTimer=null;}
+        if(musicFadeTimerV54){clearInterval(musicFadeTimerV54);musicFadeTimerV54=null;}
+        bgMusicV54.loop=true;
+        var playResult=bgMusicV54.play();
+        if(playResult&&playResult.catch)playResult.catch(function(){try{startSynthMusic();}catch(e){}});
+        var start=Date.now();
+        musicFadeTimerV54=setInterval(function(){
+          if(!bgMusicV54){clearInterval(musicFadeTimerV54);musicFadeTimerV54=null;return;}
+          var p=Math.min(1,(Date.now()-start)/2600);
+          bgMusicV54.volume=Math.min(.5,p*.5);
+          if(p>=1){clearInterval(musicFadeTimerV54);musicFadeTimerV54=null;}
         },120);
         return;
       }
     }catch(e){}
     try{startSynthMusic();}catch(e){}
   };
-  stopBackgroundMusic=stopBackgroundMusicV52;
+  stopBackgroundMusic=stopMusicV54;
 
-  function setupCodePenParticleNetworkV52(){
-    const holder=document.getElementById('mainParallaxBg');
-    if(!holder)return;
-    if(particleNetworkState&&particleNetworkState.holder===holder)return;
-    holder.className='main-particle-bg';
-    holder.innerHTML='';
-    holder.dataset.v52Particles='1';
-
-    const canvas=document.createElement('canvas');
-    canvas.id='mainParticleCanvas';
-    canvas.setAttribute('aria-hidden','true');
-    holder.appendChild(canvas);
-    const ctx=canvas.getContext('2d',{alpha:true});
-    if(!ctx)return;
-
-    const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let width=0,height=0,dpr=1,particles=[],pointer=null,raf=0;
-    const opts={particleColor:'136,136,136',speed:reduced?0:.66,density:window.innerWidth<560?9000:7000,lineDistance:120};
-    function particle(){
-      return {x:Math.random()*Math.max(width,1),y:Math.random()*Math.max(height,1),vx:(Math.random()-.5)*opts.speed,vy:(Math.random()-.5)*opts.speed,r:1.35+Math.random()*.45};
-    }
-    function resize(){
-      dpr=Math.min(2,window.devicePixelRatio||1);
-      width=holder.clientWidth||window.innerWidth||320;
-      height=holder.clientHeight||window.innerHeight||640;
-      canvas.width=Math.max(1,Math.floor(width*dpr));
-      canvas.height=Math.max(1,Math.floor(height*dpr));
-      canvas.style.width=width+'px';
-      canvas.style.height=height+'px';
-      ctx.setTransform(dpr,0,0,dpr,0,0);
-      const count=Math.max(28,Math.min(110,Math.round(width*height/opts.density)));
-      if(particles.length<count){while(particles.length<count)particles.push(particle());}
-      if(particles.length>count)particles.length=count;
-    }
-    function step(p){
-      if(!reduced){
-        p.x+=p.vx; p.y+=p.vy;
-        if(p.x>width+20||p.x<-20)p.vx=-p.vx;
-        if(p.y>height+20||p.y<-20)p.vy=-p.vy;
-      }
-      ctx.beginPath();
-      ctx.fillStyle='rgba('+opts.particleColor+',.70)';
-      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fill();
-    }
-    function line(a,b,distLimit){
-      const dx=a.x-b.x,dy=a.y-b.y,dist=Math.sqrt(dx*dx+dy*dy);
-      if(dist>distLimit)return;
-      ctx.beginPath();
-      ctx.strokeStyle='rgba('+opts.particleColor+','+((distLimit-dist)/distLimit*.55).toFixed(3)+')';
-      ctx.lineWidth=.7;
-      ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
-    }
-    function render(){
-      ctx.clearRect(0,0,width,height);
-      for(let i=0;i<particles.length;i++){
-        const a=particles[i];
-        step(a);
-        for(let j=particles.length-1;j>i;j--)line(a,particles[j],opts.lineDistance);
-        if(pointer)line(a,pointer,opts.lineDistance);
-      }
-      raf=requestAnimationFrame(render);
-    }
-    const pointerMove=(x,y)=>{pointer={x,y};};
-    window.addEventListener('mousemove',e=>pointerMove(e.clientX,e.clientY),{passive:true});
-    window.addEventListener('touchmove',e=>{const t=e.touches&&e.touches[0]; if(t)pointerMove(t.clientX,t.clientY);},{passive:true});
-    window.addEventListener('mouseleave',()=>{pointer=null;},{passive:true});
-    window.addEventListener('resize',resize,{passive:true});
-    resize();
-    if(raf)cancelAnimationFrame(raf);
-    render();
-    particleNetworkState={holder,canvas,raf};
+  function ensureMobileUIV54(){
+    var splash=document.getElementById('splash');
+    var app=document.querySelector('.app');
+    var sections=document.querySelectorAll('.news-ticker,.topbar,.stats,.location,.notice,.market,.pocket,.actions,.status');
+    for(var i=0;i<sections.length;i++){sections[i].style.visibility='visible';sections[i].style.opacity='1';sections[i].style.position='relative';sections[i].style.zIndex='6';}
+    if(app){app.style.position='relative';app.style.zIndex='5';app.style.pointerEvents='auto';}
+    if(splash&&splash.classList.contains('hide')){splash.style.pointerEvents='none';splash.style.display='none';}
   }
-
-  save=function(){ensureV52(); localStorage.setItem(SAVE_KEY,JSON.stringify(s));};
-  load=function(){
-    let x=localStorage.getItem(SAVE_KEY);
-    if(!x){for(const key of FALLBACK_KEYS){x=localStorage.getItem(key); if(x)break;}}
-    if(x){s=JSON.parse(x); ensureV52(); if(typeof setActiveCityMarket==='function')setActiveCityMarket(); if(typeof updateRankProgress==='function')updateRankProgress(); if(typeof updateBestRankV18==='function')updateBestRankV18(); save(); draw(); return false;}
-    newGame(false); ensureV52(); save(); return true;
-  };
-  baseState=function(){const state=previousBaseState(); state.version=VERSION; state.v52={mp3Music:true,splashWords:'RISK_SURVIVE_TRADE',mainBackground:'codepen_particle_network'}; return state;};
-  draw=function(){previousDraw(); try{ensureV52(); setupCodePenParticleNetworkV52();}catch(e){}};
-
-  function initV52(){
-    try{
-      ensureV52();
-      startSplashWordsV52();
-      setupCodePenParticleNetworkV52();
-      document.title='Noir Market V5.2';
-      save();
-      console.log('NOIR MARKET V5.2: MP3 fade-in music, RISK/SURVIVE/TRADE splash words and CodePen-style particle background active.');
-    }catch(e){console.warn('V5.2 startup skipped:',e);}
+  draw=function(){try{previousDraw();}catch(e){console.warn('V5.4 draw recovery',e);}ensureV54();setupStableBackgroundV54();ensureMobileUIV54();};
+  function rebindButtonsV54(){
+    function bind(id,fn){var el=document.getElementById(id);if(el)el.onclick=fn;}
+    bind('menuBtn',function(){showMenu();});bind('buyBtn',function(){try{buyModal();}catch(e){transact('Buy');}});bind('sellBtn',function(){try{sellModal();}catch(e){transact('Sell');}});
+    bind('dumpBtn',function(){dump();});bind('bankBtn',function(){bank();});bind('travelBtn',function(){travel();});bind('shopBtn',function(){shop();});bind('hustleBtn',function(){hustle();});bind('contactsBtn',function(){contacts();});bind('stayBtn',function(){stay();});
   }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initV52,{once:true}); else initV52();
-  setTimeout(initV52,2100);
-})();
-
-
-/* Noir Market V5.3: mobile stability, safe save migration and UI hit-area recovery. */
-(()=>{
-  const VERSION='5.3';
-  const SAVE_KEY='noir_market_v5_3';
-  const FALLBACK_KEYS=['noir_market_v5_2','noir_market_v5_1','noir_market_v5_0','noir_market_v4_9','noir_market_v4_8','noir_market_v4_7','noir_market_v4_6','noir_market_v4_5','noir_market_v4_4','noir_market_v4_3','noir_market_v4_2','noir_market_v4_1','noir_market_v4_0','noir_market_v3_9','noir_market_v3_8','noir_market_v3_7','noir_market_v3_6','noir_market_v3_5','noir_market_v3_4','noir_market_v3_3','noir_market_v3_2','noir_market_v3_1','noir_market_v3_0','noir_market_v2_9','noir_market_v2_8','noir_market_v2_7','noir_market_v2_6','noir_market_v2_5','noir_market_v2_4','noir_market_v2_3','noir_market_v2_2','noir_market_v2_1','noir_market_v2_0','noir_market_v1_9','noir_market_v1_8','noir_market_v1_7','noir_market_v1_6','noir_market_v1_5','noir_market_v1_4','noir_market_v1_3','noir_market_v1_2','noir_market_v13','noir_market_v12','noir_market_v9','noir_market_v6','noir_market_v5','noir_market_v4'];
-  const previousBaseState=baseState;
-  const previousDraw=draw;
-
-  function ensureV53(){
-    try{ if(typeof ensureV52==='function')ensureV52(); else if(typeof ensureV49==='function')ensureV49(); }catch(e){}
-    try{ if(typeof ensureStats==='function')ensureStats(); }catch(e){}
-    if(!s || typeof s!=='object')return;
-    s.version=VERSION;
-    s.v53=s.v53||{mobileStability:true,safeSaveMigration:true,particleBackgroundOptimised:true};
+  function initV54(){
+    document.title='Noir Market V5.4';
+    startSplashWordsV54();
+    setupStableBackgroundV54();
+    rebindButtonsV54();
+    ensureMobileUIV54();
+    if(s&&typeof s==='object'){ensureV54();save();try{draw();}catch(e){}}
+    console.log('NOIR MARKET V5.4: mobile-safe stable build active.');
   }
-
-  function readSave(key){
-    let raw=null;
-    try{raw=localStorage.getItem(key);}catch(e){return null;}
-    if(!raw || raw==='undefined' || raw==='null' || raw==='[object Object]'){
-      try{ if(raw)localStorage.removeItem(key); }catch(e){}
-      return null;
-    }
-    try{
-      const parsed=JSON.parse(raw);
-      if(parsed && typeof parsed==='object' && parsed.inv && parsed.prices)return parsed;
-    }catch(e){
-      try{localStorage.removeItem(key);}catch(_){}
-    }
-    return null;
-  }
-
-  function writeSave(){
-    if(!s || typeof s!=='object')return;
-    ensureV53();
-    try{localStorage.setItem(SAVE_KEY,JSON.stringify(s));}catch(e){}
-  }
-
-  save=writeSave;
-  load=function(){
-    let parsed=readSave(SAVE_KEY);
-    if(!parsed){
-      for(const key of FALLBACK_KEYS){
-        parsed=readSave(key);
-        if(parsed)break;
-      }
-    }
-    if(parsed){
-      s=parsed;
-      ensureV53();
-      try{ if(typeof setActiveCityMarket==='function')setActiveCityMarket(); }catch(e){}
-      try{ if(typeof updateRankProgress==='function')updateRankProgress(); }catch(e){}
-      try{ if(typeof updateBestRankV18==='function')updateBestRankV18(); }catch(e){}
-      save();
-      try{ draw(); }catch(e){ console.warn('V5.3 draw recovery:',e); }
-      return false;
-    }
-    newGame(false);
-    ensureV53();
-    save();
-    return true;
-  };
-
-  baseState=function(){
-    const state=previousBaseState();
-    state.version=VERSION;
-    state.v53={mobileStability:true,safeSaveMigration:true,particleBackgroundOptimised:true};
-    return state;
-  };
-
-  function ensureMobileLayoutV53(){
-    const splash=document.getElementById('splash');
-    const app=document.querySelector('.app');
-    const bg=document.getElementById('mainParallaxBg');
-    if(bg){
-      bg.className='main-particle-bg';
-      bg.style.pointerEvents='none';
-    }
-    if(app){
-      app.style.position='relative';
-      app.style.zIndex='5';
-      app.style.pointerEvents='auto';
-    }
-    if(splash && splash.classList.contains('hide')){
-      splash.style.pointerEvents='none';
-      splash.style.visibility='hidden';
-    }
-    document.querySelectorAll('.news-ticker,.market,.pocket,.actions,.status,.location,.notice,.stats').forEach(el=>{
-      el.style.visibility='visible';
-      el.style.opacity='1';
-    });
-  }
-
-  draw=function(){
-    try{previousDraw();}catch(e){console.warn('V5.3 previous draw recovery:',e);}
-    try{ensureV53();}catch(e){}
-    try{ if(typeof setupCodePenParticleNetworkV52==='function')setupCodePenParticleNetworkV52(); }catch(e){}
-    ensureMobileLayoutV53();
-  };
-
-  function rebindCriticalButtonsV53(){
-    const bind=(id,fn)=>{const el=document.getElementById(id); if(el)el.onclick=fn;};
-    bind('menuBtn',()=>{try{showMenu();}catch(e){console.warn('Menu recovery failed:',e);}});
-    bind('buyBtn',()=>{try{buyModal();}catch(e){try{transact('Buy');}catch(_){}}});
-    bind('sellBtn',()=>{try{sellModal();}catch(e){try{transact('Sell');}catch(_){}}});
-    bind('dumpBtn',()=>{try{dump();}catch(e){}});
-    bind('bankBtn',()=>{try{bank();}catch(e){}});
-    bind('travelBtn',()=>{try{travel();}catch(e){}});
-    bind('shopBtn',()=>{try{shop();}catch(e){}});
-    bind('hustleBtn',()=>{try{hustle();}catch(e){}});
-    bind('contactsBtn',()=>{try{contacts();}catch(e){}});
-    bind('stayBtn',()=>{try{stay();}catch(e){}});
-  }
-
-  function initV53(){
-    try{
-      document.title='Noir Market V5.3';
-      ensureMobileLayoutV53();
-      rebindCriticalButtonsV53();
-      if(s && typeof s==='object'){
-        ensureV53();
-        save();
-        try{draw();}catch(e){}
-      }
-      console.log('NOIR MARKET V5.3: mobile display recovery, safe save migration and particle background optimisation active.');
-    }catch(e){console.warn('V5.3 startup skipped:',e);}
-  }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initV53,{once:true}); else initV53();
-  setTimeout(initV53,400);
-  setTimeout(initV53,2400);
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initV54,{once:true});else initV54();
+  setTimeout(initV54,450);
+  setTimeout(initV54,2400);
 })();
