@@ -930,3 +930,13 @@ Changes made:
 - Replaced the main background with a mobile-safe CodePen-style particle network treatment: canvas on desktop, CSS-only fallback on mobile.
 - Added stronger mobile visibility and hit-area recovery for news, market, storage, actions and menu buttons.
 - No gameplay features changed.
+
+
+## V5.5 - iPhone compatibility and stability rebuild
+- No gameplay changes.
+- Transpiled game script to broader Safari-compatible JavaScript.
+- Added legacy browser polyfills for key APIs used by the game.
+- Added fallback handling for browsers without native dialog support.
+- Removed stale preload reference to deleted main parallax image.
+- Changed service worker to safer network-first behaviour and removed MP3 from required install cache.
+- Updated cache and manifest to V5.5.
