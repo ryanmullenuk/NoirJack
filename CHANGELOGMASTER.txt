@@ -1,3 +1,234 @@
+V9.0 - Replacement Game Music
+- Removed the previous packaged game music file.
+- Added the newly supplied MP3 as the only music/audio asset in the build.
+- Retained user-initiated loading, looping playback, 50% fade-in and the menu music toggle.
+- Kept the MP3 out of the service worker installation cache.
+- Preserved the static splash, no dust/video effects, gameplay and save migration.
+- Updated release metadata, service worker cache and save migration to V9.0.
+
+V8.9 - Game Music Restoration
+- Restored the supplied game music as a local MP3 asset.
+- Music is created and loaded only after the player interacts with the splash ENTER control.
+- Added a gradual fade-in to 50% volume and retained looping playback.
+- Restored the safe in-game MUSIC ON/OFF menu toggle.
+- Removed the stale V8.6 audio overrides that forced music off during load and redraw.
+- Kept the static splash artwork unchanged with no dust or video effects.
+- Kept the MP3 out of the service worker install asset lists.
+- Updated release metadata, service worker cache and save migration to V8.9.
+- No gameplay systems changed.
+
+V8.8 - Splash Artwork Update
+- Replaced the static splash screen artwork with the supplied NOIR MARKET collage image.
+- Retained the no-video and no-music clean build approach from V8.6/V8.7.
+- Updated release metadata, service worker cache and save migration to V8.8.
+- No gameplay systems changed.
+
+## V8.5 - HOW TO PLAY PLAY Handoff Fix
+
+- Fixed the issue where selecting a city and pressing PLAY could leave the game trapped after the HOW TO PLAY screen.
+- Added a final controlled PLAY handoff that sets the selected starting city, closes the modal, clears modal-open state and permanently removes the splash layer from interaction.
+- Preserved city selector behaviour, splash entry, save migration and all gameplay systems.
+- Updated release metadata, manifest version, service worker cache and save key to V8.5.
+
+## V8.2 - HOW TO PLAY Start Flow Stability Fix
+
+- Fixed a splash layering issue where the HOW TO PLAY city PLAY button could reveal the hidden splash screen underneath the modal.
+- Added a hard splash-exit state after ENTER and after selected-city PLAY so the splash cannot reappear or trap interaction.
+- Added defensive event handling for click/touch on the PLAY button without changing city selector behaviour.
+- Updated release metadata, manifest version, service worker cache and save key to V8.2.
+- Preserved save migration from V8.1 and older builds.
+- No gameplay feature changes made.
+
+## V8.1 - Clean Build Stability Pass
+
+- Removed unused legacy assets from the packaged build where no active reference remained.
+- Removed obsolete splash video code and styling references from the active build.
+- Confirmed no video files are stored in the package.
+- Updated release metadata, manifest version, service worker cache and save key to V8.1.
+- Added final metadata lock so the running app reports V8.1 consistently.
+- Preserved older save migration keys for backwards compatibility.
+- No gameplay feature changes made.
+
+## V8.0 - Static Splash Screen and Dust Overlay
+
+- Removed the splash screen video layer and legacy video asset references.
+- Added the supplied NOIR MARKET powder artwork as the full-screen splash background.
+- Added a lightweight canvas dust overlay inspired by the requested particle effect, adapted locally for mobile performance.
+- Kept the Redhead Games intro and added fade-in behaviour for the main splash after the intro.
+- Retained the loading bar, ENTER state and bottom instruction text.
+- Updated release metadata, save key and service worker cache to V8.0.
+
+## V7.9 - Consolidated Version Metadata and Stability Tidy-Up
+
+- Updated current release metadata to V7.9 across app title, manifest, service worker cache and save key.
+- Added a final stability layer to keep active saves marked as V7.9 and migrate from V7.8.
+- Prevented old live override layers from resetting the document title to older release numbers during startup.
+- Added defensive clamping for Heat, Reputation and core finance values during save/load to reduce invalid-state risk.
+- No gameplay feature changes made.
+
+## V7.8 - Hidden Developer Testing Modal Stability Fix
+- Fixed modal close handling while hidden developer testing support is active.
+- Prevented the cash deposit prompt from trapping the player during testing balances.
+- Replaced unsafe modal display rewriting with safe display updates so buttons remain tappable.
+- Updated version references, save key and service worker cache to V7.8.
+
+## V7.7 - Hidden Developer Testing Support
+- Added hidden developer testing support for controlled private QA.
+- Added infinite-style cash and storage handling for the private test flow without storing JavaScript Infinity values.
+- Preserved normal gameplay behaviour when testing support is inactive.
+- Updated version references, save key and service worker cache to V7.7.
+
+## V7.6 - Full-Bleed iOS and PWA Icon Fix
+
+- Rebuilt the iOS and PWA icon assets so the NOIR powder artwork fills the full icon tile.
+- Removed the inset white-border effect by using a full-bleed black icon background.
+- Updated apple-touch-icon and 192/512 PWA icon assets.
+- Updated version references, save key and service worker cache to V7.6.
+- No gameplay systems changed.
+
+## V7.5 - iOS and PWA Icon Update
+
+- Updated the iOS home screen icon to the supplied fuller NOIR powder artwork.
+- Rebuilt apple touch icons for standard, dark and light variants.
+- Rebuilt PWA 192px and 512px icon assets for consistent installed-app display.
+- Updated version references, save key and service worker cache to V7.5.
+- No gameplay, splash video, music, market, travel, shipping, heat, reputation, police, Hustle or save migration logic changed.
+
+
+## V7.4 - Dynamic Heat, Reputation Balance and Hustle Business Extras
+
+- New games now start with random Heat between 0% and 9%.
+- New games now start with random Reputation between 0% and 9%.
+- Existing saves are migrated without resetting Heat or Reputation.
+- Added occasional Heat movement during travel between cities, including suspicious attention increases and city-leaving cooldowns.
+- Added quiet-period Heat reduction after more than three days without police checks, fights, muggings or attacks.
+- Reputation now reduces fight and mugging exposure as the player becomes better known.
+- Higher Reputation can create extra police attention and recognition-based stops.
+- Added high-reputation police wording suggesting officers know the score and may be fishing for a bribe.
+- Confirmed Hustle coming-soon business cards for Deliverude, Uber Yeats, and Karen & Sharon Broker Bitches.
+- Updated version references, save key and service worker cache to V7.4.
+
+NOIR MARKET V7.2
+
+Release type:
+- Splash layout stability release.
+
+Changes:
+- Locked the powder splash video to a full-screen mobile portrait layout using cover sizing and centre positioning.
+- Added dynamic viewport-height support where available for modern iPhone Safari while retaining 100vh fallback.
+- Repositioned the splash INSTRUCTIONS block to the bottom centre of the screen inside the iPhone safe area.
+- Added smaller-height fallbacks so the instruction text does not drop below the bottom edge on shorter screens.
+- Preserved the Redhead Games intro, splash video asset, HOW TO PLAY flow and all gameplay systems.
+
+Technical notes:
+- Updated active version references, service worker cache, save key and save migration for V7.2.
+- Service worker cache updated to noir-market-v7.2.
+- Save key updated to noir_market_v7_2.
+- Save migration includes noir_market_v7_1.
+- No gameplay logic changed.
+
+Checks completed:
+- ZIP integrity check passed.
+- game.js syntax check passed.
+- sw.js syntax check passed.
+- manifest.json validation passed.
+- Asset reference check passed.
+
+NOIR MARKET V7.1
+Release type: Splash video asset update
+
+Changes:
+- Replaced the generated placeholder splash powder video with the supplied/licensed powder explosion MP4.
+- Optimised the supplied 1080x1920 source video into a local 720x1280 H.264 MP4 splash loop.
+- Updated the splash poster fallback from the supplied video.
+- Preserved the non-blocking splash video layer with pointer-events disabled.
+- Preserved Redhead Games intro isolation and instant-load behaviour.
+- Kept splash snow disabled only on the splash screen.
+- Preserved main game particle/network background and all gameplay systems.
+- Updated active version references, service worker cache, save key and save migration for V7.1.
+
+Checks:
+- ZIP integrity check passed.
+- game.js syntax check passed.
+- sw.js syntax check passed.
+- manifest.json validation passed.
+- Asset reference check passed with no missing local files.
+- Service worker cache updated to noir-market-v7.1.
+- Save key updated to noir_market_v7_1.
+- Save migration includes noir_market_v7_0.
+- MP4 remains outside service worker install cache.
+
+
+NOIR MARKET V7.0
+- Replaced the splash snow particle effect with a non-blocking splash powder video layer.
+- Added assets/video/powder-splash.mp4 and assets/video/powder-splash-poster.jpg as splash-only decorative assets.
+- Kept the Redhead Games intro isolated and instant-loading above the splash layer.
+- Added video playback hardening for iPhone Safari using muted, playsinline, autoplay, loop and poster fallback.
+- Disabled legacy splash snow/dust rendering while preserving the main game particle/network background.
+- Stopped and unloaded the splash video after ENTER to reduce memory usage.
+- Updated version references, service worker cache name, save key and save migration.
+
+NOIR MARKET V6.9
+- Updated the iOS home screen icon artwork to the supplied lighter NOIR icon, sized correctly for Apple touch icons and PWA manifest icons.
+- Refreshed apple-touch-icon assets and matching 192px / 512px icon assets.
+- No gameplay systems changed.
+- Preserved V6.8 icon structure and all V6.7 gameplay fixes.
+- Updated app title, manifest version, service worker cache name, save key and save migration from V6.8.
+
+NOIR MARKET V6.8
+- Updated the iOS home screen icon artwork to the supplied NOIR icon.
+- Refreshed apple-touch-icon assets and matching manifest icon assets for consistent installed-app presentation.
+- No gameplay systems changed.
+- Preserved V6.7 splash transition, New Game HOW TO PLAY routing, Hustle informant pricing and COMING SOON restore.
+- Updated app title, manifest version, service worker cache name, save key and save migration from V6.7.
+
+NOIR MARKET V6.7
+- Fixed splash ENTER transition so HOW TO PLAY is opened before the splash layer fades out, preventing a brief flash of the main game screen.
+- Kept music loading after user interaction on ENTER.
+- Fixed NEW GAME confirmation route to open HOW TO PLAY synchronously without a visible main-screen flash.
+- Restored the Hustle Businesses COMING SOON section using the previous visible coming-soon styling.
+- Updated versioning, save key, service worker cache name and save migration from V6.6.
+
+
+## V6.6
+- Hardened the Redhead Games opening logo so it renders immediately above splash and snow layers while the splash screen prepares.
+- Updated Hustle informants with dynamic tip pricing based on desperation and likely tip quality.
+- Renamed Loose Lisa to Lucy Loose Lips in the active Hustle informant flow.
+- Adjusted Pistol Pete to offer high-value tips between £1,000 and £2,500 with very high reliability.
+- Fixed confirmed New Game routing so it returns to the HOW TO PLAY starting-city flow instead of Shady Loans.
+- Updated app title, manifest version, service worker cache name, save key and save migration to V6.6.
+- Removed the MP3 from service worker install-time caching so music remains user-interaction loaded.
+
+## V6.5
+- Consolidation and stability release based on V6.4.
+- Removed superseded V5.9, V6.0 and V6.1 starting city selector logic from the live script.
+- Kept one final button-based starting city selector with random city, amber selected state and green PLAY button.
+- Removed old selector CSS for map-dot and side-by-side map versions.
+- Reinforced mobile button layout, horizontal text and non-blocking background layers.
+- Updated app title, manifest version, service worker cache and save migration to V6.5.
+- No gameplay systems changed.
+
+# CHANGELOGMASTER
+
+## V5.9 - Corrected starting city map and tappable dots
+- Repositioned all starting city dots against the supplied UK/Ireland map asset.
+- Increased city dot tap targets for iPhone Safari and desktop.
+- Added robust click, pointer and touch handlers for selecting starting cities.
+- Kept PLAY behaviour tied to the selected starting city.
+- No gameplay systems changed.
+
+NOIR MARKET V5.9
+- Adjusted HOW TO PLAY starting city map dot positions to better align with the supplied UK/Ireland outline map.
+- Corrected dot placement for London, Manchester, Birmingham, Liverpool, Bristol, Glasgow, Cardiff, Leeds, Newcastle, Edinburgh, Aberdeen, Belfast, Dublin and Cork.
+- No gameplay features changed.
+- Updated app version, manifest and service worker cache to V5.9.
+
+NOIR MARKET V5.7
+- Replaced the stylised starting city SVG map with the supplied white outline UK/Ireland map asset.
+- Added tappable city dots over the supplied map for all playable starting locations.
+- Kept starting city selector behaviour from V5.6 with no gameplay changes.
+- Updated app version, manifest and service worker cache to V5.7.
+
 
 ## V5.0
 - Stability and release polish pass from V4.9.
@@ -940,3 +1171,108 @@ Changes made:
 - Removed stale preload reference to deleted main parallax image.
 - Changed service worker to safer network-first behaviour and removed MP3 from required install cache.
 - Updated cache and manifest to V5.5.
+
+
+## V5.6 - HOW TO PLAY starting city selector
+- Added a compact white outline UK/Ireland map selector to the HOW TO PLAY screen under the INSTRUCTIONS button.
+- Added tappable city dots for every playable city in the current game list.
+- Added selected starting city label and green highlight for the active city.
+- PLAY now starts a new mission from the selected city while preserving existing save behaviour.
+- No unrelated gameplay systems changed.
+- Updated cache and manifest to V5.6.
+
+
+V6.0
+- Rebuilt the HOW TO PLAY starting city selector using an inline SVG overlay for reliable mobile tapping.
+- Repositioned all city dots against the supplied UK/Ireland map.
+- Increased invisible hit areas around city dots without changing the visual style.
+- City selection now updates the Starting City label and green selected marker using SVG event delegation.
+- PLAY starts from the selected city.
+- No gameplay systems changed.
+
+
+V6.1
+- Replaced the map-dot starting city selector with a simpler two-column layout.
+- Map now displays on the right only as a visual reference, with no dots.
+- Added city selection buttons on the left for London, Manchester, Birmingham, Liverpool, Bristol, Glasgow, Cardiff, Leeds, Newcastle, Edinburgh, Aberdeen, Belfast, Dublin and Cork.
+- Player must select a city before PLAY is enabled.
+- Selected city button turns amber.
+- PLAY remains green and starts the mission from the selected city.
+- No gameplay systems changed.
+- Updated cache and manifest to V6.1.
+
+
+V6.2
+- Replaced the starting city selector with a compact button-only layout.
+- Added all 14 city buttons in two rows of seven.
+- Added a full-width RANDOM CITY button that selects and highlights a city at random.
+- Selected city buttons now turn amber.
+- PLAY remains full width and green, and stays disabled until a city is selected.
+- Removed map-dot and clickable city-location interaction logic from the live HOW TO PLAY selector.
+- No gameplay systems changed.
+- Updated cache and manifest to V6.2.
+
+
+## V6.3
+- Fixed starting city button formatting so city names display horizontally within each button.
+- Preserved 2-row city selector layout using horizontally scrollable mobile-safe button grid.
+- No gameplay features changed.
+
+## V6.4
+
+- Stability cleanup release based on V6.3.
+- No gameplay features changed.
+- Removed stale main parallax image dependency from CSS.
+- Hardened service worker install so optional/cache asset failure cannot block the app shell.
+- Reinforced mobile city button text orientation and non-interactive background layers.
+- Updated version, manifest, cache name and save migration to V6.4.
+
+## V7.3 - Clean Police Stops and Friend Drop-By Events
+
+- Added clean-player police stop handling for non-airport police stops where the player carries no drugs and no weapons.
+- Clean stops now feel invasive and unfair, create 0 jail days, issue no contraband seizure, avoid bribe logic, and add +10% heat.
+- Added occasional day-advance friend drop-by event where a confused mate gives the player 1-20 units of a random drug.
+- Friend drop-by stock is added to carried inventory first, then split into the current city vault if pockets are full or partly full.
+- Preserved city-specific vault behaviour and normal storage capacity rules.
+- No unrelated gameplay, splash, video, music, travel, shipping, market, rank or save migration changes made.
+
+
+
+## V8.3 - Splash ENTER Stability Fix
+
+- Fixed ENTER on the splash screen freezing the game after V8.2.
+- Replaced the hard splash hide with a staged fade that opens HOW TO PLAY first, then safely hides the splash layer.
+- Preserved the static powder splash, dust overlay, loading bar and instruction text.
+- Confirmed video files remain removed from the package.
+- Updated version, manifest, service worker cache and save migration to V8.3.
+- No gameplay feature changes made.
+
+
+## V8.4 - Splash ENTER Recovery
+
+- Rebuilt the splash ENTER handoff as a clean final recovery layer rather than relying on older layered splash handlers.
+- ENTER now opens HOW TO PLAY, fades/removes the splash layer, and restores main app interactivity through a single controlled path.
+- Added defensive fallback to reopen HOW TO PLAY if an older handler interrupts the first attempt.
+- Kept the static powder splash image, dust overlay, loading bar and instruction text.
+- Confirmed video files remain removed from the package.
+- Updated version, manifest, service worker cache and save migration to V8.4.
+- No gameplay feature changes made.
+
+
+## V8.6 - Performance Cleanup: Static Splash, No Music
+- Removed packaged music/audio asset from the build.
+- Disabled background music and removed the visible music toggle from the in-game menu.
+- Removed the splash dust animation effect and retained the static splash artwork at full quality.
+- Added final safeguards so old dust/snow factories and music start functions cannot restart during gameplay.
+- Updated version metadata, service worker cache, save key and save migration to V8.6.
+
+
+V8.7 - Fight and Police Bribe Logic Fix
+- Removed active fight modal escape route so fight encounters require RUN or FIGHT.
+- Restricted police bribe options to police encounters that explicitly create a bribe opportunity.
+- Clean police stops no longer offer bribes.
+- Successful bribes deduct the bribe amount and preserve carried drugs/weapons.
+- Failed bribes now apply the original jail sentence instead of a generic one-day sentence.
+- Failed bribes remove carried pocket drugs and weapons only, leaving vault and city storage untouched.
+- Reputation now has a clearer effect on bribe success while never making bribes guaranteed.
+- Updated release metadata, service worker cache and save migration to V8.7.

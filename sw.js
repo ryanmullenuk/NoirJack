@@ -1,10 +1,11 @@
-const CACHE_NAME='noir-market-v5.5';
-const CORE_ASSETS=['./','./index.html','./styles.css','./game.js','./manifest.json','./assets/logo-splash.png','./assets/logo.png','./assets/redhead-games-logo.png'];
-const OPTIONAL_ASSETS=['./assets/music/noir_market_music.mp3','./icon-192.png','./icon-512.png','./apple-touch-icon.png','./apple-touch-icon-dark.png','./apple-touch-icon-light.png','./icon-192-light.png','./icon-512-light.png'];
+const CACHE_NAME='noir-market-v9.0';
+const CORE_ASSETS=['./','./index.html','./styles.css','./game.js','./manifest.json','./assets/redhead-games-logo.png'];
+const OPTIONAL_ASSETS=['./assets/splash-static.jpg','./icon-192.png','./icon-512.png','./apple-touch-icon.png','./apple-touch-icon-dark.png','./apple-touch-icon-light.png','./icon-192-light.png','./icon-512-light.png'];
+function cacheAsset(cache,asset){return cache.add(asset).catch(function(){return null;});}
 self.addEventListener('install',function(event){
   event.waitUntil(caches.open(CACHE_NAME).then(function(cache){
-    return cache.addAll(CORE_ASSETS).then(function(){
-      return Promise.all(OPTIONAL_ASSETS.map(function(asset){return cache.add(asset).catch(function(){return null;});}));
+    return Promise.all(CORE_ASSETS.map(function(asset){return cacheAsset(cache,asset);})).then(function(){
+      return Promise.all(OPTIONAL_ASSETS.map(function(asset){return cacheAsset(cache,asset);}));
     });
   }));
   self.skipWaiting();

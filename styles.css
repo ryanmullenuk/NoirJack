@@ -117,28 +117,16 @@ dialog::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(10px);}
   background:radial-gradient(circle at 50% 42%,rgba(35,35,45,.52),rgba(2,4,9,.96) 54%,#000 100%) !important;
   isolation:isolate;
 }
-.splash .dust-bg,.splash .splash-vignette{position:absolute;inset:0;pointer-events:none}
-.splash .dust-bg{z-index:0;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,0) 45%,rgba(255,255,255,.018))}
 .splash .splash-vignette{z-index:1;background:radial-gradient(circle at center,transparent 0 42%,rgba(0,0,0,.34) 72%,rgba(0,0,0,.82) 100%)}
-#dust1,#dust2,#dust3{position:absolute;left:0;bottom:-110px;background:transparent;border-radius:50%;will-change:transform,opacity;filter:blur(.15px)}
-#dust1{width:1px;height:1px;box-shadow:327px 114px rgba(255,255,255,.22), 379px 281px rgba(255,255,255,.35), 114px 142px rgba(255,255,255,.22), 346px 758px rgba(255,255,255,.22), 302px 432px rgba(255,255,255,.22), 15px 95px rgba(255,255,255,.35), 119px 517px rgba(255,255,255,.22), 287px 203px rgba(255,255,255,.75), 112px 459px rgba(255,255,255,.55), 414px 890px rgba(255,255,255,.22), 388px 825px rgba(255,255,255,.35), 357px 432px rgba(255,255,255,.55), 142px 159px rgba(255,255,255,.35), 390px 344px rgba(255,255,255,.22), 47px 389px rgba(255,255,255,.22), 183px 867px rgba(255,255,255,.55), 309px 270px rgba(255,255,255,.22), 373px 470px rgba(255,255,255,.22), 193px 80px rgba(255,255,255,.55), 424px 643px rgba(255,255,255,.55), 295px 196px rgba(255,255,255,.22), 23px 677px rgba(255,255,255,.35), 395px 296px rgba(255,255,255,.22), 119px 887px rgba(255,255,255,.22), 194px 284px rgba(255,255,255,.75), 325px 854px rgba(255,255,255,.55), 83px 379px rgba(255,255,255,.55), 107px 686px rgba(255,255,255,.55), 359px 699px rgba(255,255,255,.22), 311px 650px rgba(255,255,255,.35), 273px 746px rgba(255,255,255,.35), 83px 473px rgba(255,255,255,.75), 138px 655px rgba(255,255,255,.35), 350px 332px rgba(255,255,255,.22), 117px 841px rgba(255,255,255,.22), 412px 323px rgba(255,255,255,.75), 137px 67px rgba(255,255,255,.35), 290px 897px rgba(255,255,255,.55), 108px 671px rgba(255,255,255,.75), 202px 905px rgba(255,255,255,.75), 73px 271px rgba(255,255,255,.35), 126px 762px rgba(255,255,255,.55), 382px 598px rgba(255,255,255,.75), 298px 408px rgba(255,255,255,.55), 112px 141px rgba(255,255,255,.75), 46px 773px rgba(255,255,255,.22), 56px 156px rgba(255,255,255,.35), 405px 696px rgba(255,255,255,.75), 305px 65px rgba(255,255,255,.75), 195px 610px rgba(255,255,255,.75), 270px 257px rgba(255,255,255,.22), 348px 738px rgba(255,255,255,.22), 349px 906px rgba(255,255,255,.55), 393px 656px rgba(255,255,255,.55), 57px 300px rgba(255,255,255,.75), 80px 464px rgba(255,255,255,.22), 369px 896px rgba(255,255,255,.55), 256px 780px rgba(255,255,255,.35), 259px 108px rgba(255,255,255,.55), 430px 654px rgba(255,255,255,.35), 78px 382px rgba(255,255,255,.35), 276px 797px rgba(255,255,255,.22), 306px 331px rgba(255,255,255,.75), 9px 114px rgba(255,255,255,.55), 425px 826px rgba(255,255,255,.55), 122px 59px rgba(255,255,255,.35), 290px 80px rgba(255,255,255,.22), 374px 497px rgba(255,255,255,.22), 389px 545px rgba(255,255,255,.35), 65px 675px rgba(255,255,255,.75), 281px 169px rgba(255,255,255,.55), 270px 893px rgba(255,255,255,.75), 108px 552px rgba(255,255,255,.35), 365px 319px rgba(255,255,255,.75), 343px 665px rgba(255,255,255,.55), 224px 921px rgba(255,255,255,.75), 61px 253px rgba(255,255,255,.35), 32px 346px rgba(255,255,255,.22), 301px 567px rgba(255,255,255,.35), 301px 225px rgba(255,255,255,.22), 36px 724px rgba(255,255,255,.22), 117px 69px rgba(255,255,255,.22), 169px 72px rgba(255,255,255,.35), 142px 685px rgba(255,255,255,.75), 109px 552px rgba(255,255,255,.35), 370px 903px rgba(255,255,255,.75), 124px 803px rgba(255,255,255,.75), 413px 416px rgba(255,255,255,.35), 48px 99px rgba(255,255,255,.75), 181px 433px rgba(255,255,255,.75), 239px 884px rgba(255,255,255,.22), 344px 669px rgba(255,255,255,.22), 31px 412px rgba(255,255,255,.55), 409px 882px rgba(255,255,255,.22), 127px 196px rgba(255,255,255,.35), 274px 459px rgba(255,255,255,.35), 216px 187px rgba(255,255,255,.55), 236px 255px rgba(255,255,255,.22), 226px 827px rgba(255,255,255,.22), 25px 667px rgba(255,255,255,.22), 47px 771px rgba(255,255,255,.35), 85px 416px rgba(255,255,255,.75), 246px 218px rgba(255,255,255,.75), 30px 168px rgba(255,255,255,.75), 1px 399px rgba(255,255,255,.55), 401px 803px rgba(255,255,255,.75), 146px 433px rgba(255,255,255,.75), 79px 194px rgba(255,255,255,.55), 111px 59px rgba(255,255,255,.22), 382px 321px rgba(255,255,255,.22), 25px 598px rgba(255,255,255,.75), 257px 873px rgba(255,255,255,.35), 29px 520px rgba(255,255,255,.22), 95px 70px rgba(255,255,255,.22), 345px 882px rgba(255,255,255,.35), 206px 122px rgba(255,255,255,.35), 296px 608px rgba(255,255,255,.22), 317px 83px rgba(255,255,255,.75), 336px 597px rgba(255,255,255,.55), 133px 209px rgba(255,255,255,.55), 122px 271px rgba(255,255,255,.75), 67px 687px rgba(255,255,255,.55), 234px 323px rgba(255,255,255,.22), 4px 469px rgba(255,255,255,.22), 37px 550px rgba(255,255,255,.35), 259px 271px rgba(255,255,255,.35), 178px 902px rgba(255,255,255,.22), 125px 378px rgba(255,255,255,.55), 80px 448px rgba(255,255,255,.55), 313px 826px rgba(255,255,255,.22), 341px 836px rgba(255,255,255,.55), 339px 106px rgba(255,255,255,.35), 135px 118px rgba(255,255,255,.22), 380px 566px rgba(255,255,255,.35), 139px 288px rgba(255,255,255,.35), 367px 351px rgba(255,255,255,.35), 351px 649px rgba(255,255,255,.55), 258px 500px rgba(255,255,255,.55), 26px 94px rgba(255,255,255,.75), 424px 283px rgba(255,255,255,.22), 1px 341px rgba(255,255,255,.35), 326px 268px rgba(255,255,255,.35), 379px 452px rgba(255,255,255,.75), 287px 9px rgba(255,255,255,.22), 38px 904px rgba(255,255,255,.35), 279px 36px rgba(255,255,255,.55), 298px 565px rgba(255,255,255,.35), 220px 130px rgba(255,255,255,.22), 157px 373px rgba(255,255,255,.22), 183px 215px rgba(255,255,255,.35);animation:dustRise 18s linear infinite;opacity:.95}
-#dust1:after{content:"";position:absolute;top:930px;left:0;width:1px;height:1px;box-shadow:341px 105px rgba(255,255,255,.55), 399px 573px rgba(255,255,255,.75), 317px 767px rgba(255,255,255,.35), 121px 885px rgba(255,255,255,.35), 409px 830px rgba(255,255,255,.35), 211px 25px rgba(255,255,255,.35), 377px 340px rgba(255,255,255,.75), 410px 685px rgba(255,255,255,.35), 136px 163px rgba(255,255,255,.22), 195px 893px rgba(255,255,255,.22), 240px 227px rgba(255,255,255,.35), 418px 471px rgba(255,255,255,.55), 156px 840px rgba(255,255,255,.35), 114px 24px rgba(255,255,255,.35), 204px 336px rgba(255,255,255,.55), 35px 791px rgba(255,255,255,.55), 179px 656px rgba(255,255,255,.75), 347px 863px rgba(255,255,255,.55), 14px 118px rgba(255,255,255,.55), 91px 594px rgba(255,255,255,.55), 19px 111px rgba(255,255,255,.75), 176px 746px rgba(255,255,255,.55), 223px 620px rgba(255,255,255,.22), 197px 921px rgba(255,255,255,.35), 130px 45px rgba(255,255,255,.75), 0px 532px rgba(255,255,255,.35), 186px 441px rgba(255,255,255,.22), 340px 338px rgba(255,255,255,.55), 339px 868px rgba(255,255,255,.22), 368px 921px rgba(255,255,255,.55), 259px 316px rgba(255,255,255,.75), 167px 412px rgba(255,255,255,.55), 283px 130px rgba(255,255,255,.35), 215px 680px rgba(255,255,255,.75), 346px 766px rgba(255,255,255,.35), 315px 582px rgba(255,255,255,.55), 207px 561px rgba(255,255,255,.22), 155px 293px rgba(255,255,255,.35), 220px 804px rgba(255,255,255,.55), 238px 452px rgba(255,255,255,.75), 345px 218px rgba(255,255,255,.75), 406px 922px rgba(255,255,255,.35), 337px 86px rgba(255,255,255,.55), 263px 679px rgba(255,255,255,.55), 47px 838px rgba(255,255,255,.35), 344px 317px rgba(255,255,255,.35), 412px 203px rgba(255,255,255,.35), 12px 47px rgba(255,255,255,.35), 243px 625px rgba(255,255,255,.22), 233px 424px rgba(255,255,255,.35), 367px 713px rgba(255,255,255,.75), 253px 409px rgba(255,255,255,.35), 75px 671px rgba(255,255,255,.22), 384px 881px rgba(255,255,255,.22), 398px 435px rgba(255,255,255,.35), 90px 823px rgba(255,255,255,.75), 25px 570px rgba(255,255,255,.35), 62px 467px rgba(255,255,255,.35), 410px 475px rgba(255,255,255,.55), 386px 912px rgba(255,255,255,.75), 313px 834px rgba(255,255,255,.75), 425px 928px rgba(255,255,255,.75), 81px 761px rgba(255,255,255,.75), 230px 265px rgba(255,255,255,.35), 430px 652px rgba(255,255,255,.55), 392px 796px rgba(255,255,255,.75), 320px 244px rgba(255,255,255,.55), 225px 79px rgba(255,255,255,.55), 120px 278px rgba(255,255,255,.55), 163px 914px rgba(255,255,255,.22), 70px 154px rgba(255,255,255,.35), 196px 710px rgba(255,255,255,.35), 361px 219px rgba(255,255,255,.22), 212px 417px rgba(255,255,255,.55), 277px 477px rgba(255,255,255,.75), 31px 211px rgba(255,255,255,.75), 199px 926px rgba(255,255,255,.22), 391px 589px rgba(255,255,255,.75), 244px 6px rgba(255,255,255,.55), 152px 771px rgba(255,255,255,.75), 427px 429px rgba(255,255,255,.35), 249px 224px rgba(255,255,255,.55), 223px 497px rgba(255,255,255,.22), 199px 344px rgba(255,255,255,.75), 370px 169px rgba(255,255,255,.75), 65px 637px rgba(255,255,255,.22), 201px 606px rgba(255,255,255,.22), 42px 658px rgba(255,255,255,.75), 69px 887px rgba(255,255,255,.75), 93px 51px rgba(255,255,255,.55), 194px 335px rgba(255,255,255,.35), 232px 334px rgba(255,255,255,.55), 389px 900px rgba(255,255,255,.75), 142px 770px rgba(255,255,255,.75), 129px 854px rgba(255,255,255,.22), 240px 19px rgba(255,255,255,.22), 179px 229px rgba(255,255,255,.22), 399px 667px rgba(255,255,255,.22), 386px 31px rgba(255,255,255,.35), 102px 859px rgba(255,255,255,.22), 318px 156px rgba(255,255,255,.35), 64px 484px rgba(255,255,255,.22), 288px 223px rgba(255,255,255,.75), 358px 262px rgba(255,255,255,.55), 85px 620px rgba(255,255,255,.22), 398px 838px rgba(255,255,255,.35), 159px 110px rgba(255,255,255,.22), 159px 589px rgba(255,255,255,.75), 203px 732px rgba(255,255,255,.35), 38px 606px rgba(255,255,255,.35), 52px 713px rgba(255,255,255,.55), 350px 614px rgba(255,255,255,.22), 407px 579px rgba(255,255,255,.22), 177px 545px rgba(255,255,255,.75), 338px 379px rgba(255,255,255,.22), 259px 663px rgba(255,255,255,.55), 6px 869px rgba(255,255,255,.75), 421px 501px rgba(255,255,255,.22), 221px 370px rgba(255,255,255,.75), 362px 156px rgba(255,255,255,.75), 90px 751px rgba(255,255,255,.55), 315px 827px rgba(255,255,255,.75), 238px 446px rgba(255,255,255,.55), 165px 872px rgba(255,255,255,.35), 425px 88px rgba(255,255,255,.55), 230px 249px rgba(255,255,255,.75), 291px 624px rgba(255,255,255,.75), 172px 29px rgba(255,255,255,.75), 166px 186px rgba(255,255,255,.75), 108px 363px rgba(255,255,255,.55), 174px 286px rgba(255,255,255,.55), 284px 10px rgba(255,255,255,.35), 43px 247px rgba(255,255,255,.75), 250px 568px rgba(255,255,255,.35), 353px 487px rgba(255,255,255,.75), 229px 811px rgba(255,255,255,.22), 47px 301px rgba(255,255,255,.35), 207px 708px rgba(255,255,255,.35), 156px 679px rgba(255,255,255,.55), 242px 566px rgba(255,255,255,.55), 217px 763px rgba(255,255,255,.55), 180px 719px rgba(255,255,255,.75), 138px 313px rgba(255,255,255,.55), 118px 123px rgba(255,255,255,.35), 161px 122px rgba(255,255,255,.35), 98px 221px rgba(255,255,255,.75), 141px 741px rgba(255,255,255,.55), 51px 852px rgba(255,255,255,.35), 151px 232px rgba(255,255,255,.55), 91px 309px rgba(255,255,255,.22);}
-#dust2{width:2px;height:2px;box-shadow:362px 546px rgba(255,255,255,.35), 140px 46px rgba(255,255,255,.22), 283px 299px rgba(255,255,255,.35), 326px 889px rgba(255,255,255,.75), 52px 893px rgba(255,255,255,.22), 293px 291px rgba(255,255,255,.75), 245px 451px rgba(255,255,255,.55), 94px 52px rgba(255,255,255,.55), 244px 116px rgba(255,255,255,.22), 205px 503px rgba(255,255,255,.22), 295px 644px rgba(255,255,255,.22), 77px 152px rgba(255,255,255,.55), 43px 254px rgba(255,255,255,.22), 285px 782px rgba(255,255,255,.75), 310px 610px rgba(255,255,255,.35), 397px 535px rgba(255,255,255,.75), 230px 930px rgba(255,255,255,.75), 152px 880px rgba(255,255,255,.75), 156px 582px rgba(255,255,255,.22), 312px 757px rgba(255,255,255,.22), 390px 212px rgba(255,255,255,.35), 135px 676px rgba(255,255,255,.22), 80px 245px rgba(255,255,255,.35), 282px 76px rgba(255,255,255,.35), 1px 418px rgba(255,255,255,.75), 352px 608px rgba(255,255,255,.75), 149px 33px rgba(255,255,255,.35), 147px 723px rgba(255,255,255,.55), 359px 880px rgba(255,255,255,.75), 36px 703px rgba(255,255,255,.35), 135px 806px rgba(255,255,255,.35), 217px 117px rgba(255,255,255,.35), 331px 152px rgba(255,255,255,.55), 423px 145px rgba(255,255,255,.22), 30px 169px rgba(255,255,255,.55), 304px 766px rgba(255,255,255,.55), 224px 127px rgba(255,255,255,.75), 352px 311px rgba(255,255,255,.75), 139px 512px rgba(255,255,255,.75), 224px 82px rgba(255,255,255,.22), 221px 752px rgba(255,255,255,.55), 309px 256px rgba(255,255,255,.22), 46px 234px rgba(255,255,255,.22), 391px 688px rgba(255,255,255,.55), 295px 41px rgba(255,255,255,.35), 240px 531px rgba(255,255,255,.75), 142px 185px rgba(255,255,255,.75), 325px 833px rgba(255,255,255,.75), 46px 481px rgba(255,255,255,.55), 209px 341px rgba(255,255,255,.55), 343px 107px rgba(255,255,255,.35), 168px 421px rgba(255,255,255,.75), 147px 678px rgba(255,255,255,.75), 416px 778px rgba(255,255,255,.22), 232px 90px rgba(255,255,255,.55), 129px 331px rgba(255,255,255,.22), 395px 413px rgba(255,255,255,.22), 336px 890px rgba(255,255,255,.75), 211px 55px rgba(255,255,255,.35), 265px 370px rgba(255,255,255,.75), 320px 452px rgba(255,255,255,.22), 104px 273px rgba(255,255,255,.35), 147px 448px rgba(255,255,255,.75), 62px 29px rgba(255,255,255,.35), 363px 162px rgba(255,255,255,.55), 282px 14px rgba(255,255,255,.75), 47px 230px rgba(255,255,255,.22), 236px 120px rgba(255,255,255,.35), 255px 733px rgba(255,255,255,.55), 260px 722px rgba(255,255,255,.55), 212px 854px rgba(255,255,255,.75), 241px 249px rgba(255,255,255,.75), 282px 148px rgba(255,255,255,.75), 97px 613px rgba(255,255,255,.35), 35px 282px rgba(255,255,255,.75), 174px 806px rgba(255,255,255,.55), 420px 2px rgba(255,255,255,.55), 371px 305px rgba(255,255,255,.75), 76px 457px rgba(255,255,255,.75), 176px 340px rgba(255,255,255,.75), 233px 329px rgba(255,255,255,.35), 357px 244px rgba(255,255,255,.75), 119px 876px rgba(255,255,255,.75), 22px 325px rgba(255,255,255,.75), 361px 830px rgba(255,255,255,.75), 197px 679px rgba(255,255,255,.35), 253px 37px rgba(255,255,255,.35), 257px 604px rgba(255,255,255,.55), 51px 895px rgba(255,255,255,.75), 51px 538px rgba(255,255,255,.75);animation:dustRise 28s linear infinite;opacity:.55;filter:blur(.35px)}
-#dust2:after{content:"";position:absolute;top:930px;left:0;width:2px;height:2px;box-shadow:7px 739px rgba(255,255,255,.35), 209px 891px rgba(255,255,255,.35), 38px 480px rgba(255,255,255,.55), 173px 638px rgba(255,255,255,.75), 332px 82px rgba(255,255,255,.55), 345px 879px rgba(255,255,255,.75), 162px 641px rgba(255,255,255,.75), 277px 36px rgba(255,255,255,.22), 120px 646px rgba(255,255,255,.55), 116px 764px rgba(255,255,255,.22), 222px 100px rgba(255,255,255,.22), 227px 170px rgba(255,255,255,.55), 14px 47px rgba(255,255,255,.55), 407px 57px rgba(255,255,255,.55), 183px 383px rgba(255,255,255,.75), 74px 250px rgba(255,255,255,.75), 289px 698px rgba(255,255,255,.35), 87px 179px rgba(255,255,255,.22), 312px 891px rgba(255,255,255,.75), 317px 699px rgba(255,255,255,.35), 254px 597px rgba(255,255,255,.35), 118px 472px rgba(255,255,255,.55), 235px 261px rgba(255,255,255,.22), 411px 476px rgba(255,255,255,.55), 346px 559px rgba(255,255,255,.35), 37px 452px rgba(255,255,255,.55), 300px 306px rgba(255,255,255,.75), 353px 256px rgba(255,255,255,.75), 154px 203px rgba(255,255,255,.75), 247px 109px rgba(255,255,255,.35), 195px 585px rgba(255,255,255,.55), 294px 302px rgba(255,255,255,.55), 11px 849px rgba(255,255,255,.75), 140px 8px rgba(255,255,255,.22), 310px 763px rgba(255,255,255,.75), 426px 925px rgba(255,255,255,.55), 397px 818px rgba(255,255,255,.35), 310px 821px rgba(255,255,255,.55), 112px 651px rgba(255,255,255,.35), 317px 256px rgba(255,255,255,.35), 321px 99px rgba(255,255,255,.22), 158px 807px rgba(255,255,255,.75), 17px 593px rgba(255,255,255,.55), 374px 134px rgba(255,255,255,.22), 151px 334px rgba(255,255,255,.75), 89px 205px rgba(255,255,255,.35), 402px 552px rgba(255,255,255,.55), 271px 513px rgba(255,255,255,.55), 425px 168px rgba(255,255,255,.55), 422px 493px rgba(255,255,255,.55), 382px 891px rgba(255,255,255,.55), 411px 117px rgba(255,255,255,.75), 38px 144px rgba(255,255,255,.35), 346px 741px rgba(255,255,255,.75), 411px 570px rgba(255,255,255,.55), 46px 809px rgba(255,255,255,.75), 7px 270px rgba(255,255,255,.22), 232px 377px rgba(255,255,255,.55), 299px 390px rgba(255,255,255,.55), 55px 691px rgba(255,255,255,.35), 241px 25px rgba(255,255,255,.55), 312px 226px rgba(255,255,255,.22), 325px 843px rgba(255,255,255,.75), 358px 309px rgba(255,255,255,.75), 59px 143px rgba(255,255,255,.22), 19px 311px rgba(255,255,255,.75), 59px 99px rgba(255,255,255,.35), 275px 138px rgba(255,255,255,.75), 232px 379px rgba(255,255,255,.75), 300px 760px rgba(255,255,255,.35), 212px 670px rgba(255,255,255,.22), 426px 501px rgba(255,255,255,.75), 143px 33px rgba(255,255,255,.55), 111px 454px rgba(255,255,255,.75), 120px 875px rgba(255,255,255,.55), 50px 702px rgba(255,255,255,.55), 278px 923px rgba(255,255,255,.55), 31px 407px rgba(255,255,255,.55), 97px 125px rgba(255,255,255,.75), 46px 678px rgba(255,255,255,.35), 328px 654px rgba(255,255,255,.22), 25px 805px rgba(255,255,255,.55), 124px 128px rgba(255,255,255,.35), 35px 849px rgba(255,255,255,.35), 300px 221px rgba(255,255,255,.35), 168px 792px rgba(255,255,255,.35), 403px 922px rgba(255,255,255,.22), 141px 879px rgba(255,255,255,.35), 66px 553px rgba(255,255,255,.55), 408px 178px rgba(255,255,255,.22);}
-#dust3{width:3px;height:3px;box-shadow:338px 887px rgba(255,255,255,.22), 67px 15px rgba(255,255,255,.55), 404px 807px rgba(255,255,255,.35), 301px 331px rgba(255,255,255,.22), 89px 271px rgba(255,255,255,.22), 64px 759px rgba(255,255,255,.75), 269px 116px rgba(255,255,255,.22), 243px 459px rgba(255,255,255,.55), 262px 607px rgba(255,255,255,.22), 231px 515px rgba(255,255,255,.35), 314px 44px rgba(255,255,255,.55), 234px 658px rgba(255,255,255,.22), 31px 490px rgba(255,255,255,.75), 218px 702px rgba(255,255,255,.22), 251px 729px rgba(255,255,255,.75), 37px 920px rgba(255,255,255,.22), 164px 622px rgba(255,255,255,.35), 33px 129px rgba(255,255,255,.55), 319px 648px rgba(255,255,255,.55), 195px 611px rgba(255,255,255,.55), 232px 517px rgba(255,255,255,.75), 50px 812px rgba(255,255,255,.22), 335px 666px rgba(255,255,255,.35), 220px 462px rgba(255,255,255,.35), 211px 347px rgba(255,255,255,.75), 204px 425px rgba(255,255,255,.22), 160px 437px rgba(255,255,255,.55), 340px 261px rgba(255,255,255,.55), 78px 703px rgba(255,255,255,.75), 34px 93px rgba(255,255,255,.22), 47px 442px rgba(255,255,255,.22), 381px 756px rgba(255,255,255,.55), 415px 133px rgba(255,255,255,.22), 300px 575px rgba(255,255,255,.55), 343px 125px rgba(255,255,255,.75), 181px 894px rgba(255,255,255,.75), 369px 52px rgba(255,255,255,.55), 307px 319px rgba(255,255,255,.55), 53px 591px rgba(255,255,255,.35), 79px 672px rgba(255,255,255,.75), 114px 867px rgba(255,255,255,.22), 179px 865px rgba(255,255,255,.55), 58px 780px rgba(255,255,255,.55), 293px 231px rgba(255,255,255,.75), 287px 785px rgba(255,255,255,.22);animation:dustRise 42s linear infinite;opacity:.32;filter:blur(.7px)}
-#dust3:after{content:"";position:absolute;top:930px;left:0;width:3px;height:3px;box-shadow:311px 673px rgba(255,255,255,.55), 14px 184px rgba(255,255,255,.55), 359px 780px rgba(255,255,255,.55), 173px 359px rgba(255,255,255,.22), 92px 890px rgba(255,255,255,.35), 289px 673px rgba(255,255,255,.75), 35px 145px rgba(255,255,255,.22), 46px 764px rgba(255,255,255,.35), 192px 429px rgba(255,255,255,.75), 174px 161px rgba(255,255,255,.55), 159px 738px rgba(255,255,255,.55), 397px 581px rgba(255,255,255,.22), 26px 159px rgba(255,255,255,.35), 386px 632px rgba(255,255,255,.22), 345px 83px rgba(255,255,255,.55), 226px 677px rgba(255,255,255,.75), 248px 621px rgba(255,255,255,.75), 212px 279px rgba(255,255,255,.35), 386px 524px rgba(255,255,255,.22), 176px 440px rgba(255,255,255,.22), 145px 694px rgba(255,255,255,.75), 269px 683px rgba(255,255,255,.55), 23px 225px rgba(255,255,255,.75), 306px 56px rgba(255,255,255,.22), 104px 308px rgba(255,255,255,.35), 392px 140px rgba(255,255,255,.55), 148px 335px rgba(255,255,255,.22), 3px 509px rgba(255,255,255,.75), 89px 132px rgba(255,255,255,.75), 272px 720px rgba(255,255,255,.35), 256px 572px rgba(255,255,255,.55), 36px 406px rgba(255,255,255,.22), 223px 19px rgba(255,255,255,.75), 39px 882px rgba(255,255,255,.55), 294px 439px rgba(255,255,255,.75), 363px 655px rgba(255,255,255,.75), 148px 117px rgba(255,255,255,.75), 10px 332px rgba(255,255,255,.35), 410px 632px rgba(255,255,255,.75), 425px 706px rgba(255,255,255,.55), 45px 447px rgba(255,255,255,.22), 124px 446px rgba(255,255,255,.75), 268px 80px rgba(255,255,255,.75), 158px 763px rgba(255,255,255,.55), 113px 341px rgba(255,255,255,.35);}
 @keyframes dustRise{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,-930px,0)}}
 .splash .baggie,.splash h1,.splash p{position:relative;z-index:3}
 .splash h1{text-shadow:0 0 28px rgba(255,255,255,.12)}
-@media(min-width:700px){#dust1,#dust2,#dust3{left:calc(50% - 215px)}}
-@media(prefers-reduced-motion:reduce){#dust1,#dust2,#dust3{animation:none}}
 
 /* Noir Market v1.3 visible splash dust and welcome flow  */
 .splash{background:radial-gradient(circle at 50% 42%,rgba(32,32,32,.86),rgba(0,0,0,.96) 68%,#000 100%)!important;overflow:hidden;}
 .live-dust{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden;}
 .live-dust i{position:absolute;display:block;border-radius:50%;background:rgba(255,255,255,.9);box-shadow:0 0 10px rgba(255,255,255,.42);filter:blur(.25px);animation:liveDustRise linear infinite;}
 @keyframes liveDustRise{0%{transform:translate3d(0,0,0) scale(.75);opacity:0}12%{opacity:.75}70%{opacity:.55}100%{transform:translate3d(var(--drift),-118vh,0) scale(1.25);opacity:0}}
-.splash .dust-bg{z-index:1!important;opacity:.95!important;}
 .splash .splash-vignette{z-index:3!important;}
 .splash .baggie,.splash h1,.splash p{z-index:4!important;}
 #visitLoansBtn,#startCleanBtn{width:100%;margin-top:10px;}
@@ -149,7 +137,6 @@ dialog::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(10px);}
   background: radial-gradient(circle at 50% 42%, rgba(18,18,18,.98), rgba(2,2,2,.995) 62%, #000 100%) !important;
   overflow:hidden !important;
 }
-.splash .dust-bg{opacity:1!important;z-index:1!important;filter:contrast(1.25) brightness(1.35)}
 .live-dust{z-index:2!important;opacity:1!important;mix-blend-mode:screen;}
 .live-dust i{
   background:rgba(255,255,255,.96)!important;
@@ -186,7 +173,6 @@ dialog::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(10px);}
 /* Noir Market v1.3: uploaded transparent splash logo and slower dust  */
 .splash-logo{width:min(72vw,360px)!important;max-height:58vh!important;object-fit:contain!important;filter:drop-shadow(0 22px 42px rgba(0,0,0,.72)) drop-shadow(0 0 18px rgba(255,255,255,.08));}
 .splash .live-dust i{animation-duration:60s!important;opacity:.68!important;}
-.splash .dust-bg{opacity:.75!important;}
 .game-dust{display:none!important;}
 #particle-canvas{display:none!important;}
 @media(max-width:560px){.splash-logo{width:min(82vw,330px)!important;max-height:56vh!important;}}
@@ -223,7 +209,6 @@ dialog::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(10px);}
 .splash h1,.splash p{position:relative!important;z-index:6!important;}
 .splash .live-dust{z-index:2!important;opacity:1!important;mix-blend-mode:screen!important;}
 .splash .live-dust i{width:1.05px!important;height:1.05px!important;max-width:1.7px!important;max-height:1.7px!important;background:rgba(255,255,255,.76)!important;box-shadow:0 0 6px rgba(255,255,255,.42)!important;filter:blur(.08px)!important;animation-duration:105s!important;}
-.splash .dust-bg{opacity:.95!important;filter:brightness(1.25) contrast(1.15)!important;}
 @media(max-width:560px){.splash-logo{width:min(92vw,390px)!important;max-height:70vh!important;}}
 
 /* Noir Market v1.3: larger slow rising dust on splash, main screen and menu  */
@@ -270,7 +255,6 @@ dialog::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(10px);}
   animation-timing-function:linear!important;
   animation-iteration-count:infinite!important;
 }
-.splash .dust-bg{opacity:.95!important;filter:brightness(1.15) contrast(1.1)!important;}
 .menu-list,.modal-card,.modal{position:relative;z-index:4!important;}
 .app{position:relative;z-index:3!important;}
 @keyframes liveDustRise{
@@ -442,7 +426,7 @@ dialog::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(10px);}
 }
 
 
-/* Noir Market V2.1: restore market visibility, full-page section views, smoother ticker and page-wide dust */
+/* Legacy CSS compatibility: restore market visibility, full-page section views, smoother ticker and page-wide dust */
 .market{
   display:block!important;
   visibility:visible!important;
@@ -586,13 +570,10 @@ body:not(.modal-open) .app{pointer-events:auto!important;}
 
 /* Noir Market V2.4 Performance Patch: splash-only particles. */
 #particle-canvas,.game-dust{display:none!important;}
-#dust1,#dust2,#dust3{display:none!important;}
 .splash .live-dust i{width:3px;height:3px;}
 
 
 /* Noir Market V2.5 Performance Patch: faster splash only particles. */
-#particle-canvas,.game-dust,#dust1,#dust2,#dust3{display:none!important;}
-.splash .dust-bg{display:none!important;}
 .splash .live-dust{will-change:opacity!important;contain:layout paint!important;}
 .splash .live-dust i{min-width:3px!important;min-height:3px!important;max-width:6px!important;max-height:6px!important;will-change:transform!important;}
 
@@ -607,7 +588,7 @@ body:not(.modal-open) .app{pointer-events:auto!important;}
 @media(max-width:560px){.splash-loader{width:min(76vw,250px);height:28px}.splash-loader-text{font-size:11px}}
 
 
-/* Noir Market V2.9: thinner loader and clickable navigation affordances. */
+/* Legacy CSS compatibility: thinner loader and clickable navigation affordances. */
 .splash #splashPrompt{display:none!important;}
 .splash-loader{width:min(68vw,250px)!important;height:16px!important;border-width:1px!important;box-shadow:0 0 12px rgba(255,255,255,.10)!important;}
 .splash-loader-text{font-size:9px!important;letter-spacing:1.6px!important;line-height:16px!important;}
@@ -617,7 +598,7 @@ body:not(.modal-open) .app{pointer-events:auto!important;}
 #marketTable .row.market-click-row{touch-action:manipulation;}
 
 
-/* Noir Market V3.0: instant-logo splash tuning, thinner loader and faster random particles. */
+/* Legacy CSS compatibility: instant-logo splash tuning, thinner loader and faster random particles. */
 .splash-logo{width:min(78vw,360px)!important;max-height:62vh!important;object-fit:contain!important;contain:layout paint!important;content-visibility:auto!important;}
 .splash-loader{width:min(66vw,240px)!important;height:12px!important;border-width:1px!important;box-shadow:0 0 10px rgba(255,255,255,.10)!important;}
 .splash-loader-fill{transition:width .28s cubic-bezier(.18,.84,.25,1)!important;}
@@ -626,7 +607,7 @@ body:not(.modal-open) .app{pointer-events:auto!important;}
 @media(max-width:560px){.splash-logo{width:min(82vw,330px)!important;max-height:58vh!important}.splash-loader{width:min(70vw,220px)!important;height:12px!important}.splash-loader-text{font-size:7px!important;line-height:12px!important;}}
 
 
-/* Noir Market V3.1: instant splash particles, double-speed motion and larger ENTER text. */
+/* Legacy CSS compatibility: instant splash particles, double-speed motion and larger ENTER text. */
 .splash .live-dust{display:block!important;position:absolute!important;inset:0!important;z-index:1!important;pointer-events:none!important;overflow:hidden!important;opacity:1!important;contain:layout paint!important;}
 .splash .live-dust i{position:absolute!important;display:block!important;border-radius:999px!important;background:rgba(255,255,255,.88)!important;animation-name:liveDustRise!important;animation-timing-function:linear!important;animation-iteration-count:infinite!important;will-change:transform!important;min-width:4px!important;min-height:4px!important;max-width:12px!important;max-height:12px!important;box-shadow:0 0 10px rgba(255,255,255,.44)!important;filter:blur(.10px)!important;}
 .splash-loader{height:14px!important;width:min(66vw,240px)!important;}
@@ -635,7 +616,7 @@ body:not(.modal-open) .app{pointer-events:auto!important;}
 @media(max-width:560px){.splash-loader{height:14px!important;width:min(70vw,220px)!important}.splash-loader-text{font-size:8px!important;line-height:14px!important}.splash-loader.ready .splash-loader-text{font-size:12px!important;line-height:14px!important}}
 
 
-/* Noir Market V3.2: CodePen-inspired splash snow canvas effect. */
+/* Legacy CSS compatibility: CodePen-inspired splash snow canvas effect. */
 #splashSnowCanvas{
   position:absolute!important;
   inset:0!important;
@@ -654,7 +635,7 @@ body:not(.modal-open) .app{pointer-events:auto!important;}
 @media(max-width:560px){.splash-loader.ready .splash-loader-text{font-size:13px!important;letter-spacing:1.9px!important;line-height:14px!important;}}
 
 
-/* Noir Market V3.3: instant top-loading splash snow and informant popup polish. */
+/* Legacy CSS compatibility: instant top-loading splash snow and informant popup polish. */
 #splashSnowCanvas{
   position:absolute!important;
   inset:0!important;
@@ -689,7 +670,7 @@ body:not(.modal-open) .app{pointer-events:auto!important;}
 .informant-cost strong{color:#fff;}
 .informant-disabled{opacity:.72;color:rgba(255,255,255,.72);font-size:12px;text-transform:uppercase;letter-spacing:1px;margin-top:8px;}
 
-/* Noir Market V3.4: fast full-screen section overlays. */
+/* Legacy CSS compatibility: fast full-screen section overlays. */
 html.modal-open,body.modal-open{overflow:hidden!important;overscroll-behavior:none!important;background:#050505!important;}
 body.modal-open{position:fixed!important;width:100%!important;inset:0!important;touch-action:none!important;}
 #modal[open]{position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;max-width:none!important;max-height:none!important;margin:0!important;padding:0!important;border:0!important;background:#050505!important;overflow:hidden!important;z-index:9999!important;color:var(--text)!important;}
@@ -707,7 +688,7 @@ body.modal-open .app{pointer-events:none!important;user-select:none!important;}
 .deal-result-banner.failure{color:var(--red);border-color:rgba(255,81,72,.65);background:linear-gradient(180deg,rgba(255,81,72,.18),rgba(255,81,72,.045))}
 
 
-/* Noir Market V4.3: main screen parallax background image */
+/* Legacy CSS compatibility: main screen parallax background image */
 html,body{min-height:100%;}
 body{overflow-x:hidden;background:#000!important;}
 .main-parallax-bg{
@@ -717,8 +698,7 @@ body{overflow-x:hidden;background:#000!important;}
   pointer-events:none;
   background-image:
     radial-gradient(circle at 48% 46%,rgba(102,255,0,.12),rgba(0,0,0,0) 34%),
-    linear-gradient(180deg,rgba(0,0,0,.16) 0%,rgba(0,0,0,.32) 48%,rgba(0,0,0,.80) 100%),
-    url("assets/main-parallax-bg.jpg");
+    linear-gradient(180deg,rgba(0,0,0,.16) 0%,rgba(0,0,0,.32) 48%,rgba(0,0,0,.80) 100%);
   background-size:cover;
   background-position:center bottom;
   background-repeat:no-repeat;
@@ -752,7 +732,7 @@ body{overflow-x:hidden;background:#000!important;}
 }
 
 
-/* Noir Market V4.4: Redhead Games intro and menu instructions */
+/* Legacy CSS compatibility: Redhead Games intro and menu instructions */
 .preintro{
   position:fixed;
   inset:0;
@@ -794,7 +774,7 @@ body.preintro-running #splash{opacity:0!important;visibility:hidden!important;po
 }
 
 
-/* Noir Market V4.6: corrected Redhead Games intro over active snow splash */
+/* Legacy CSS compatibility: corrected Redhead Games intro over active snow splash */
 body.preintro-running #splash{
   opacity:1!important;
   visibility:visible!important;
@@ -834,7 +814,7 @@ body.preintro-running .preintro{
 }
 
 
-/* Noir Market V4.7: corrected main splash logo, animated tagline and homescreen instruction text */
+/* Legacy CSS compatibility: corrected main splash logo, animated tagline and homescreen instruction text */
 .splash{
   background:#000!important;
   gap:0!important;
@@ -894,7 +874,7 @@ body.preintro-running .preintro{
 }
 
 
-/* Noir Market V4.8: splash layout polish */
+/* Legacy CSS compatibility: splash layout polish */
 .preintro-logo{
   width:min(78vw,430px)!important;
   max-width:430px!important;
@@ -950,7 +930,7 @@ body.preintro-running .splash-instructions{
 }
 
 
-/* Noir Market V4.9: staged splash reveal and HOW TO PLAY instructions access */
+/* Legacy CSS compatibility: staged splash reveal and HOW TO PLAY instructions access */
 body.preintro-running .splash-logo,
 body.preintro-running .splash-tagline,
 body.preintro-running .splash-loader,
@@ -1010,7 +990,7 @@ body.splash-ui-revealed .splash-instructions{
 }
 
 
-/* Noir Market V5.0: splash instruction visibility polish */
+/* Legacy CSS compatibility: splash instruction visibility polish */
 .splash-instructions{
   bottom:calc(44px + env(safe-area-inset-bottom))!important;
   max-width:min(88vw,360px)!important;
@@ -1038,7 +1018,7 @@ body.splash-ui-revealed .splash-instructions{
 }
 
 
-/* Noir Market V5.4: mobile-safe main background and interaction recovery */
+/* Legacy CSS compatibility: mobile-safe main background and interaction recovery */
 .main-parallax-bg,
 #mainParallaxBg{
   background-image:none!important;
@@ -1107,3 +1087,306 @@ body.splash-ui-revealed .splash-instructions{
   #mainParticleCanvas{display:none!important;}
   #mainParallaxBg.main-particle-bg:before,.main-particle-bg:before,#mainParallaxBg.main-particle-bg:after,.main-particle-bg:after{animation:none!important;}
 }
+
+
+/* Legacy CSS compatibility: HOW TO PLAY starting city selector */
+.howto-start-select{display:flex;flex-direction:column;gap:8px;min-height:0;}
+.howto-start-select p{margin:6px 0;line-height:1.34;}
+.howto-start-select .disclaimer{margin-top:6px!important;}
+.howto-start-select .howto-actions{margin-top:2px;}
+.start-city-selector{margin:8px auto 4px;width:min(100%,270px);display:flex;flex-direction:column;align-items:center;gap:5px;}
+.start-city-label{font-size:11px;line-height:1;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);font-weight:800;}
+.uk-start-map{width:min(100%,210px);height:auto;max-height:238px;display:block;background:rgba(255,255,255,.015);border:1px solid rgba(255,255,255,.10);border-radius:16px;padding:7px;touch-action:manipulation;}
+.map-outline{fill:none;stroke:rgba(255,255,255,.82);stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round;filter:drop-shadow(0 0 5px rgba(255,255,255,.08));}
+.map-outline.ireland{stroke:rgba(255,255,255,.56);}
+.city-dot-hit{cursor:pointer;outline:none;touch-action:manipulation;}
+.city-hit{fill:transparent;stroke:transparent;}
+.city-dot{fill:#f2f2f2;stroke:#050505;stroke-width:1.5;transition:fill .15s ease,r .15s ease,filter .15s ease;}
+.city-dot-hit.selected .city-dot{fill:var(--green);r:6;filter:drop-shadow(0 0 5px rgba(67,215,54,.65));}
+.selected-start-city{font-size:13px;text-transform:uppercase;letter-spacing:1px;color:#f2f2f2;font-weight:900;text-align:center;line-height:1.2;}
+.start-play-btn{margin-top:6px!important;}
+@media(max-height:720px){.howto-start-select p{font-size:13px;margin:4px 0;}.uk-start-map{max-height:198px;width:min(100%,178px);}.start-city-selector{margin-top:5px;}.selected-start-city{font-size:12px}.start-play-btn{min-height:44px!important;}}
+@media(max-height:640px){.howto-start-select p:nth-of-type(2){display:none;}.uk-start-map{max-height:172px;width:min(100%,160px);}.howto-start-select{gap:5px}.start-city-label{font-size:10px}.selected-start-city{font-size:11px}.play-wide{min-height:42px!important;}}
+
+
+/* Legacy CSS compatibility: real UK/Ireland map asset for starting city selector */
+.uk-start-map{display:none!important;}
+.uk-start-map-real{
+  position:relative;
+  width:min(100%,230px);
+  aspect-ratio:1/1;
+  max-height:230px;
+  display:block;
+  margin:0 auto;
+  background:#000;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:16px;
+  overflow:hidden;
+  touch-action:manipulation;
+}
+.uk-start-map-real img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  opacity:.96;
+  pointer-events:none;
+  user-select:none;
+  -webkit-user-drag:none;
+}
+.city-map-dot{
+  position:absolute;
+  width:30px;
+  height:30px;
+  transform:translate(-50%,-50%);
+  border:0;
+  border-radius:999px;
+  background:transparent;
+  padding:0;
+  margin:0;
+  cursor:pointer;
+  touch-action:manipulation;
+  z-index:30;
+  pointer-events:auto;
+  -webkit-tap-highlight-color:rgba(67,215,54,.25);
+  line-height:0;
+}
+.city-map-dot:active:before{
+  transform:translate(-50%,-50%) scale(1.25);
+}
+.city-map-dot:before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:6px;
+  height:6px;
+  transform:translate(-50%,-50%);
+  border-radius:999px;
+  background:#f2f2f2;
+  box-shadow:0 0 0 1.5px #050505,0 0 7px rgba(255,255,255,.45);
+}
+.city-map-dot.selected:before{
+  width:9px;
+  height:9px;
+  background:var(--green);
+  box-shadow:0 0 0 2px #050505,0 0 9px rgba(67,215,54,.85);
+}
+.city-map-dot:focus-visible:before{
+  box-shadow:0 0 0 2px #050505,0 0 0 5px rgba(255,255,255,.45),0 0 10px rgba(67,215,54,.7);
+}
+@media(max-height:720px){.uk-start-map-real{width:min(100%,198px);max-height:198px;}.city-map-dot{width:30px;height:30px;}}
+@media(max-height:640px){.uk-start-map-real{width:min(100%,172px);max-height:172px;}.city-map-dot{width:30px;height:30px;}.city-map-dot:before{width:5.5px;height:5.5px;}.city-map-dot.selected:before{width:8px;height:8px;}}
+
+
+/* Legacy CSS compatibility: consolidated starting city selector and mobile stability polish. */
+#mainParallaxBg,.main-parallax-bg{pointer-events:none!important;background-image:none!important;}
+.splash,.brand-intro,.particles-bg,.main-particle-bg,.bg-canvas-wrap{pointer-events:none;}
+.splash button,.brand-intro button,.modal,.modal *,dialog,dialog *{pointer-events:auto;}
+.start-city-selector-v65{margin:8px auto 6px!important;width:100%!important;max-width:760px!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:8px!important;box-sizing:border-box!important;overflow:visible!important;}
+.start-city-selector-v65 .start-city-label{font-size:11px!important;line-height:1!important;text-transform:uppercase!important;letter-spacing:1.5px!important;color:var(--muted)!important;font-weight:900!important;text-align:center!important;}
+.start-city-grid-v65{display:grid!important;grid-template-columns:repeat(7,minmax(78px,1fr))!important;grid-template-rows:repeat(2,auto)!important;gap:6px!important;width:100%!important;box-sizing:border-box!important;}
+.start-city-option-v65{appearance:none!important;-webkit-appearance:none!important;border:1px solid rgba(255,255,255,.28)!important;background:rgba(255,255,255,.055)!important;color:#f5f5f5!important;border-radius:9px!important;min-height:38px!important;padding:0 6px!important;font-size:9.2px!important;line-height:1.05!important;text-transform:uppercase!important;letter-spacing:.28px!important;font-weight:900!important;text-align:center!important;touch-action:manipulation!important;-webkit-tap-highlight-color:rgba(255,178,36,.22)!important;cursor:pointer!important;white-space:nowrap!important;word-break:normal!important;overflow-wrap:normal!important;writing-mode:horizontal-tb!important;text-orientation:mixed!important;display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important;text-overflow:ellipsis!important;}
+.start-city-option-v65.selected{background:#ffb224!important;color:#050505!important;border-color:#ffcf68!important;box-shadow:0 0 10px rgba(255,178,36,.38)!important;}
+.start-city-option-v65:active{transform:scale(.985)!important;}
+.random-city-btn-v65{appearance:none!important;-webkit-appearance:none!important;width:100%!important;min-height:44px!important;border:1px solid rgba(255,255,255,.35)!important;background:#101010!important;color:#fff!important;border-radius:10px!important;font-size:12px!important;text-transform:uppercase!important;letter-spacing:1.2px!important;font-weight:900!important;touch-action:manipulation!important;-webkit-tap-highlight-color:rgba(255,255,255,.16)!important;cursor:pointer!important;white-space:nowrap!important;writing-mode:horizontal-tb!important;}
+.random-city-btn-v65:active{transform:scale(.99)!important;}
+.start-city-prompt-v65{font-size:12px!important;text-transform:uppercase!important;letter-spacing:.9px!important;color:#f2f2f2!important;font-weight:900!important;text-align:center!important;line-height:1.25!important;min-height:16px!important;white-space:normal!important;writing-mode:horizontal-tb!important;}
+.start-city-prompt-v65 .pending{color:var(--muted)!important;}
+#playWelcomeBtn.start-play-btn{width:100%!important;min-height:46px!important;}
+#playWelcomeBtn.start-play-btn.disabled{opacity:.45!important;filter:grayscale(.35)!important;}
+@media(max-width:700px){.start-city-grid-v65{grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:auto!important;gap:6px!important}.start-city-option-v65{min-height:36px!important;font-size:10px!important;letter-spacing:.32px!important}.start-city-selector-v65{gap:7px!important}.howto-start-select{max-width:100%!important;}}
+@media(min-width:701px){.start-city-grid-v65{grid-template-columns:repeat(7,minmax(78px,1fr))!important;}}
+@media(max-height:700px){.start-city-selector-v65{gap:5px!important;margin-top:5px!important}.start-city-option-v65{min-height:34px!important;font-size:9px!important}.random-city-btn-v65{min-height:38px!important}.howto-start-select p{font-size:12px!important;margin:3px 0!important}.howto-start-select p:nth-of-type(2){display:none!important}}
+
+
+/* Legacy CSS compatibility: instant Redhead Games intro reliability and non-blocking splash layers. */
+.preintro,
+body.preintro-running .preintro{
+  position:fixed!important;
+  inset:0!important;
+  z-index:2147483000!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  background:#000!important;
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:none!important;
+  animation:redheadIntroOverlayFadeV66 2.65s ease forwards!important;
+  will-change:opacity!important;
+}
+.preintro-logo,
+body.preintro-running .preintro-logo{
+  width:min(78vw,430px)!important;
+  max-width:430px!important;
+  height:auto!important;
+  display:block!important;
+  opacity:1!important;
+  visibility:visible!important;
+  transform:translateY(-3.5vh) scale(1)!important;
+  animation:redheadIntroLogoFadeV66 2.35s ease forwards!important;
+  position:relative!important;
+  z-index:2147483001!important;
+  pointer-events:none!important;
+  image-rendering:auto!important;
+  will-change:opacity,transform!important;
+}
+body.preintro-running #splash,
+body.preintro-running #splashSnowCanvas,
+body.preintro-running .splash-vignette{
+  pointer-events:none!important;
+}
+@keyframes redheadIntroOverlayFadeV66{
+  0%{opacity:1;visibility:visible}
+  82%{opacity:1;visibility:visible}
+  100%{opacity:0;visibility:hidden}
+}
+@keyframes redheadIntroLogoFadeV66{
+  0%{opacity:1;transform:translateY(-3.5vh) scale(1)}
+  82%{opacity:1;transform:translateY(-3.5vh) scale(1)}
+  100%{opacity:0;transform:translateY(-3.5vh) scale(.985)}
+}
+@media(prefers-reduced-motion:reduce){
+  .preintro,body.preintro-running .preintro{animation:redheadIntroOverlayFadeV66 1.35s ease forwards!important;}
+  .preintro-logo,body.preintro-running .preintro-logo{animation:redheadIntroLogoFadeV66 1.2s ease forwards!important;}
+}
+
+
+/* Noir Market V6.7 Hustle coming soon restore */
+.coming-soon{margin-top:10px;border:1px dashed rgba(255,255,255,.22);background:rgba(255,255,255,.035);border-radius:14px;padding:14px;text-align:center;}
+.coming-soon strong{display:block;letter-spacing:1.8px;color:#f4c25b;font-size:14px;margin-bottom:6px;}
+.coming-soon p{margin:0;}
+
+
+
+/* Noir Market V8.2: static powder splash with lightweight dust overlay, video removed. */
+#splash.splash{
+  position:fixed!important;
+  inset:0!important;
+  width:100vw!important;
+  height:100vh!important;
+  min-height:100vh!important;
+  overflow:hidden!important;
+  background:#000!important;
+  padding:calc(22px + env(safe-area-inset-top)) 16px calc(112px + env(safe-area-inset-bottom))!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  opacity:1;
+  transition:opacity .65s ease,visibility .65s ease!important;
+}
+@supports (height:100dvh){#splash.splash{height:100dvh!important;min-height:100dvh!important;}}
+body.preintro-running #splash.splash{opacity:0!important;visibility:visible!important;pointer-events:none!important;}
+body:not(.preintro-running) #splash.splash{opacity:1!important;visibility:visible!important;}
+#splashStaticImage.splash-static-image{
+  position:absolute!important;
+  inset:0!important;
+  width:100vw!important;
+  height:100vh!important;
+  min-width:100vw!important;
+  min-height:100vh!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  z-index:1!important;
+  pointer-events:none!important;
+  opacity:1!important;
+  transform:translateZ(0)!important;
+  background:#000!important;
+}
+@supports (height:100dvh){#splashStaticImage.splash-static-image{height:100dvh!important;min-height:100dvh!important;}}
+#splashDustCanvas.splash-dust-canvas{
+  position:absolute!important;
+  inset:0!important;
+  width:100vw!important;
+  height:100vh!important;
+  z-index:3!important;
+  pointer-events:none!important;
+  opacity:.72!important;
+  mix-blend-mode:screen!important;
+  transform:translateZ(0)!important;
+}
+@supports (height:100dvh){#splashDustCanvas.splash-dust-canvas{height:100dvh!important;}}
+#splashSnowCanvas{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important;}
+#splash .splash-vignette{z-index:4!important;pointer-events:none!important;background:linear-gradient(180deg,rgba(0,0,0,.08) 0%,rgba(0,0,0,.04) 40%,rgba(0,0,0,.62) 100%)!important;}
+#splash .splash-loader{
+  position:absolute!important;
+  z-index:8!important;
+  left:50%!important;
+  bottom:calc(72px + env(safe-area-inset-bottom))!important;
+  transform:translateX(-50%)!important;
+  width:min(62vw,240px)!important;
+  height:14px!important;
+  border:1px solid rgba(255,255,255,.92)!important;
+  border-radius:999px!important;
+  background:rgba(0,0,0,.72)!important;
+  box-shadow:0 0 18px rgba(255,255,255,.10),0 12px 28px rgba(0,0,0,.45)!important;
+  pointer-events:auto!important;
+}
+#splash .splash-loader-text{font-size:8px!important;letter-spacing:1.4px!important;line-height:14px!important;}
+#splash .splash-loader-fill{background:#fff!important;}
+#splash .splash-instructions{
+  position:absolute!important;
+  z-index:8!important;
+  left:50%!important;
+  bottom:calc(18px + env(safe-area-inset-bottom))!important;
+  transform:translateX(-50%)!important;
+  width:calc(100vw - 34px)!important;
+  max-width:390px!important;
+  margin:0!important;
+  padding:0 8px!important;
+  text-align:center!important;
+  color:rgba(255,255,255,.82)!important;
+  text-shadow:0 2px 10px rgba(0,0,0,.9)!important;
+  pointer-events:none!important;
+}
+#splash .splash-instructions strong{font-size:10px!important;letter-spacing:2px!important;color:#fff!important;}
+#splash .splash-instructions span{font-size:9px!important;line-height:1.28!important;color:rgba(255,255,255,.72)!important;}
+@media(max-height:680px){
+  #splash .splash-loader{bottom:calc(62px + env(safe-area-inset-bottom))!important;height:12px!important;}
+  #splash .splash-instructions{bottom:calc(12px + env(safe-area-inset-bottom))!important;}
+  #splash .splash-instructions span{font-size:8px!important;}
+}
+@media(prefers-reduced-motion:reduce){#splashDustCanvas.splash-dust-canvas{display:none!important;}}
+
+
+/* Noir Market V8.2: hard hide splash after ENTER so HOW TO PLAY PLAY cannot reveal it again. */
+.splash.hide,#splash.hide{opacity:0!important;visibility:hidden!important;display:none!important;pointer-events:none!important;}
+#splash[aria-hidden="true"]{opacity:0!important;visibility:hidden!important;display:none!important;pointer-events:none!important;}
+
+
+/* Noir Market V8.3: staged splash exit fix. Avoid the V8.2 hard-hide freeze on ENTER. */
+#splash.splash.v83-exiting{
+  opacity:0!important;
+  visibility:visible!important;
+  pointer-events:none!important;
+  display:flex!important;
+  transition:opacity .55s ease!important;
+}
+#splash.splash.v83-hidden{
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+  display:none!important;
+}
+
+
+/* Noir Market V8.4: safe splash exit override. Keep splash non-blocking during transition; only v84-gone removes it. */
+#splash.splash.hide:not(.v84-gone){display:flex!important;opacity:0!important;visibility:hidden!important;pointer-events:none!important;}
+#splash.splash.v83-exiting:not(.v84-gone){display:flex!important;opacity:0!important;visibility:visible!important;pointer-events:none!important;}
+#splash.splash.v84-exiting{display:flex!important;opacity:0!important;visibility:visible!important;pointer-events:none!important;transition:opacity .35s ease!important;}
+#splash.splash.v84-gone{display:none!important;opacity:0!important;visibility:hidden!important;pointer-events:none!important;}
+body.v84-game-entered #splash{pointer-events:none!important;}
+body.v84-game-entered .app{visibility:visible!important;opacity:1!important;pointer-events:auto!important;}
+
+
+/* Noir Market V8.5: final non-blocking game state after HOW TO PLAY PLAY. */
+body.v85-game-entered #splash{display:none!important;opacity:0!important;visibility:hidden!important;pointer-events:none!important;}
+#splash.v85-gone{display:none!important;opacity:0!important;visibility:hidden!important;pointer-events:none!important;}
+body.v85-game-entered .app{visibility:visible!important;opacity:1!important;pointer-events:auto!important;}
+body.v85-game-entered:not(.modal-open) .app{pointer-events:auto!important;}
+
+/* Noir Market V8.6: no splash effect animation, static splash only. */
+#splashDustCanvas,#splashSnowCanvas,.live-dust,.game-dust,#particle-canvas{display:none!important;opacity:0!important;pointer-events:none!important;}
+.splash-static-image{image-rendering:auto!important;}

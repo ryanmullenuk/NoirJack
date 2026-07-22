@@ -2,218 +2,127 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-  <title>NoirJack</title>
-  <meta name="theme-color" content="#07080b" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="NoirJack" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <title>Noir Market V9.0</title>
+  <link rel="preload" as="image" href="assets/redhead-games-logo.png" fetchpriority="high" />
+  <link rel="preload" as="image" href="assets/splash-static.jpg" fetchpriority="high" />
   <link rel="manifest" href="manifest.json" />
-  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" type="image/png" href="assets/icon-192.png" />
-  <script src="https://cdn.applixir.com/applixir.sdk3.0m.js" async></script>
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" media="(prefers-color-scheme: dark)" href="apple-touch-icon-dark.png" />
+  <link rel="apple-touch-icon" sizes="180x180" media="(prefers-color-scheme: light)" href="apple-touch-icon-light.png" />
+  <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
+  <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
+  <style id="noir-v66-critical-intro">
+    body.preintro-running{background:#000;}
+    .preintro{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;background:#000;opacity:1;visibility:visible;pointer-events:none;}
+    .preintro-logo{width:min(78vw,430px);max-width:430px;height:auto;display:block;opacity:1;transform:translateY(-3.5vh) scale(1);}
+  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-  <canvas id="appParticles" class="app-particles" aria-hidden="true"></canvas>
-<div id="particleLayer"></div>
-  <section id="splashScreen" class="splash-screen">
-    <canvas id="splashParticles" class="splash-particles" aria-hidden="true"></canvas>
-    <div class="splash-inner">
-      <div class="splash-logo-clean-wrap" aria-label="NoirJack">
-        <img src="assets/noirjack-logo-wide.png" alt="NoirJack" class="splash-logo-clean" />
-      </div>
-      <p class="splash-tagline"><span class="splash-word word-1">SIMPLE.</span><span class="splash-word word-2">REFINED.</span><span class="splash-word word-3">PLAY.</span></p>
-      <button id="playBtn" class="play-btn">Play</button>
-      <div class="splash-instructions"><strong>Instructions</strong><span>For a better gaming experience, click share and add to homescreen.</span></div>
-      <div class="splash-share">
-        <p>Share NoirJack with friends</p>
-        <div class="share-buttons">
-          <button class="share-btn splash-share-btn" type="button" data-share="facebook" aria-label="Share on Facebook">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.5h2.2V5.1c-.4-.1-1.7-.2-3.2-.2-3.1 0-5.2 1.9-5.2 5.5v3.1H4.5v3.8h3.3V24h4v-6.7h3.3l.5-3.8h-3.8v-2.7c0-1.1.3-2.3 2.2-2.3Z"/></svg>
-          </button>
-          <button class="share-btn splash-share-btn" type="button" data-share="instagram" aria-label="Share on Instagram">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.2" cy="6.8" r="1.1"/></svg>
-          </button>
-          <button class="share-btn splash-share-btn" type="button" data-share="x" aria-label="Share on X">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20"/></svg>
-          </button>
-        </div>
-      </div>
-
+<body class="preintro-running">
+  
+  <div id="preintro" class="preintro" aria-label="Redhead Games">
+    <img class="preintro-logo" src="assets/redhead-games-logo.png" alt="Redhead Games" width="640" height="640" decoding="sync" fetchpriority="high" />
+  </div>
+  <div id="splash" class="splash">
+    <img id="splashStaticImage" class="splash-static-image" src="assets/splash-static.jpg" alt="" aria-hidden="true" decoding="async" fetchpriority="high" />
+    <div class="splash-vignette" aria-hidden="true"></div>
+    <button type="button" id="splashEnter" class="splash-loader" aria-label="Loading Noir Market" disabled>
+      <span class="splash-loader-fill" id="splashLoaderFill"></span>
+      <span class="splash-loader-text" id="splashLoaderText">LOADING</span>
+    </button>
+    <div class="splash-instructions" aria-label="Instructions">
+      <strong>INSTRUCTIONS</strong>
+      <span>For a better gaming experience, click share and add to homescreen.</span>
     </div>
-  </section>
-
-  <main id="gameApp" class="app app-hidden">
-    <section class="top-bar">
-      <button id="menuBtn" class="menu-btn" aria-label="Open settings">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <div class="brand">
-        <img src="assets/noirjack-logo-wide.png" alt="NoirJack" class="logo" />
-        <p class="eyebrow brand-tagline">Simple. Refined. Play.</p>
+  </div>
+  <div id="mainParallaxBg" class="main-parallax-bg" aria-hidden="true"></div>
+  <main class="app">
+    <section class="news-ticker card"><span>NEWS</span><div class="ticker-track"><div id="newsTicker">MARKETS ARE QUIET.</div></div></section>
+    <header class="topbar">
+      <button class="icon-btn" id="menuBtn" aria-label="Menu">☰</button>
+      <div>
+        <h1>NOIR MARKET</h1>
+        <p id="headline">Move quietly. Trade fast. Survive the market.</p>
       </div>
+      <div class="daybox"><span>DAY</span><strong id="dayCount">1</strong><em>/30</em></div>
+    </header>
 
-      <button id="bankButton" class="bank" type="button" aria-label="Bank balance">
-        <span>Bank</span>
-        <strong id="bank">£100</strong>
-      </button>
+    <section class="stats cards">
+      <div><span>Cash</span><strong id="cash">£0</strong></div>
+      <div><span>Finances</span><strong id="bank">£0</strong></div>
+      <div><span>Debt</span><strong class="bad" id="debt">£0</strong></div>
+      <div><span>Health</span><strong id="health">100%</strong></div>
     </section>
 
-    <section id="table" class="table split-table">
-      <div class="hand-panel dealer-panel">
-        <div class="score-block">
-          <p class="label">Dealer</p>
-          <h2 id="dealerScore">0</h2>
-        </div>
-        <div id="dealerCards" class="cards"></div>
+    <section class="location card">
+      <div class="flag" id="flag">🇬🇧</div>
+      <div class="place">
+        <h2 id="city">London</h2>
+        <p id="country">UK</p>
       </div>
-
-      <div class="table-message-panel">
-        <div id="message" class="message">Place your bet to start.</div>
-      </div>
-
-      <div class="hand-panel player-panel">
-        <div class="score-block">
-          <p class="label">You</p>
-          <h2 id="playerScore">0</h2>
-        </div>
-        <div id="playerCards" class="cards"></div>
-      </div>
+      <div class="market-info" id="marketInfo"></div>
     </section>
 
-    <section class="controls" id="controlsPanel">
-      <div class="bet-panel">
-        <button id="minusBet" class="round">−</button>
-        <div>
-          <p class="label">Bet</p>
-          <strong id="bet">£1</strong>
-        </div>
-        <button id="plusBet" class="round">+</button>
+    <section class="notice card">
+      <h3>Information</h3>
+      <p id="noticeText">You start in London with £1,000 cash, £0 in the bank and a clean slate.</p>
+    </section>
+
+    <section class="market card">
+      <div class="section-head">
+        <h3>The Market</h3>
+        <p><span class="up">↑ Rising</span> <span class="down">↓ Falling</span></p>
       </div>
+      <div class="table" id="marketTable"></div>
+    </section>
 
-      <div class="chip-stack" aria-label="Bet chips">
-        <button class="chip" data-chip="1">+1</button>
-        <button class="chip" data-chip="5">+5</button>
-        <button class="chip" data-chip="10">+10</button>
-        <button class="chip chip-clear" data-chip="clear">Reset</button>
+    <section class="pocket card">
+      <div class="section-head">
+        <h3>Storage <span id="spaceLabel">0/20</span></h3>
       </div>
+      <div class="table small" id="pocketTable"></div>
+    </section>
 
-      <button id="deal" class="primary">Deal</button>
-
-      <div class="actions">
-        <button id="hit" disabled>Hit</button>
-        <button id="stay" disabled>Stay</button>
-        <button id="hint" disabled>Hint</button>
+    <section class="actions card">
+      <h3>Action</h3>
+      <div class="button-grid">
+        <button class="buy" id="buyBtn">Buy</button>
+        <button class="sell" id="sellBtn">Sell</button>
+        <button id="dumpBtn">Storage</button>
+        <button id="bankBtn">Finances</button>
+        <button id="travelBtn">Travel &amp; Shipping</button>
+        <button id="shopBtn">Black Market</button>
+        <button id="hustleBtn">Hustle</button>
+        <button id="contactsBtn">Contacts</button>
+        <button id="stayBtn">Stay Here</button>
       </div>
     </section>
 
-    <section class="share-section" aria-label="Share NoirJack">
-      <p>Share NoirJack with friends</p>
-      <div class="share-buttons">
-        <button class="share-btn" type="button" data-share="facebook" aria-label="Share on Facebook">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.5h2.2V5.1c-.4-.1-1.7-.2-3.2-.2-3.1 0-5.2 1.9-5.2 5.5v3.1H4.5v3.8h3.3V24h4v-6.7h3.3l.5-3.8h-3.8v-2.7c0-1.1.3-2.3 2.2-2.3Z"/></svg>
-        </button>
-        <button class="share-btn" type="button" data-share="instagram" aria-label="Share on Instagram">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.2" cy="6.8" r="1.1"/></svg>
-        </button>
-        <button class="share-btn" type="button" data-share="x" aria-label="Share on X">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20"/></svg>
-        </button>
+    <section class="status card">
+      <h3>Status</h3>
+      <div class="healthbar"><span id="healthBar"></span></div>
+      <div class="status-grid">
+        <p><span>Location</span><strong id="statusLocation"></strong></p>
+        <p><span>Rank</span><strong id="rank"></strong></p>
+        <p><span>Days Held</span><strong id="rankDays">0/5</strong></p>
+        <p><span>Reputation</span><strong id="reputation">50/100</strong></p>
+        <p><span>Storage</span><strong id="space"></strong></p>
+        <p><span>Heat</span><strong id="heat"></strong></p>
       </div>
     </section>
   </main>
 
-  <div id="settingsOverlay" class="settings-overlay" hidden></div>
+  <dialog id="modal">
+    <form method="dialog" class="modal-card">
+      <h3 id="modalTitle"></h3>
+      <div id="modalBody"></div>
+      <menu>
+        <button value="cancel">Close</button>
+      </menu>
+    </form>
+  </dialog>
 
-  <aside id="settingsPanel" class="settings-panel" aria-hidden="true">
-    <div class="settings-header">
-      <div>
-        <p class="eyebrow">Settings</p>
-        <h2>Game Options</h2>
-      </div>
-      <button id="closeSettings" class="close-settings" type="button" aria-label="Close settings">×</button>
-    </div>
-
-    <div class="setting-block profile-panel">
-      <strong>Player Profile</strong>
-      <label class="username-field" for="usernameInput">
-        <span>Username</span>
-        <input id="usernameInput" type="text" maxlength="18" placeholder="Player" autocomplete="nickname" />
-      </label>
-      <div class="stat-row"><span>Wins</span><b id="statWins">0</b></div>
-      <div class="stat-row"><span>Losses</span><b id="statLosses">0</b></div>
-      <div class="stat-row"><span>Current Streak</span><b id="statCurrentStreak">0</b></div>
-      <div class="stat-row"><span>Best Streak</span><b id="statBestStreak">0</b></div>
-      <div class="stat-row"><span>Blackjacks</span><b id="statBlackjacks">0</b></div>
-      <div class="stat-row"><span>Hands Played</span><b id="statHands">0</b></div>
-      <div class="stat-row"><span>Session Profit</span><b id="statSessionProfit">£0</b></div>
-      <button id="resetStats" class="reset-stats" type="button">Reset Stats</button>
-    </div>
-
-    <details class="setting-block native-setting" id="backgroundSetting">
-      <summary>
-        <strong>Background Colour</strong>
-        <span class="collapse-icon" aria-hidden="true">+</span>
-      </summary>
-      <div id="backgroundPanel" class="native-panel theme-panel">
-        <button class="theme-option theme-red" data-theme="red" type="button"><span></span><strong>Red</strong></button>
-        <button class="theme-option theme-blue" data-theme="blue" type="button"><span></span><strong>Blue</strong></button>
-        <button class="theme-option theme-purple" data-theme="purple" type="button"><span></span><strong>Purple</strong></button>
-        <button class="theme-option theme-green is-selected" data-theme="green" type="button"><span></span><strong>Green</strong></button>
-        <button class="theme-option theme-orange" data-theme="orange" type="button"><span></span><strong>Orange</strong></button>
-      </div>
-    </details>
-
-    <details class="setting-block native-setting" id="currencySetting">
-      <summary>
-        <strong>Currency</strong>
-        <span class="collapse-icon" aria-hidden="true">+</span>
-      </summary>
-      <div id="currencyPanel" class="native-panel">
-        <button class="currency-option is-selected" data-symbol="£" data-label="Pound" type="button">£ Pound</button>
-        <button class="currency-option" data-symbol="$" data-label="Dollar" type="button">$ Dollar</button>
-        <button class="currency-option" data-symbol="€" data-label="Euro" type="button">€ Euro</button>
-      </div>
-    </details>
-
-    <div class="setting-block sound-setting">
-      <div>
-        <strong>Sounds</strong>
-        <p>Win and lose tones</p>
-      </div>
-      <button id="soundToggle" class="toggle is-on" type="button">On</button>
-    </div>
-</aside>
-
-
-  <section id="topUpScreen" class="topup-screen" hidden>
-    <div class="topup-card">
-      <button id="closeTopUp" class="topup-close" type="button" aria-label="Close top up">×</button>
-      <p class="eyebrow">NoirJack</p>
-      <h2>Top Up Funds</h2>
-      <p class="topup-tagline">Watch ads for more tokens.</p>
-
-      <div class="topup-options">
-        <button class="topup-option" type="button" data-tokens="25" data-seconds="15">
-          <strong>25 tokens</strong>
-          <span>Watch 15 second ad</span>
-        </button>
-        <button class="topup-option" type="button" data-tokens="50" data-seconds="30">
-          <strong>50 tokens</strong>
-          <span>Watch 30 second ad</span>
-        </button>
-        <button class="topup-option" type="button" data-tokens="100" data-seconds="60">
-          <strong>100 tokens</strong>
-          <span>Watch 60 second ad</span>
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <script src="script.js"></script>
+  <script src="game.js"></script>
 </body>
 </html>
